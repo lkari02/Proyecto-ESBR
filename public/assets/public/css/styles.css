@@ -699,117 +699,120 @@ a {
   border: 1px solid rgba(0,45,95,0.15);
 }
 
-/* --- BOTÓN HAMBURGUESA (Oculto por defecto en PC) --- */
-.mobile-menu-btn { 
-    display: none; 
-    background: transparent; 
-    border: none; 
-    color: #ffffff; /* Color blanco para el ícono */
-    cursor: pointer; 
-    padding: 0.5rem; 
-}
-.mobile-menu-btn .material-icons-outlined { 
-    font-size: 2.2rem; 
-}
 
 /* =========================================
-   DISEÑO RESPONSIVO (MÓVILES Y TABLETS)
-   Resolución máxima: 768px
+   DISEÑO RESPONSIVO DEL ENCABEZADO (HEADER)
    ========================================= */
-@media screen and (max-width: 768px) {
-    
-    /* 1. Contenedor Principal: DEBE poder envolver para que el menú baje */
+
+/* --- ESTILOS BASE (Escritorio > 1024px) --- */
+.mobile-menu-btn {
+    display: none; /* Oculto en PC */
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-btn .material-icons-outlined {
+    font-size: 2.2rem;
+}
+
+#main-header .nav-link {
+    white-space: nowrap; /* Evita que el texto salte a 2 líneas */
+}
+
+/* --- TABLETS Y MÓVILES (Menos de 1024px) --- */
+@media screen and (max-width: 1024px) {
+    /* 1. Contenedor Principal */
     .header-inner {
         display: flex;
-        flex-wrap: wrap; /* Esto revive tu menú desplegable */
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         padding: 1rem;
         width: 100%;
         box-sizing: border-box;
+        position: relative; /* Clave para que el menú flote debajo */
     }
 
-    /* 2. La Marca: Le decimos que tome el espacio disponible, sin asfixiar al botón */
+    /* 2. La Marca: Toma el espacio disponible sin aplastar el botón */
     .brand-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1; /* Toma el espacio disponible... */
-    min-width: 0; /* ¡MAGIA! Obliga a Flexbox a encogerse si no hay espacio */
-    max-width: calc(100% - 60px); /* ...pero respeta 60px para que viva el botón */
-}
-
-.brand-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 0; /* Necesario para que el texto interno pueda cortarse */
-}
-
-.brand-title, .brand-subtitle {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Activa los "..." cuando la pantalla es muy chica */
-}
-
-#main-header .nav-menu {
-        display: none; 
-        width: 100%; 
-        flex-direction: column;
-        padding-top: 1rem;
-        margin-top: 1rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
- #main-header .nav-menu.active {
-        display: flex; 
-        animation: slideDownMenu 0.3s ease-out;
-    }
-
-
-    /* --- COMPORTAMIENTO EN COMPUTADORA Y TABLETS GRANDES --- */
-@media screen and (min-width: 769px) {
-    .mobile-menu-btn {
-        display: none; /* Oculta el botón de hamburguesa */
-    }
-    
-    .nav-menu {
-        display: flex; /* Muestra los enlaces horizontalmente */
+        display: flex;
         align-items: center;
-        gap: 1rem;
-        width: auto;
-        flex-direction: row;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+        max-width: calc(100% - 60px);
     }
-}
 
-
-/* --- COMPORTAMIENTO EN CELULARES (Menos de 768px) --- */
-@media screen and (max-width: 768px) {
-    .mobile-menu-btn {
-        display: block; /* Muestra el botón de hamburguesa */
-        flex-shrink: 0; /* Evita que el botón se aplaste */
-    }
-    
-    .nav-menu {
-        display: none; /* Oculto por defecto en celular */
-        width: 100%; /* Ocupa toda la pantalla debajo de la marca */
+    .brand-text {
+        display: flex;
         flex-direction: column;
-        padding-top: 1rem;
-        margin-top: 1rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: center;
+        min-width: 0;
     }
 
-    /* Esta es la clase que tu JavaScript debe agregar al hacer clic en el botón */
-    .nav-menu.active {
+    .brand-title, .brand-subtitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Pone "..." si no cabe */
+    }
+
+    /* 3. Mostrar Botón Hamburguesa */
+    .mobile-menu-btn {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    /* 4. Convertir el Menú Horizontal en Panel Vertical Desplegable */
+    #main-header .nav-menu {
+        display: none; /* Oculto por defecto */
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem 0;
+        border-top: 2px solid #d32f2f; /* Línea decorativa roja */
+        background-color: #002d5f; /* Azul del encabezado */
+        
+        /* Lo hacemos flotante para que no empuje el contenido de abajo */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* JavaScript activará esta clase */
+    #main-header .nav-menu.active {
         display: flex; 
         animation: slideDownMenu 0.3s ease-out;
     }
-}
 
-    @keyframes slideDownMenu {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* 5. Ajustar botones dentro del menú móvil */
+    #main-header .nav-link {
+        padding: 15px 20px;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+    }
+    
+    #main-header .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .lang-selector {
+        padding: 15px 20px;
+        justify-content: flex-start;
     }
 }
+
+/* Animación de despliegue suave */
+@keyframes slideDownMenu {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* =========================================
    RESPONSIVE — DESKTOP (≥ 900px)
    ========================================= */
