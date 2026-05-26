@@ -208,6 +208,58 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     }
   }
 
+  /* Posicionamiento del contenedor principal */
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo del botón para que parezca un enlace normal de tu menú */
+.nav-link-dropdown {
+    background: none;
+    border: none;
+    color: #6b7280; /* Color gris/azulado de tu menú */
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+/* El submenú flotante (Oculto por defecto) */
+.dropdown-content {
+    display: none; /* Esto es lo que lo esconde */
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 250px; /* Ancho del submenú */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Sombra elegante */
+    z-index: 1000;
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+}
+
+/* Los enlaces dentro del submenú */
+.dropdown-content a {
+    color: #4b5563;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+/* Efecto al pasar el ratón por las opciones del submenú */
+.dropdown-content a:hover {
+    background-color: #f3f4f6; /* Fondo gris claro */
+    border-radius: 8px;
+}
+
+/* Esta es la clase que JavaScript agregará para hacerlo visible */
+.mostrar-dropdown {
+    display: block;
+}
+
   /* =========================================
      ESTILOS PARA EL MODO CLARO (Quiet Luxury)
      ========================================= */
@@ -282,7 +334,14 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
   <nav class="desktop-nav" id="mainNav">
     <a href="Dashboard.php" class="nav-item <?php echo ($pagina_actual == 'Dashboard.php') ? 'active' : ''; ?>">Inicio</a>
     <a href="catalogo.php" class="nav-item <?php echo ($pagina_actual == 'catalogo.php') ? 'active' : ''; ?>">Catálogo</a>
-    <a href="Cotizaciones.php" class="nav-item <?php echo ($pagina_actual == 'Cotizaciones.php') ? 'active' : ''; ?>">Cotizaciones</a>
+    <div class="nav-item-dropdown">
+    <button class="nav-link-dropdown" onclick="toggleCotizaciones()">Cotizaciones ▾</button>
+    
+    <div id="menuCotizaciones" class="dropdown-content">
+        <a href="/Proyecto/public/admin/cotizaciones.php">Cotizaciones</a>
+        <a href="/Proyecto/public/admin/seguimiento.php">Seguimiento de cotizaciones</a>
+    </div>
+</div>
     <a href="clientes.php" class="nav-item <?php echo ($pagina_actual == 'clientes.php') ? 'active' : ''; ?>">Clientes</a>
     <a href="reportes.php" class="nav-item <?php echo ($pagina_actual == 'reportes.php') ? 'active' : ''; ?>">Reportes</a>
   </nav>
@@ -331,7 +390,7 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
           <button type="submit" class="btn-save">Guardar Cambios</button>
         </form>
 
-        <a href="../../app/config/logout.php" class="btn-logout">Cerrar Sesión</a>
+        <a href="../../app/config/logger.php" class="btn-logout">Cerrar Sesión</a>
       </div>
     </div>
   </div>
@@ -368,4 +427,23 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
       document.getElementById("mainNav").classList.remove('show-mobile');
     }
   });
+
+
+// Función para mostrar/ocultar el menú al hacer clic en "COTIZACIONES"
+function toggleCotizaciones() {
+    document.getElementById("menuCotizaciones").classList.toggle("mostrar-dropdown");
+}
+
+// Función de seguridad: Cierra el menú si el usuario hace clic en cualquier otro lado de la pantalla
+window.onclick = function(event) {
+    if (!event.target.matches('.nav-link-dropdown')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('mostrar-dropdown')) {
+                openDropdown.classList.remove('mostrar-dropdown');
+            }
+        }
+    }
+}
 </script>

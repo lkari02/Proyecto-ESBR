@@ -62,19 +62,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mostrarAlerta('Acceso Denegado', 'El acceso ha sido denegado para esta cuenta.', 'error', '/Proyecto/public/admin/login.php');
         }
 
+        // Si la cuenta está activa, guardamos las variables de sesión normales
         $_SESSION['user_id'] = $usuario['id'];
         $_SESSION['user_nombre'] = $usuario['nombre'];
         $_SESSION['user_rol'] = $usuario['rol'];
 
+        // Si el rol es administrador
         if ($usuario['rol'] === 'admin') {
+            $_SESSION['admin_logeado'] = true;
+
             $detalle = "Inicio de sesión: " . $usuario['nombre'];
             $sql_log = "INSERT INTO historial_actividades (accion, modulo, detalle) VALUES ('APROBADA', 'Sistema', ?)";
             $stmt_log = $pdo->prepare($sql_log);
             $stmt_log->execute([$detalle]);
-        }
 
-        header("Location: /Proyecto/public/admin/Dashboard.php");
-        exit;
+            // CORRECCIÓN AQUÍ: Mandamos directo al Dashboard.php
+            mostrarAlerta('¡Bienvenido!', 'Inicio de sesión correcto como Administrador.', 'success', '/Proyecto/public/admin/Dashboard.php');
+        } else {
+            // Redirección para clientes o usuarios comunes si no son administradores
+            mostrarAlerta('¡Bienvenido!', 'Inicio de sesión correcto.', 'success', '/Proyecto/public/admin/Dashboard.php');
+        }
 
     } else {
         mostrarAlerta('Error de Acceso', 'Correo electrónico o contraseña incorrectos.', 'error', 'back');

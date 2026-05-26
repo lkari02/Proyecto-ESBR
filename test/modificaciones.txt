@@ -7,6 +7,15 @@
 
 
 
+<?php
+session_start();
+
+// El "Guardia de Seguridad" directo en el Dashboard
+if (!isset($_SESSION['admin_logeado']) || $_SESSION['admin_logeado'] !== true) {
+    // Si no está logeado, lo pateamos de vuelta al login
+    header("Location: /Proyecto/public/admin/login.php");
+    exit;
+}
 
 
 

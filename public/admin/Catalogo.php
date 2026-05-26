@@ -1,7 +1,12 @@
 <?php
-/**
- * Panel de Administración - BombaParts
- */
+session_start();
+
+// El "Guardia de Seguridad" directo en el Dashboard
+if (!isset($_SESSION['admin_logeado']) || $_SESSION['admin_logeado'] !== true) {
+    // Si no está logeado, lo pateamos de vuelta al login
+    header("Location: /Proyecto/public/admin/login.php");
+    exit;
+}
 
 // 1. CONFIGURACIÓN DE CONEXIÓN Y LOGS
 $host = '127.0.0.1';
@@ -197,7 +202,8 @@ foreach ($piezas as $key => $p) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo - Equipos de Bombeo</title>
+<title>Catálogo - ESBR</title>
+    <link rel="icon" type="image/png" href="assets/img/logo2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">

@@ -32,17 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
             products: [
     { 
         name: 'SWP150 - Bomba Centrífuga Multipasos', 
-        img: 'assets/img/SWP-150.jpg', 
+        img: 'assets/img/SWP-150-Photoroom.png', 
         desc: 'Bomba centrífuga horizontal multipasos para alta presión. Fabricada en hierro gris, con sellado mediante estoperos y retenes para aceite. Eje construido en acero AISI 4140T.' 
     },
     { 
         name: 'SWK 130 - Bomba Centrífuga Multipasos', 
-        img: 'assets/img/SWK130_2.jpg', 
+        img: 'assets/img/SWK-130_2-Photoroom.png', 
         desc: 'Bomba centrífuga horizontal multipasos para alta presión. Fabricada en hierro gris, sellado con empaquetadura, bujes internos en bronce estándar y rodamientos de baleros.' 
     },
     { 
         name: 'SWK 110 - Bomba Horizontal', 
-        img: 'assets/img/SWK110.jpg', 
+        img: 'assets/img/SWK110-Photoroom.png', 
         desc: 'Bomba horizontal para agua tipo centrífuga multipasos para alta presión. Fabricada de forma robusta en hierro gris y sellada con estoperos.' 
     }
 ]
