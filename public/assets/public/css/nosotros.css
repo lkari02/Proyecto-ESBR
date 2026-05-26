@@ -1,0 +1,43 @@
+/* nosotros.css */
+
+/* Ajuste del Hero para páginas secundarias */
+#about-hero-section {
+    min-height: 60vh; /* Más corto que el de inicio */
+    padding-top: var(--space-xl);
+}
+
+.mission-vision {
+    padding-block: var(--space-xl);
+}
+
+/* Espaciado para la cuadrícula de productos si se añaden manualmente */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+/* Asegura que los iconos de misión/visión tengan el color de marca */
+.feature-card .material-icons-outlined {
+    color: var(--blue-light);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Utilidad para centrar bloques de texto con ancho máximo */
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+/* Ajuste específico para la descripción en secciones blancas */
+.products-section .hero-desc {
+    margin-top: 1rem;
+    max-width: 600px; /* Evita que el texto sea demasiado largo para leer */
+    color: var(--gray-600);
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page_title">Equipos de Bombeo, Servicio y Refacciones</title>
+  <link rel="icon" type="image/png" href="assets/img/logo2.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets\public\css\styles.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       HEADER — rendered by script.js
+  ═══════════════════════════════════════ -->
+        <header id="main-header" role="banner">
+  <div class="header-inner container">
+    <!-- Branding según la imagen -->
+            <div class="brand-container">
+      <div class="brand-icon">
+        <img src="assets/img/logo2.png" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+    <!-- NUEVO: Botón de Hamburguesa -->
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <!-- Navegación -->
+    <nav class="nav-menu">
+      <a href="Index.html" class="nav-link" data-i18n="nav_home">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" data-i18n="nav_about">Nosotros</a>
+      <a href="catalogo.html" class="nav-link" data-i18n="nav_catalog">Catálogo</a>
+      <a href="Contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a>
+      <a href="Faq.html" class="nav-link" data-i18n="nav_faq">Preguntas Frecuentes</a>
+      
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+  <main id="main-content">
+
+    <!-- ══════════════════════════════════
+         HERO
+    ═══════════════════════════════════ -->
+    <section class="hero" id="hero-section" aria-label="Presentación principal">
+      <div class="hero-content container">
+
+        <!-- LEFT COLUMN: Copy -->
+        <p class="hero-eyebrow" aria-hidden="true">Equipos de Bombeo · Servicio · Refacciones</p>
+
+        <h1 data-i18n="hero_title">
+          Calidad a la Industria
+        </h1>
+
+        <p class="hero-desc" data-i18n="hero_desc">
+          Su socio confiable para soluciones de bombeo. Explore nuestro catálogo
+          y solicite una cotización hoy mismo.
+        </p>
+
+        <div class="hero-actions">
+          <a href="catalogo.html" class="cta-button" data-i18n="btn_explore">
+            Explorar Catálogo
+            <span class="material-icons-outlined" aria-hidden="true" style="font-size:1.1em;">arrow_forward</span>
+          </a>
+          <a href="#about-section" class="cta-button-ghost" data-i18n="btn_about">
+            Quiénes Somos
+          </a>
+        </div>
+
+        <div class="hero-stats" aria-label="Indicadores de experiencia">
+          <div class="hero-stat">
+            <strong>+20</strong>
+            <span data-i18n="stat_years">Años de experiencia</span>
+          </div>
+          <div class="hero-stat">
+            <strong>+500</strong>
+            <span data-i18n="stat_parts">Refacciones disponibles</span>
+          </div>
+          <div class="hero-stat">
+            <strong>100%</strong>
+            <span data-i18n="stat_quality">Calidad garantizada</span>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Visual (swap img src with your photo) -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-image-frame">
+            <!-- Replace src with your high-quality pump/industrial image -->
+            <img
+              src="assets/img/"
+              alt="Equipo de bombeo industrial de alta precisión"
+              width="720"
+              height="540"
+              loading="eager"
+              onerror="this.style.display='none'"
+            >
+          </div>
+        </div>
+
+      </div><!-- /.hero-content -->
+    </section>
+
+    <!-- ══════════════════════════════════
+         FEATURES
+    ═══════════════════════════════════ -->
+    <section class="features" id="features-section" aria-labelledby="features-heading">
+
+      <!-- Optional header row (uncomment if desired) -->
+      <!--
+      <div class="features-header">
+        <p class="section-eyebrow">Por qué elegirnos</p>
+        <h2 id="features-heading" class="section-title">Ventajas Clave</h2>
+      </div>
+      -->
+
+      <article class="feature-card">
+        <span class="material-icons-outlined" aria-hidden="true">build</span>
+        <h3 data-i18n="feat_1_title">Amplio Catálogo</h3>
+        <p data-i18n="feat_1_desc">
+          Encuentre la pieza exacta que necesita para cualquier tipo de bomba de agua.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <span class="material-icons-outlined" aria-hidden="true">request_quote</span>
+        <h3 data-i18n="feat_2_title">Cotización Sencilla</h3>
+        <p data-i18n="feat_2_desc">
+          Proceso intuitivo para seleccionar productos y solicitar su cotización.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <span class="material-icons-outlined" aria-hidden="true">precision_manufacturing</span>
+        <h3 data-i18n="feat_3_title">Fabricación a Medida</h3>
+        <p data-i18n="feat_3_desc">
+          Fabricamos piezas según sus planos, especificaciones y elección de material, adaptándonos a las exigencias exactas de su equipo.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- ══════════════════════════════════
+         ABOUT US
+    ═══════════════════════════════════ -->
+      <!-- SECCIÓN QUIÉNES SOMOS ACTUALIZADA -->
+<section class="about-us" id="about-section">
+    <div class="container">
+        <div class="about-text-full">
+            <p class="section-eyebrow" data-i18n="about_eyebrow">Nuestra empresa</p>
+            <h2 class="section-title" data-i18n="about_title">Quiénes Somos</h2>
+            <p class="about-desc" data-i18n="about_desc">
+                En Equipos de Bombeo, Servicio y Refacciones, nos dedicamos a fabricar y suministrar refacciones adaptadas a las especificaciones, planos y materiales que cada cliente requiere, brindando soluciones exactas para sus equipos...
+            </p>
+            <ul class="about-values">
+                <li data-i18n="value_experience">Experiencia comprobada</li>
+                <li data-i18n="value_service">Servicio técnico especializado</li>
+                <li data-i18n="value_catalog">Catálogo amplio y actualizado</li>
+                <li data-i18n="value_delivery">Entregas a tiempo</li>
+            </ul>
+        </div>
+      </div>
+        <!-- Galería de 4 imágenes debajo -->
+              <div class="about-gallery-grid">
+          <div class="gallery-item"><img src="assets/img/SWK110.jpg" alt="Pieza 1"></div>
+          <div class="gallery-item"><img src="assets/img/SWK130_2.jpg" alt="Pieza 2"></div>
+          <div class="gallery-item"><img src="assets/img/Disco-de-equilibrio_2.jpeg" alt="Pieza 3"></div>
+          <div class="gallery-item"><img src="assets/img/Impulsor_3.jpeg" alt="Pieza 4"></div>
+      </div>
+</section>
+
+<!-- FOOTER ACTUALIZADO -->
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span> 
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de Méxica</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+  <!-- Scripts -->
+  <script src="assets/public/js/script_web.js"></script>
+  <script src="assets/public/js/traducciones.js"></script>
+
+</body>
+</html>

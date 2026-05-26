@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="cat_page_title">Catálogo de Refacciones</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+
+        <header id="main-header" role="banner">
+  <div class="header-inner container">
+    <!-- Branding según la imagen -->
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="logo.jpg" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+    <!-- NUEVO: Botón de Hamburguesa -->
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <!-- Navegación -->
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-link" data-i18n="nav_catalog">Catálogo Opcion 1</a>
+        <a href="Catalogo-Opcion2.html" class="nav-link" data-i18n="nav_catalog">Catálogo Opcion 2</a>
+
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <main class="catalog-page container">
+        <!-- Encabezado de Catálogo Profesional -->
+        <header class="catalog-header features-header text-center">
+            <p class="section-eyebrow" data-i18n="cat_eyebrow">Precisión Industrial</p>
+            <h1 class="section-title" data-i18n="cat_header_title">Nuestro Catálogo de Piezas</h1>
+            
+            <div class="catalog-controls mx-auto">
+                <div class="search-wrapper">
+                    <span class="material-icons-outlined search-icon">search</span>
+                    <input type="search" id="search-bar" data-i18n="cat_search_placeholder" placeholder="Buscar pieza técnica...">
+                </div>
+                
+                <a href="/Proyecto/app/services/catalogo_pdf_publico.php?lang=es" id="btn-download-pdf" target="_blank" class="cta-button">
+                    <span class="material-icons-outlined">picture_as_pdf</span>
+                    <span id="text-btn-pdf">Descargar Catálogo</span>
+                </a>
+            
+                <a href="cotizacion.html" class="cta-button">
+                    <span class="material-icons-outlined">post_add</span>
+                    <span data-i18n="cat_btn_quote">Cotización</span>
+                </a>
+            </div> 
+        <div class="catalog-controls mx-auto">
+             </div>
+
+        <div class="filter-controls mx-auto">
+            <button class="filter-btn active" data-filter="ALL">Todos</button>
+            <button class="filter-btn" data-filter="BOM">Bombas de Agua</button>
+            <button class="filter-btn" data-filter="REF">Refacciones</button>
+        </div>
+    </header>
+
+        <!-- Cuadrícula de Productos -->
+        <div class="product-catalog-grid" id="catalog-grid">
+            <!-- Dinámico vía catalogo.js -->
+        </div>
+    </main>
+
+        <div id="product-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-content-wrapper">
+        <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+        
+        <div class="modal-gallery-section">
+            <img id="modal-img" src="" alt="Vista del producto">
+            <div id="modal-thumbnails" class="thumbnail-container"></div>
+        </div>
+
+        <div class="modal-info-section">
+            <div>
+                <span id="modal-category" class="section-eyebrow"></span>
+                <h2 id="modal-title" class="modal-title-text"></h2>
+                <p id="modal-desc" class="modal-description-text"></p>
+                <div id="modal-compatibility" class="modal-compatibility-box"></div>
+            </div>
+
+            <div class="modal-action-container">
+                <button id="modal-quote-btn" class="cta-button w-100">
+                    <span class="material-icons-outlined">add_shopping_cart</span>
+                    <span id="btn-text">Añadir a Cotización</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span> 
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de Méxica</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets\public\js\traducciones.js"></script>
+    <script src="script_web.js"></script>
+    <script src="catalogo.js"></script>
+     
+</body>
+</html>

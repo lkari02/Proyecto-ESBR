@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipos de Bombeo, Servicio y Refacciones — Panel Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Barlow Condensed', 'sans-serif'],
+        body: ['Barlow', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'monospace'],
+      },
+      colors: {
+        steel: {
+          50:  '#f4f6f9',
+          100: '#e8ecf2',
+          200: '#cdd5e0',
+          300: '#a8b7ca',
+          400: '#7e94ad',
+          500: '#5f7894',
+          600: '#4a6080',
+          700: '#3c4f69',
+          800: '#344358',
+          900: '#1e2a38',
+          950: '#111824',
+        },
+        ember: {
+          400: '#f97316',
+          500: '#ea6a0a',
+          600: '#c2540a',
+        },
+        cobalt: {
+          400: '#3b82f6',
+          500: '#2563eb',
+          600: '#1d4ed8',
+        }
+      }
+    }
+  }
+}
+</script>
+
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="logo-mark">
+      <!-- pump gear icon -->
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm0-13a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3z"/></svg>
+    </div>
+    <div class="brand-wrap">
+      <div>
+        <div class="brand-name">Equipos de Bombeo</div>
+        <div class="brand-sub">Servicio &amp; Refacciones</div>
+      </div>
+    </div>
+  </div>
+
+  <nav style="display:flex;align-items:center;gap:4px;">
+    <button class="nav-item active">Catálogo</button>
+    <button class="nav-item">Órdenes</button>
+    <button class="nav-item">Clientes</button>
+    <button class="nav-item">Reportes</button>
+  </nav>
+
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="theme-toggle" id="themeToggle" title="Cambiar tema" onclick="toggleTheme()">
+      <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div style="width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:white;letter-spacing:0.5px;">AA</div>
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+  <!-- Page header -->
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;">
+    <div>
+      <div class="page-title">Catálogo de Piezas</div>
+      <div class="page-sub">// equipos de bombeo · servicio · refacciones</div>
+    </div>
+    <button class="btn-primary" onclick="openModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Agregar nueva pieza
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
+    <div class="stat-card">
+      <div class="stat-label">Total piezas</div>
+      <div class="stat-value" style="color:var(--accent)" id="stTotal">248</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">En stock</div>
+      <div class="stat-value" style="color:var(--success)" id="stStock">231</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Stock bajo</div>
+      <div class="stat-value" style="color:var(--warning)" id="stLow">12</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Agotadas</div>
+      <div class="stat-value" style="color:var(--danger)" id="stOut">5</div>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar" style="margin-bottom:16px;">
+    <span class="filter-label">Filtrar:</span>
+    <input class="filter-input" type="text" id="searchInput" placeholder="Buscar por nombre o SKU…" oninput="renderTable()">
+    <div style="width:1px;height:28px;background:var(--border);"></div>
+    <select class="filter-select" id="modeloFilter" onchange="renderTable()">
+      <option value="">Todos los modelos</option>
+      <option value="cm-3-5">Grundfos CM 3-5</option>
+      <option value="sp-5a-18">Grundfos SP 5A-18</option>
+      <option value="lcc-100-250">Xylem LCC 100-250</option>
+      <option value="f-32-160a">Pedrollo F 32/160A</option>
+      <option value="cam-80-00">Pentax CAM 80/00</option>
+    </select>
+    <select class="filter-select" id="stockFilter" onchange="renderTable()">
+      <option value="">Todo el stock</option>
+      <option value="ok">Disponible</option>
+      <option value="low">Stock bajo (&lt;10)</option>
+      <option value="out">Agotado</option>
+    </select>
+    <button class="btn-outline" onclick="clearFilters()">Limpiar</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:100px">SKU</th>
+          <th style="width:auto">Nombre de la pieza</th>
+          <th style="width:110px">Marca</th>
+          <th style="width:160px">Modelos compatibles</th>
+          <th style="width:100px">Precio</th>
+          <th style="width:80px">Stock</th>
+          <th style="width:90px;text-align:center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="pagination">
+      <span class="pag-info" id="pagInfo"></span>
+      <div style="display:flex;gap:4px;" id="pagBtns"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="mainModal">
+  <div class="modal-box">
+
+    <!-- Modal header -->
+    <div class="modal-header">
+      <div class="modal-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Registrar nueva pieza
+      </div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Modal body: LEFT + RIGHT -->
+    <div class="modal-body">
+
+      <!-- === LEFT: FORM FIELDS === -->
+      <div class="modal-left">
+
+        <!-- Identificación -->
+        <div class="section-divider">Identificación</div>
+        <div class="field-group">
+          <div class="field">
+            <label>SKU <span class="req">*</span></label>
+            <input type="text" id="fSku" placeholder="BP-GRU-001" oninput="updatePreview()">
+          </div>
+          <div class="field">
+            <label>Marca <span class="req">*</span></label>
+            <select id="fMarca" onchange="updatePreview()">
+              <option value="">Seleccionar…</option>
+              <option>Grundfos</option>
+              <option>Xylem</option>
+              <option>Pedrollo</option>
+              <option>Pentax</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LANG TABS — Nombre + Descripción -->
+        <div class="section-divider" style="margin-top:4px;display:flex;align-items:center;justify-content:space-between;">
+          <span>Contenido por idioma</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);font-weight:400;letter-spacing:0;text-transform:none;">ES requerido · EN opcional</span>
+        </div>
+
+        <div class="lang-tabs-wrap">
+          <!-- Tab buttons -->
+          <div class="lang-tabs-header">
+            <button class="lang-tab-btn active" id="tab-es" onclick="switchLangTab('es')">
+              <span class="flag">🇲🇽</span>
+              Español
+              <span class="lang-status" id="status-es"></span>
+              <span class="lang-comp-badge" id="badge-es">0/2</span>
+            </button>
+            <button class="lang-tab-btn" id="tab-en" onclick="switchLangTab('en')">
+              <span class="flag">🇺🇸</span>
+              English
+              <span class="lang-status" id="status-en"></span>
+              <span class="lang-comp-badge" id="badge-en">0/2</span>
+            </button>
+          </div>
+
+          <!-- Panel: Español -->
+          <div class="lang-tab-panel active" id="panel-es">
+            <div class="field">
+              <label>
+                Nombre de la pieza
+                <span class="req">*</span>
+              </label>
+              <input type="text" id="fNombre_es" maxlength="200"
+                     placeholder="Sello mecánico carbono/cerámica"
+                     oninput="updatePreview(); updateLangStatus('es')">
+              <div class="char-count" id="cc-nombre-es">0 / 200</div>
+            </div>
+            <div class="field">
+              <label>
+                Descripción técnica
+                <span class="req">*</span>
+              </label>
+              <textarea id="fDesc_es" maxlength="1000" rows="4"
+                        placeholder="Material, tolerancias, presión máxima, temperatura de operación…"
+                        oninput="updateLangStatus('es')"></textarea>
+              <div class="char-count" id="cc-desc-es">0 / 1000</div>
+            </div>
+          </div>
+
+          <!-- Panel: English -->
+          <div class="lang-tab-panel" id="panel-en">
+            <div class="field">
+              <label>
+                Part name
+                <span class="opt">(optional)</span>
+              </label>
+              <input type="text" id="fNombre_en" maxlength="200"
+                     placeholder="Carbon/ceramic mechanical seal"
+                     oninput="updateLangStatus('en')">
+              <div class="char-count" id="cc-nombre-en">0 / 200</div>
+            </div>
+            <div class="field">
+              <label>
+                Technical description
+                <span class="opt">(optional)</span>
+              </label>
+              <textarea id="fDesc_en" maxlength="1000" rows="4"
+                        placeholder="Material, tolerances, max pressure, operating temperature…"
+                        oninput="updateLangStatus('en')"></textarea>
+              <div class="char-count" id="cc-desc-en">0 / 1000</div>
+            </div>
+          </div>
+        </div><!-- /lang-tabs-wrap -->
+
+        <!-- Compatibilidad -->
+        <div class="section-divider" style="margin-top:4px;">Compatibilidad</div>
+        <div class="field">
+          <label>Modelos de bomba compatibles</label>
+          <select id="fModelo">
+            <option value="">Seleccionar modelo…</option>
+            <option value="cm-3-5">Grundfos CM 3-5</option>
+            <option value="sp-5a-18">Grundfos SP 5A-18</option>
+            <option value="lcc-100-250">Xylem LCC 100-250</option>
+            <option value="f-32-160a">Pedrollo F 32/160A</option>
+            <option value="cam-80-00">Pentax CAM 80/00</option>
+          </select>
+        </div>
+
+        <!-- Precio y stock -->
+        <div class="section-divider" style="margin-top:4px;">Precio y stock</div>
+        <div class="field-group">
+          <div class="field">
+            <label>Precio unitario (MXN)</label>
+            <input type="number" id="fPrecio" placeholder="0.00" step="0.01" oninput="updatePreview()">
+          </div>
+          <div class="field">
+            <label>Stock inicial</label>
+            <input type="number" id="fStock" placeholder="0" min="0" oninput="updatePreview()">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- === RIGHT: IMAGE ZONE === -->
+      <div class="modal-right">
+
+        <!-- Quick preview card -->
+        <div>
+          <div class="preview-card">
+            <div class="preview-card-header">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista rápida
+            </div>
+            <div class="preview-card-body">
+              <div class="preview-thumb-main" id="prevThumb">
+                <div class="no-img">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+              </div>
+              <div class="preview-card-meta">
+                <div class="preview-product-name empty" id="prevName">Nombre de la pieza</div>
+                <div class="preview-detail">
+                  <span id="prevSku">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                    <span style="color:var(--text-muted)">SKU: —</span>
+                  </span>
+                  <span id="prevStock">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                    <span style="color:var(--text-muted)">Stock: 0 · $0.00</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload zone -->
+        <div>
+          <div class="drop-zone-label">
+            <span>Imágenes del producto</span>
+            <span class="img-counter empty" id="imgCounter">0 / 10</span>
+          </div>
+
+          <div class="img-rules" style="margin-bottom:10px;">
+            <div class="img-rule min">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Mínimo 6 imágenes
+            </div>
+            <div class="img-rule max">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Máximo 10 imágenes
+            </div>
+          </div>
+
+          <div class="drop-zone" id="dropZone"
+               ondragover="handleDragOver(event)"
+               ondragleave="handleDragLeave(event)"
+               ondrop="handleDrop(event)"
+               onclick="document.getElementById('fileInput').click()">
+            <div class="drop-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            </div>
+            <div class="drop-text"><strong>Haz clic o arrastra</strong> para subir imágenes</div>
+            <div class="drop-hint">JPG, PNG, WebP · Máx. 5 MB por archivo</div>
+          </div>
+          <input type="file" id="fileInput" multiple accept="image/*" onchange="handleFiles(event.target.files)">
+        </div>
+
+        <!-- Thumbnail strip -->
+        <div>
+          <div class="thumbs-label">Imágenes añadidas:</div>
+          <div class="thumbs-strip" id="thumbsStrip">
+            <div class="thumb-add-btn" onclick="document.getElementById('fileInput').click()" id="thumbAddBtn" title="Añadir imagen">+</div>
+          </div>
+        </div>
+
+        <!-- Validation bar -->
+        <div class="validation-bar empty" id="validationBar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="validationMsg">Añade al menos 6 imágenes para continuar</span>
+        </div>
+
+      </div><!-- /modal-right -->
+    </div><!-- /modal-body -->
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-primary" id="saveBtn" onclick="handleSave()" style="opacity:.5;cursor:not-allowed;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Guardar pieza
+      </button>
+    </div>
+
+  </div><!-- /modal-box -->
+</div><!-- /modal-overlay -->
+<script src="script.js"></script>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

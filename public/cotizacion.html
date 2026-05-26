@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="quote_page_title">Solicitud de Cotización</title>
+    <link rel="icon" type="image/png" href="assets/img/logo2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets\public\css\styles.css">
+    <link rel="stylesheet" href="assets\public\css\cotizacion.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+
+<header id="main-header" role="banner">
+  <div class="header-inner container">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="assets/img/logo2.png" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <nav class="nav-menu">
+      <a href="Index.html" class="nav-link" data-i18n="nav_home">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" data-i18n="nav_about">Nosotros</a>
+      <a href="catalogo.html" class="nav-link" data-i18n="nav_catalog">Catálogo</a>
+      <a href="Contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a>
+      <a href="Faq.html" class="nav-link" data-i18n="nav_faq">Preguntas Frecuentes</a>
+      
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <main class="quote-page-main">
+        <a href="catalogo.html" class="btn-return" id="quote-return-link" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; font-weight:bold; color:var(--blue-main); margin-bottom: 1rem;" data-i18n="quote_return_btn">
+            <span class="material-icons-outlined">arrow_back</span> Volver al Catálogo
+        </a>
+
+        <div class="quote-grid">
+            
+            <div class="quote-summary-section">
+                <h2 class="section-title" data-i18n="quote_summary_title">1. Resumen de Refacciones</h2>
+                <div id="quote-list" style="min-height: 200px;"></div>
+                
+                <div style="text-align: right; margin-top: 1.5rem; font-size: 1.2rem; font-weight: bold; border-top: 2px solid var(--gray-200); padding-top: 1rem;">
+                    <span data-i18n="quote_total_articles">Total de Artículos:</span> <span id="total-articles" style="color: var(--blue-main); font-size: 1.5rem;">0</span>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <h2 class="section-title" data-i18n="quote_form_title">2. Datos de Contacto y Envío</h2>
+                
+                <form id="quote-contact-form" class="form-grid">
+                    <div class="form-group">
+                        <label for="name" data-i18n="quote_label_name">Nombre Completo *</label>
+                        <input type="text" id="name" name="name" class="form-control" data-i18n="quote_ph_name" placeholder="Su nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-i18n="quote_label_email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" class="form-control" data-i18n="quote_ph_email" placeholder="correo@empresa.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" data-i18n="quote_label_phone">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="+52 123 456 7890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo-cliente" data-i18n="quote_label_client_type">Tipo de cliente *</label>
+                        <select id="tipo-cliente" name="tipo_cliente" class="form-control" required>
+                            <option value="" data-i18n="quote_opt_select">-- Seleccione --</option>
+                            <option value="Cliente final" data-i18n="quote_opt_person">Persona Física (Cliente Final)</option>
+                            <option value="Empresa" data-i18n="quote_opt_company">Empresa / Distribuidor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full hidden-field" id="organizacion-wrapper" style="display:none;">
+                        <label for="nombre-organizacion" id="organizacion-label" data-i18n="quote_label_org">Nombre de la Empresa o Institución *</label>
+                        <input type="text" id="nombre-organizacion" name="nombre_organizacion" class="form-control" data-i18n="quote_ph_org" placeholder="Razón Social">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pais" data-i18n="quote_label_country">País *</label>
+                        <input type="text" id="pais" name="pais" class="form-control" value="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ubicacion" data-i18n="quote_label_city">Ciudad / Estado *</label>
+                        <input type="text" id="ubicacion" name="ubicacion" class="form-control" data-i18n="quote_ph_city" placeholder="Ej: Tlaxcala" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="message" data-i18n="quote_label_message">Mensaje Adicional (Opcional)</label>
+                        <textarea id="message" name="message" rows="3" class="form-control" data-i18n="quote_ph_message" placeholder="Especificaciones técnicas adicionales..."></textarea>
+                    </div>
+
+                    <div class="form-group full" style="background: #fff; padding: 1rem; border-radius: 6px; border: 1px solid var(--gray-200);">
+                        <label data-i18n="quote_label_contact_pref">Vía de contacto preferida:</label>
+                        <div style="display:flex; gap: 2rem; margin-top: 0.5rem;">
+                            <label style="cursor:pointer;"><input type="radio" name="preferencia_contacto" value="Email" required> <span data-i18n="quote_radio_email">Correo</span></label>
+                            <label style="cursor:pointer;"><input type="radio" name="preferencia_contacto" value="WhatsApp"> <span data-i18n="quote_radio_whatsapp">WhatsApp</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group full checkbox-group" style="margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.9rem; color: var(--gray-600);">
+                            <input type="checkbox" id="aviso-privacidad" name="aviso_privacidad" value="aceptado" required style="width: 18px; height: 18px; cursor: pointer;">
+                            <span data-i18n="quote_privacy_notice">He leído y acepto el <a href="aviso-de-privacidad.html" target="_blank" style="color: var(--blue-main); text-decoration: underline; font-weight: bold;">Aviso de Privacidad</a>.</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group full" style="margin-top: 1rem;">
+                        <button type="submit" class="cta-button btn-submit-quote" style="width: 100%; justify-content: center; padding: 1rem; font-size: 1.1rem;" data-i18n="quote_btn_submit">
+                            Solicitar Cotización
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-confirm" class="modal-overlay" style="display:none; z-index: 10000;">
+        <div class="modal-content modal-small">
+            <span class="material-icons-outlined" style="font-size: 3.5rem; color: var(--blue-main); margin-bottom: 1rem;">help_outline</span>
+            
+            <h2 style="color: var(--blue-dark); font-family: var(--font-display); margin-bottom: 0.5rem;" data-i18n="quote_modal_confirm_title">Confirmar Solicitud</h2>
+            <p style="color: var(--gray-600); margin-bottom: 2rem; font-size: 0.95rem;" data-i18n="quote_modal_confirm_desc">¿Estás seguro de que deseas enviar esta solicitud de cotización con las refacciones y datos ingresados?</p>
+            
+            <div class="modal-actions" style="display: flex; gap: 1rem; justify-content: center;">
+                <button type="button" id="btn-confirm-no" class="btn btn-secondary" style="padding: 0.8rem 1.5rem; background: #e2e8f0; border: none; border-radius: 6px; cursor: pointer; color: #475569; font-weight: bold; width: 100%;" data-i18n="quote_btn_review">
+                    Revisar de nuevo
+                </button>
+                <button type="button" id="btn-confirm-yes" class="cta-button" style="padding: 0.8rem 1.5rem; justify-content: center; border: none; width: 100%;" data-i18n="quote_btn_yes_send">
+                    Sí, Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-details" class="modal-overlay" style="display:none; z-index: 10000; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 15, 30, 0.7); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 1rem; box-sizing: border-box;">
+        <div class="modal-content" style="background-color: #ffffff; width: 100%; max-width: 950px; max-height: 90vh; display: flex; flex-direction: column; text-align: left; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); position: relative; overflow: hidden;">
+            
+            <div style="background: var(--blue-dark, #002d5f); color: white; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                    <span class="material-icons-outlined" style="font-size: 2.2rem; color: #4ade80;">check_circle</span>
+                    <h2 style="margin: 0; font-size: 1.5rem; font-family: var(--font-display, sans-serif); font-weight: 600;" data-i18n="quote_success_title">Solicitud Registrada con Éxito</h2>
+                </div>
+                <span id="close-details" style="font-size: 2rem; color: rgba(255,255,255,0.6); cursor: pointer; transition: 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">&times;</span>
+            </div>
+
+            <div style="padding: 2.5rem; overflow-y: auto; flex-grow: 1;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem;">
+                    
+                    <div>
+                        <h3 style="color: var(--blue-dark, #002d5f); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--blue-main, #007bff); padding-bottom: 0.5rem; margin-bottom: 1.5rem; font-weight: bold;" data-i18n="quote_detail_client_title">Datos del Cliente</h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; color: #334155;">
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_folio">Folio de Seguimiento:</span>
+                                <span id="detail-folio" style="color: var(--blue-main, #007bff); font-weight: 800; font-size: 1.1rem;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_name">Nombre Completo:</span>
+                                <span id="detail-name" style="font-weight: 600; text-align: right;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_email">Correo:</span>
+                                <span id="detail-email" style="font-weight: 500;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_phone">Teléfono:</span>
+                                <span id="detail-phone" style="font-weight: 500;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_location">Ubicación:</span>
+                                <span style="font-weight: 500;"><span id="detail-location"></span>, <span id="detail-country"></span></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_type">Tipo:</span>
+                                <span id="detail-client-type" style="font-weight: 500;"></span>
+                            </div>
+                            <div id="detail-org-wrapper" style="display: none; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_org">Empresa / Institución:</span>
+                                <span id="detail-org" style="font-weight: 600; color: var(--blue-dark, #002d5f);"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.3rem;">
+                                <span style="color: #64748b;" data-i18n="quote_detail_pref">Preferencia Contacto:</span>
+                                <span id="detail-pref" style="font-weight: bold; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;"></span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <span style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; font-weight: bold;" data-i18n="quote_detail_notes">Notes / Requerimientos:</span>
+                            <div id="detail-message" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: #475569; font-style: italic; min-height: 50px;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--blue-dark, #002d5f); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--blue-main, #007bff); padding-bottom: 0.5rem; margin-bottom: 1.5rem; font-weight: bold;" data-i18n="quote_detail_products_title">Refacciones Cotizadas</h3>
+                        <div id="detail-products-list" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; max-height: 380px; overflow-y: auto; flex-grow: 1;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f1f5f9; padding: 1.5rem 2.5rem; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 1rem; align-items: center;">
+                <span style="color: #64748b; font-size: 0.95rem; margin-right: auto; font-weight: 500;" data-i18n="quote_success_footer_text">Nuestro equipo enviará la cotización formal a su contacto de preferencia.</span>
+                <button type="button" id="btn-details-ok" style="background-color: transparent; color: #475569; padding: 0.8rem 2rem; border-radius: 6px; border: 2px solid #cbd5e1; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" data-i18n="quote_btn_close">
+                    Cerrar
+                </button>
+                <a href="/Proyecto/app/services/generar_cotizacion_pdf.php" id="btn-details-pdf" target="_blank" style="background-color: var(--blue-main, #007bff); color: white; padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1rem; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" data-i18n="quote_btn_download_pdf">
+                    <span class="material-icons-outlined">download</span> Descargar PDF
+                </a>
+            </div>
+        </div>
+    </div>
+
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span> 
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de Méxica</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="assets\public\js\script_web.js"></script>
+    <script src="assets\public\js\traducciones.js"></script>
+    <script src="assets\public\js\cotizacion.js"></script>
+</body>
+</html>

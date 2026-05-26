@@ -1,0 +1,68 @@
+../../   para rutas externas 
+
+
+/Proyecto/app/controllers/
+
+
+
+
+
+
+
+
+
+
+
+
+estilos generales para pdf 
+
+class PDF extends FPDF {
+    public $estado;
+    function Header() {
+        // --- DISEÑO DEL ENCABEZADO CORPORATIVO ---
+        // 1. Fondo Azul Marino Profundo
+        $this->SetFillColor(0, 48, 87);
+        $this->Rect(0, 0, 210, 32, 'F'); // 210 es el ancho A4 Portrait
+
+        // 2. Línea de Acento Roja
+        $this->SetFillColor(180, 25, 35);
+        $this->Rect(0, 32, 210, 1.5, 'F');
+
+        // 3. Insertar Logo (AJUSTA LA RUTA DE TU IMAGEN AQUÍ)
+        if(file_exists('../../public/assets/img/logo2.png')) {
+            $this->Image('../../public/assets/img/logo2.png', 12, 6, 20);
+        }
+
+        // 4. Textos del Encabezado
+        $this->SetY(10);
+        $this->SetX(35);
+        $this->SetFont('Arial', 'B', 18);
+        $this->SetTextColor(255, 255, 255);
+        $this->Cell(100, 8, utf8_decode('EQUIPOS DE BOMBEO'), 0, 0, 'L');
+        
+        $this->SetFont('Arial', 'B', 12);
+        $this->SetTextColor(200, 200, 200);
+        $this->Cell(60, 8, utf8_decode('COTIZACIÓN'), 0, 1, 'R');
+
+        $this->SetX(35);
+        $this->SetFont('Arial', 'B', 9);
+        $this->SetTextColor(180, 25, 35); // Rojo del acento
+        $this->Cell(100, 5, utf8_decode('SERVICIO & REFACCIONES'), 0, 0, 'L');
+        $this->Ln(18);
+    }
+
+    function Footer() {
+        // Posición a 20 mm del final para dar espacio al contacto
+        $this->SetY(-20);
+        
+        // Datos de Contacto
+        $this->SetFont('Arial', 'B', 9);
+        $this->SetTextColor(0, 48, 87);
+        $this->Cell(0, 5, utf8_decode('ventas@equiposbombeo.com.mx  |  +52 55 1904 3197'), 0, 1, 'C');
+        
+        // Paginación
+        $this->SetFont('Arial', 'I', 8);
+        $this->SetTextColor(126, 148, 173);
+        $this->Cell(0, 6, utf8_decode('Este documento es oficial. Página ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
+    }
+}

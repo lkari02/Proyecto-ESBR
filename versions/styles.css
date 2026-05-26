@@ -1,0 +1,1298 @@
+/* =========================================
+   EQUIPOS DE BOMBEO — STYLE.CSS
+   Industrial Modern · Mobile-First · i18n-Ready
+   ========================================= */
+
+/* ── Design Tokens ─────────────────────── */
+:root {
+  --blue-deep:       #002D5F;
+  --blue-mid:        #003F84;
+  --blue-light:      #0057B7;
+  --blue-tint:       #E8F0FA;
+  --red-accent:      #e00000c9;
+  --red-hover:       #f41f1f;
+  --white:           #FFFFFF;
+  --gray-50:         #F7F8FA;
+  --gray-100:        #EEF0F4;
+  --gray-200:        #D8DCE6;
+  --gray-400:        #9BA3B4;
+  --gray-600:        #545E72;
+  --gray-800:        #1E2535;
+
+  --font-display:    'Barlow Condensed', 'Montserrat', sans-serif;
+  --font-body:       'Montserrat', 'Roboto', sans-serif;
+
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  6rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 4px 24px rgba(0, 45, 95, 0.08);
+  --shadow-hover: 0 12px 40px rgba(0, 45, 95, 0.16);
+
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --container: 1200px;
+
+  --status-success: #27AE60;
+  --status-warning: #F39C12;
+  --status-error:   #E74C3C;
+}
+
+/* ── Google Fonts Import ─────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ── Reset & Base ────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--gray-50);
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Container Utility ───────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+#main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--blue-deep);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+
+/* If header is rendered via JS, target inner nav */
+#main-header nav,
+#main-header .header-inner {
+    display: flex;
+    flex-wrap: wrap; /* Fundamental para que el menú se despliegue hacia abajo */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* TU MARCA (La clave está en min-width: 0) */
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1; /* Toma el espacio disponible... */
+    min-width: 0; /* ¡MAGIA! Obliga a Flexbox a encogerse si no hay espacio */
+    max-width: calc(100% - 60px); /* ...pero respeta 60px para que viva el botón */
+}
+
+/* CONTENEDOR DE TEXTO */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0; /* Necesario para que el texto interno pueda cortarse */
+}
+
+/* LOS TEXTOS */
+.brand-title, .brand-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Activa los "..." cuando la pantalla es muy chica */
+}
+
+#main-header .logo,
+#main-header .brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#main-header .logo span,
+#main-header .brand span {
+  color: var(--red-accent);
+}
+
+#main-header a.nav-link,
+#main-header nav a {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+  position: relative;
+}
+
+#main-header a.nav-link::after,
+#main-header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--red-accent);
+  transition: transform var(--transition);
+}
+
+#main-header a.nav-link:hover,
+#main-header nav a:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+
+#main-header a.nav-link:hover::after,
+#main-header nav a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background: var(--blue-deep);
+  overflow: hidden;
+}
+
+/* Geometric industrial background texture */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.018) 60px,
+      rgba(255,255,255,0.018) 61px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.012) 60px,
+      rgba(255,255,255,0.012) 61px
+    ),
+    linear-gradient(135deg, #002D5F 0%, #001A3A 60%, #000d1f 100%);
+  z-index: 0;
+}
+
+/* Decorative right-side angled block */
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: 0;
+  bottom: 0;
+  width: 52%;
+  background: linear-gradient(160deg, rgba(0,63,132,0.6) 0%, rgba(0,20,50,0.3) 100%);
+  clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--space-lg) var(--space-md);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* Eyebrow label */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.25rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--red-accent);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  text-transform: uppercase;
+  max-width: 680px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.5);
+}
+
+.hero-desc {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+/* ── CTA Button ──────────────────────────── */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--blue-light);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  box-shadow: 0 4px 20px rgba(0, 87, 183, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  opacity: 1;
+}
+
+.cta-button:hover {
+  background: var(--blue-mid);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 87, 183, 0.55);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+.cta-button-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(255,255,255,0.22);
+  transition: all var(--transition);
+}
+
+.cta-button-ghost:hover {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Hero stats bar */
+.hero-stats {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hero-stat strong {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+.hero-stat span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* Hero image placeholder / right column */
+.hero-visual {
+  display: none; /* Hidden on mobile, shown on desktop */
+  position: relative;
+}
+
+.hero-image-frame {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(0,63,132,0.6), rgba(0,20,50,0.8));
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+/* =========================================
+   FEATURES SECTION
+   ========================================= */
+.features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* Section label above features */
+.features-header {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-eyebrow::before,
+.section-eyebrow::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--red-accent);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--blue-deep);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+/* ── Feature Card ────────────────────────── */
+.feature-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-md) calc(var(--space-md) * 1.2);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--gray-100);
+  border-bottom: 3px solid var(--blue-deep);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: transform var(--transition), box-shadow var(--transition), border-bottom-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-deep), var(--blue-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-bottom-color: var(--red-accent);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card .material-icons-outlined {
+  font-size: 2.5rem;
+  color: var(--blue-deep);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-tint);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+
+.feature-card:hover .material-icons-outlined {
+  background: var(--blue-deep);
+  color: var(--white);
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.feature-card p {
+  font-size: 0.9375rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+}
+
+/* =========================================
+   ABOUT SECTION
+   ========================================= */
+.about-us {
+  background: var(--white);
+  padding: var(--space-xl) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative angle */
+.about-us::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--blue-deep) 0%, var(--blue-light) 50%, var(--red-accent) 100%);
+}
+
+.about-us-inner {
+  max-width: var(--container);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about-us h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--blue-deep);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+.about-us h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  background: var(--red-accent);
+}
+
+.about-us > p,
+.about-text p {
+  font-size: 1rem;
+  color: var(--gray-600);
+  line-height: 1.85;
+  max-width: 640px;
+}
+
+/* Values list in about */
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-top: 0.5rem;
+}
+
+.about-value {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.about-value::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red-accent);
+  flex-shrink: 0;
+}
+
+/* ── About Gallery ───────────────────────── */
+#about-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.gallery-item {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--gray-100);
+  position: relative;
+}
+
+.gallery-item:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16/7;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+/* Gallery placeholder if no images injected */
+.gallery-placeholder {
+  background: linear-gradient(135deg, var(--blue-tint), var(--gray-100));
+  border-radius: var(--radius-sm);
+  aspect-ratio: 16/7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px dashed var(--gray-200);
+}
+
+/* =========================================
+   UTILITY CLASSES
+   ========================================= */
+.text-center { text-align: center; }
+.text-white  { color: var(--white); }
+
+.badge {
+  display: inline-block;
+  background: var(--blue-tint);
+  color: var(--blue-deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  border: 1px solid rgba(0,45,95,0.15);
+}
+
+/* --- BOTÓN HAMBURGUESA (Oculto por defecto en PC) --- */
+.mobile-menu-btn { 
+    display: none; 
+    background: transparent; 
+    border: none; 
+    color: #ffffff; /* Color blanco para el ícono */
+    cursor: pointer; 
+    padding: 0.5rem; 
+}
+.mobile-menu-btn .material-icons-outlined { 
+    font-size: 2.2rem; 
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO (MÓVILES Y TABLETS)
+   Resolución máxima: 768px
+   ========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Contenedor Principal: DEBE poder envolver para que el menú baje */
+    .header-inner {
+        display: flex;
+        flex-wrap: wrap; /* Esto revive tu menú desplegable */
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 2. La Marca: Le decimos que tome el espacio disponible, sin asfixiar al botón */
+    .brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1; /* Toma el espacio disponible... */
+    min-width: 0; /* ¡MAGIA! Obliga a Flexbox a encogerse si no hay espacio */
+    max-width: calc(100% - 60px); /* ...pero respeta 60px para que viva el botón */
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0; /* Necesario para que el texto interno pueda cortarse */
+}
+
+.brand-title, .brand-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Activa los "..." cuando la pantalla es muy chica */
+}
+
+#main-header .nav-menu {
+        display: none; 
+        width: 100%; 
+        flex-direction: column;
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+ #main-header .nav-menu.active {
+        display: flex; 
+        animation: slideDownMenu 0.3s ease-out;
+    }
+
+
+    /* --- COMPORTAMIENTO EN COMPUTADORA Y TABLETS GRANDES --- */
+@media screen and (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none; /* Oculta el botón de hamburguesa */
+    }
+    
+    .nav-menu {
+        display: flex; /* Muestra los enlaces horizontalmente */
+        align-items: center;
+        gap: 1rem;
+        width: auto;
+        flex-direction: row;
+    }
+}
+
+
+/* --- COMPORTAMIENTO EN CELULARES (Menos de 768px) --- */
+@media screen and (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block; /* Muestra el botón de hamburguesa */
+        flex-shrink: 0; /* Evita que el botón se aplaste */
+    }
+    
+    .nav-menu {
+        display: none; /* Oculto por defecto en celular */
+        width: 100%; /* Ocupa toda la pantalla debajo de la marca */
+        flex-direction: column;
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Esta es la clase que tu JavaScript debe agregar al hacer clic en el botón */
+    .nav-menu.active {
+        display: flex; 
+        animation: slideDownMenu 0.3s ease-out;
+    }
+}
+
+    @keyframes slideDownMenu {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+}
+/* =========================================
+   RESPONSIVE — DESKTOP (≥ 900px)
+   ========================================= */
+@media (min-width: 900px) {
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Hero two-column layout */
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    align-items: center;
+    column-gap: var(--space-lg);
+    padding-block: var(--space-xl);
+  }
+
+  .hero-eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hero h1 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .hero-desc {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .hero-actions {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .hero-stats {
+    grid-column: 1;
+    grid-row: 5;
+  }
+
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 2;
+    grid-row: 1 / 6;
+  }
+
+  .hero-image-frame {
+    width: 100%;
+  }
+
+  /* About two-column */
+  .about-us-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  /* About gallery inside right col */
+  #about-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #about-gallery .gallery-item:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/7;
+  }
+
+  #main-footer .footer-inner {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+/* --- COMPORTAMIENTO EN COMPUTADORA Y TABLETS GRANDES --- */
+@media screen and (min-width: 769px) {
+    
+    /* 1. Prohibir estrictamente el salto de línea SOLO en computadora */
+    #main-header nav, 
+    #main-header .header-inner {
+        flex-wrap: nowrap !important; 
+    }
+
+    /* 2. Proteger la marca para que mantenga su tamaño real */
+    .brand-container {
+        flex: 0 0 auto !important;
+        max-width: none !important;
+    }
+
+    /* 3. Forzar el menú a compactarse y alinearse a la derecha */
+    #main-header .nav-menu {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        width: auto !important; /* Le quitamos el 100% para que no baje de fila */
+        margin-left: auto !important; /* El truco mágico que empuja todo a la derecha */
+        gap: 1.5rem;
+        
+        /* Limpiamos estilos residuales del celular */
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        border-top: none !important;
+    }
+
+    /* 4. Ocultamos el botón de celular */
+    .mobile-menu-btn {
+        display: none !important; 
+    }
+}
+
+/* --- COMPORTAMIENTO ESPECÍFICO PARA PANTALLAS MEDIANAS (Tablets / Surface) --- */
+@media screen and (min-width: 769px) and (max-width: 1050px) {
+    
+    /* 1. Forzar a que los botones del menú no se partan en dos líneas ("ABOUT US") */
+    #main-header .nav-link {
+        white-space: nowrap !important;
+        padding: 0.5rem 0.4rem !important; /* Reducimos el relleno lateral de los botones */
+        font-size: 0.75rem !important; /* Letra un pelín más pequeña */
+    }
+
+    /* 2. Reducir el espacio (hueco) entre los botones del menú */
+    #main-header .nav-menu {
+        gap: 0.5rem !important; /* Bajamos de 1.5rem a 0.5rem para ganar mucho espacio */
+    }
+
+    /* 3. Ajustar ligeramente el tamaño de la marca para cederle espacio al menú */
+    .brand-title {
+        font-size: 15px !important;
+    }
+    
+    .brand-subtitle {
+        font-size: 11px !important;
+    }
+
+    .brand-container {
+        gap: 8px !important; /* Acercamos el logo al texto */
+    }
+    
+    /* 4. Reducir los márgenes del selector de idioma */
+    .lang-selector {
+        margin-left: 0.5rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+}
+
+/* --- PREVENCIÓN GENERAL (Añade esto fuera de los @media) --- */
+/* Asegura que los enlaces nunca se rompan en 2 líneas sin importar la pantalla */
+#main-header .nav-link {
+    white-space: nowrap;
+}
+/* =========================================
+   RESPONSIVE — WIDE (≥ 1200px)
+   ========================================= */
+@media (min-width: 1200px) {
+  .hero-content {
+    padding-block: calc(var(--space-xl) * 1.25);
+  }
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
+.hero h1      { animation: fadeUp 0.7s ease 0.2s both; }
+.hero-desc    { animation: fadeUp 0.7s ease 0.35s both; }
+.hero-actions { animation: fadeUp 0.7s ease 0.5s both; }
+.hero-stats   { animation: fadeUp 0.7s ease 0.65s both; }
+.hero-visual  { animation: fadeUp 0.9s ease 0.4s both; }
+
+.feature-card {
+  animation: fadeUp 0.6s ease both;
+}
+.feature-card:nth-child(2) { animation-delay: 0.1s; }
+.feature-card:nth-child(3) { animation-delay: 0.2s; }
+.feature-card:nth-child(4) { animation-delay: 0.3s; }
+
+/* =========================================
+   PRINT
+   ========================================= */
+@media print {
+  .hero { min-height: auto; }
+  #main-header { position: static; }
+  .cta-button, .cta-button-ghost { display: none; }
+}
+
+.product-image-container {
+  background: white;
+  mix-blend-mode: multiply; /* Ayuda a que fondos blancos se fundan con el gris claro */
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.tech-table th {
+  background: var(--blue-mid);
+  color: white;
+  text-align: left;
+  padding: var(--space-xs);
+  text-transform: uppercase;
+}
+.tech-table td {
+  border-bottom: 1px solid var(--gray-200);
+  padding: var(--space-xs);
+}
+
+/* --- Header General --- */
+#main-header {
+  background: var(--blue-deep) !important; /* Azul profundo base */
+  background: linear-gradient(90deg, var(--blue-deep) 0%, var(--blue-mid) 100%) !important;
+  border-bottom: 3px solid var(--red-accent); /* Línea de acento inferior */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding-block: 0.5rem;
+}
+
+/* --- Branding (Ajuste de colores sobre fondo azul) --- */
+/* --- SOLUCIÓN A LA LÍNEA BLANCA (Desbordamiento) --- */
+html, body {
+  overflow-x: hidden; /* Corta cualquier elemento que sobresalga a los lados */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- AJUSTES DEL CONTENEDOR DE TEXTO --- */
+/* --- CONTENEDOR PRINCIPAL --- */
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espaciado automático y parejo entre logo, línea y texto */
+  max-width: 65vw; /* Evita que el texto empuje el botón del menú en celulares */
+}
+
+/* --- CONTENEDOR DEL LOGO (La clave para que no se haga gigante) --- */
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px; /* Altura estricta para celular */
+  width: 40px;  /* Ancho estricto para mantenerlo cuadrado */
+  flex-shrink: 0; /* Evita que se aplaste */
+}
+
+/* --- LA IMAGEN EN SÍ --- */
+.custom-logo {
+  height: 100%;
+  width: 100%;
+  object-fit: contain; /* Hace que el logo encaje perfecto dentro de su caja de 40x40 */
+  display: block;
+}
+
+/* --- LÍNEA DIVISORIA --- */
+.brand-divider {
+  width: 2px;
+  height: 35px; /* Un poco más pequeña que el logo para que se vea elegante */
+  background-color: #E30613; /* Ajusta a tu rojo exacto si es diferente */
+  flex-shrink: 0; /* Evita que desaparezca */
+}
+
+/* --- CONTENEDOR DE TEXTO --- */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 1; /* Permite que el texto se adapte al espacio sobrante */
+  overflow: hidden; /* Oculta lo que se salga del borde */
+}
+
+/* --- TEXTOS PARA CELULAR --- */
+.brand-title {
+  color: white;
+  font-weight: bold;
+  font-size: 13px; /* Tamaño perfecto para móvil */
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap; /* Fuerza una sola línea */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Pone "..." si no cabe */
+}
+
+.brand-subtitle {
+  color: white;
+  font-size: 10px; /* Tamaño perfecto para móvil */
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- AJUSTES PARA TABLET Y COMPUTADORA (Surface y mayores) --- */
+@media (min-width: 768px) {
+  .brand-container {
+    gap: 15px; /* Más espacio para respirar en pantallas grandes */
+    max-width: none; /* Quitamos el límite de ancho */
+  }
+  
+  .brand-icon {
+    height: 55px; /* Logo más grande */
+    width: 55px;
+  }
+
+  .brand-divider {
+    height: 48px; /* Línea más grande */
+  }
+
+  .brand-title {
+    font-size: 18px; /* Texto más grande */
+  }
+
+  .brand-subtitle {
+    font-size: 13px; /* Texto más grande */
+  }
+}
+
+/* --- Navegación --- */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#main-header .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+#main-header .nav-link:hover {
+  color: var(--white) !important;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* --- Selector de Idioma Estilizado --- */
+.lang-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  margin-left: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-selector .material-icons-outlined {
+  color: var(--white);
+  font-size: 1.2rem;
+}
+
+.lang-selector select {
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--white);
+  cursor: pointer;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.lang-selector select option {
+  background: var(--blue-deep); /* Para que el menú desplegable no sea blanco */
+  color: var(--white);
+}
+
+/* --- Galería Quiénes Somos: Simetría Total --- */
+/* --- Galería Quiénes Somos: Corrección Definitiva --- */
+.about-gallery-grid {
+    display: grid !important;
+    /* Esto obliga a que existan 4 columnas iguales, sin excepciones */
+    grid-template-columns: repeat(4, 1fr) !important; 
+    gap: 1.5rem !important;
+    margin-top: 2.5rem;
+    width: 100% !important;
+    /* Evita que el primer elemento intente ocupar más espacio */
+    align-items: stretch; 
+}
+
+.gallery-item {
+    /* Forzamos a que todos los recuadros midan lo mismo */
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important; 
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* IMPORTANTE: Esto quita cualquier regla que diga que el primer hijo es más grande */
+.about-gallery-grid .gallery-item:first-child {
+    grid-column: span 1 !important; 
+    grid-row: span 1 !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+.gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* Mantiene la pieza completa sin deformar */
+    padding: 10px;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 992px) {
+    .about-gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 en tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .about-gallery-grid {
+        grid-template-columns: 1fr; /* 1 columna en móviles */
+    }
+}
+
+/* --- Footer Industrial Moderno --- */
+#main-footer {
+    background: var(--blue-deep);
+    color: var(--white);
+    padding-top: var(--space-lg);
+    border-top: 4px solid var(--red-accent);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.footer-col h4 {
+    color: var(--red-accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+}
+
+.footer-col p, .footer-col li {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-col a {
+    transition: color var(--transition);
+}
+
+.footer-col a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    background: rgba(0,0,0,0.2);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+}

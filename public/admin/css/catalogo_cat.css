@@ -1,0 +1,34 @@
+/* =========================================
+   Ajustes exclusivos para el Modal de Editar Pieza
+   ========================================= */
+
+#modal-editar-pieza .modal-right {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; /* Activa el límite de altura */
+    overflow-y: auto; /* Activa el scroll si la pantalla es chica */
+}
+
+#modal-editar-pieza .drop-zone {
+    padding: 15px 10px !important;
+    min-height: 100px;
+    margin-bottom: 10px;
+}
+
+#modal-editar-pieza .preview-card {
+    margin-bottom: 10px !important;
+}
+
+#modal-editar-pieza .preview-card-body {
+    padding: 10px 15px !important;
+}
+
+#modal-editar-pieza .img-rules {
+    margin-bottom: 5px !important;
+}
+
+#modal-editar-pieza .modal-footer {
+    margin-top: auto;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}

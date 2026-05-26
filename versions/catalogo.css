@@ -1,0 +1,430 @@
+/* ---------------------------------------------------
+   CONTROLES DEL CATÁLOGO (Buscador y Botones)
+--------------------------------------------------- */
+.catalog-controls {
+    display: flex;
+    flex-direction: column; /* Apila los elementos en vertical para móviles */
+    gap: 1rem;
+    width: 100%;
+    padding: 0 1rem; /* Evita que los bordes toquen la pantalla */
+    box-sizing: border-box; /* Crucial para evitar la línea blanca */
+}
+
+/* ---------------------------------------------------
+   DISEÑO DE LA BARRA DE BÚSQUEDA (Estética + Responsivo)
+--------------------------------------------------- */
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1; /* Borde gris suave */
+    border-radius: 50px; /* Bordes redondeados estilo "píldora" */
+    padding: 0.5rem 1rem;
+    width: 100%;
+    box-sizing: border-box; /* Previene desbordamiento en celulares */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra sutil para profundidad */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto visual cuando el usuario hace clic para escribir */
+.search-wrapper:focus-within {
+    border-color: var(--blue-main, #002d5f);
+    box-shadow: 0 0 0 3px rgba(0, 45, 95, 0.1);
+}
+
+/* Estilo del icono de lupa */
+.search-wrapper .search-icon {
+    color: #64748b;
+    margin-right: 10px;
+    font-size: 1.4rem;
+}
+
+/* Estilo del campo de texto interior */
+.search-wrapper input[type="search"] {
+    width: 100%;
+    border: none; /* Quitamos el borde cuadrado por defecto */
+    outline: none; /* Quitamos el borde de selección automático */
+    background: transparent;
+    font-size: 1rem;
+    color: #334155;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* (Opcional) Oculta la "X" predeterminada que algunos navegadores agregan */
+.search-wrapper input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Input de búsqueda */
+.search-wrapper input[type="search"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botones al 100% de ancho en móviles (como se ve en tu imagen) */
+.catalog-controls .cta-button {
+    width: 100%;
+    justify-content: center; /* Centra el icono y el texto */
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------
+   PANTALLAS MEDIANAS Y GRANDES (Tablets y PC)
+--------------------------------------------------- */
+@media (min-width: 768px) {
+    .catalog-controls {
+        flex-direction: row; /* Coloca los elementos en una sola línea horizontal */
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .search-wrapper {
+        width: 300px; /* Tamaño fijo y estético en PC */
+    }
+
+    .catalog-controls .cta-button {
+        width: auto; /* Los botones regresan a su tamaño natural */
+    }
+}
+
+
+/* =========================================
+   SISTEMA DE GRID Y TARJETAS DEL CATÁLOGO
+   ========================================= */
+
+.catalog-grid-modern {
+    /* Variables de la tarjeta */
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --card-border-hover: #cbd5e1;
+    --card-shadow-hover: 0 12px 24px -8px rgba(15, 23, 42, 0.15);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-sku: #64748b;
+    
+    --accent-color: #0284c7; /* Azul industrial/técnico */
+    --accent-hover: #0369a1;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1.5rem 0;
+}
+
+/* --- Contenedor Principal de la Tarjeta --- */
+.product-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: var(--card-border-hover);
+}
+
+/* --- Área de la Imagen --- */
+.product-image-wrapper {
+    position: relative;
+    background-color: #f8fafc; /* Gris muy claro para destacar la pieza */
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    overflow: hidden;
+}
+
+.product-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Ayuda a integrar fondos blancos de imágenes .jpg */
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image-wrapper img {
+    transform: scale(1.08); /* Ligero zoom en hover */
+}
+
+/* --- Indicador de Galería (6 a 10 imágenes) --- */
+.gallery-indicator {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.gallery-indicator .material-icons-outlined {
+    font-size: 14px;
+}
+
+/* --- Información del Producto --- */
+.product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-sku {
+    font-family: 'Montserrat', monospace, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-sku);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.product-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+}
+
+.product-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Empuja el botón hacia abajo si las descripciones varían */
+}
+
+/* --- Botón de Acción --- */
+.btn-details {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+    padding: 0.75rem 1rem;
+    background-color: #f1f5f9;
+    color: var(--text-primary);
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-details .material-icons-outlined {
+    font-size: 1.1rem;
+}
+
+/* Estado Hover del Botón al hacer hover en la tarjeta */
+.product-card:hover .btn-details {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
+
+.btn-details:hover {
+    background-color: var(--accent-hover) !important;
+    border-color: var(--accent-hover) !important;
+}
+
+/* --- Filtros de Categoría --- */
+.filter-controls {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: rgba(2, 132, 199, 0.1); /* Un fondo azul muy tenue */
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3);
+}
+/* =========================================
+   MODAL DE PRODUCTOS - RESPONSIVE DESIGN
+   ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8); /* Fondo oscuro más industrial */
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem; /* Margen de seguridad para pantallas pequeñas */
+}
+
+.modal-content-wrapper {
+    background: #ffffff;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh; /* Límite crucial: 90% del alto de la pantalla */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Mantiene los bordes redondeados limpios */
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #64748b;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #ef4444;
+}
+
+/* --- VISTA MÓVIL (Por defecto) --- */
+
+.modal-gallery-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+#modal-img {
+    width: 100%;
+    max-height: 200px; /* Evita que la imagen empuje todo en el iPhone SE */
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.thumbnail-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.modal-info-section {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto; /* ACTIVA EL SCROLL INTERNO SI NO CABE */
+    flex-grow: 1;
+}
+
+.modal-title-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.75rem;
+    color: #0f172a;
+    margin: 0.5rem 0 1rem 0;
+    line-height: 1.1;
+}
+
+.modal-description-text {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.modal-compatibility-box {
+    font-size: 0.9rem;
+    padding: 12px;
+    background: #f1f5f9;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 1.5rem;
+    color: #334155;
+}
+
+/* Botón pegajoso en móviles para que siempre esté accesible */
+.modal-action-container {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(to top, #ffffff 80%, rgba(255,255,255,0));
+    padding-top: 10px;
+    margin-top: auto;
+}
+
+.w-100 {
+    width: 100%;
+    justify-content: center;
+}
+
+/* --- VISTA ESCRITORIO (Tablets en adelante) --- */
+
+@media (min-width: 768px) {
+    .modal-content-wrapper {
+        flex-direction: row; /* Diseño de dos columnas */
+        height: auto;
+    }
+
+    .modal-gallery-section {
+        flex: 1 1 45%;
+        border-bottom: none;
+        border-right: 1px solid #e2e8f0;
+    }
+
+    #modal-img {
+        max-height: 350px; /* Más grande en monitores */
+    }
+
+    .modal-info-section {
+        flex: 1 1 55%;
+        padding: 2.5rem;
+    }
+}

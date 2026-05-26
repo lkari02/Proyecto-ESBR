@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="cat_page_title">Catálogo de Refacciones</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- tus hojas de estilos originales -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="catalogo-card.css">
+
+</head>
+<body>
+
+<!-- ── HEADER ORIGINAL SIN MODIFICAR ── -->
+        <header id="main-header" role="banner">
+  <div class="header-inner container">
+    <!-- Branding según la imagen -->
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="logo.jpg" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+    <!-- NUEVO: Botón de Hamburguesa -->
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <!-- Navegación -->
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-link" data-i18n="nav_catalog">Catálogo Opcion 1</a>
+        <a href="Catalogo-Opcion2.html" class="nav-link" data-i18n="nav_catalog">Catálogo Opcion 2</a>
+
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ── MAIN REDISEÑADO ── -->
+<main class="catalog-page">
+
+    <!-- Encabezado -->
+                <header class="catalog-header features-header text-center">
+            <p class="section-eyebrow" data-i18n="cat_eyebrow">Precisión Industrial</p>
+            <h1 class="section-title" data-i18n="cat_header_title">Nuestro Catálogo de Piezas</h1>
+            
+        <div class="cat-toolbar">
+            <!-- Filtros -->
+                <div class="catalog-controls mx-auto">
+            <div class="cat-search-box">
+                <span class="material-icons-outlined">search</span>
+                <input type="search" id="cat-search" placeholder="Buscar pieza técnica o SKU..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="filter-controls mx-auto">
+            <button class="filter-btn active" data-filter="ALL">Todos</button>
+            <button class="filter-btn" data-filter="BOM">Bombas de Agua</button>
+            <button class="filter-btn" data-filter="REF">Refacciones</button>
+        </div>
+
+            <!-- Acciones -->
+            <a href="/Proyecto/app/services/catalogo_pdf_publico.php?lang=es" target="_blank" class="cat-btn-action">
+                <span class="material-icons-outlined">picture_as_pdf</span> Descargar PDF
+            </a>
+            <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">post_add</span> Cotización
+            </a>
+        </div>
+    </header>
+
+    <!-- Cabecera de columnas -->
+    <div class="cat-col-header">
+        <span></span>
+        <span>Producto</span>
+        <span>Disponibilidad</span>
+        <span class="col-r"></span>
+    </div>
+
+    <!-- Lista de productos -->
+        <div class="cat-product-list" id="cat-product-list">
+
+        <div class="cat-row" data-cat="discos" data-id="12" onclick="toggleDetail(12, this)">
+            <div class="cat-row-img-wrap">
+                <img src="Disco de equilibrio.jpeg" alt="Disco de equilibrio" class="cat-list-img">
+                <span class="cat-img-count">1/5</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">REF-DE-BR62</span>
+                <span class="cat-row-title">Disco de equilibrio</span>
+                <span class="cat-row-meta">Bronce SAE 62 "C" · Tubo mecánico · Tornillos latón</span>
+                <span class="cat-row-badge" style="background:#E8EDF2; color:#4A5C70;">Discos</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+                
+            </div>
+        </div>
+
+        <div class="cat-detail-panel" id="detail-12">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                        <img src="Disco de equilibrio.jpeg" id="main-img-12" alt="Disco de equilibrio">
+                    </div>
+                    <div class="cat-detail-thumbs" id="thumbs-12">
+                        <img src="Disco de equilibrio.jpeg" class="cat-detail-thumb active" onclick="changeMainImage(12, this)">
+                </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">REF-DE-BR62 · Discos</p>
+                    <h2 class="cat-detail-title">Disco de equilibrio</h2>
+                    <p class="cat-detail-desc">Material: Fabricado en Bronce SAE 62 "C”, con anillo fabricado en tubo mecánico y tornillos de latón.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Material Principal</span><span class="cat-spec-val">Bronce SAE 62 "C"</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Anillo</span><span class="cat-spec-val">Tubo mecánico</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Tornillería</span><span class="cat-spec-val">Latón</span></div>
+                    </div>
+
+                    <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">add_shopping_cart</span>
+                    <span id="btn-text">Añadir a Cotización</span>
+            </a>
+                    <div class="cat-detail-bottom" style="justify-content: flex-end;">
+                        <button class="cat-btn-close-panel" onclick="closeDetail(12, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-row" data-cat="impulsores" data-id="13" onclick="toggleDetail(13, this)">
+            <div class="cat-row-img-wrap">
+                <img src="Impulsor.jpeg" alt="Impulsor" class="cat-list-img">
+                <span class="cat-img-count">1/3</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">REF-IMP-HG4</span>
+                <span class="cat-row-title">Impulsor</span>
+                <span class="cat-row-meta">Hierro gris · Cerrado · 4 aspas</span>
+                <span class="cat-row-badge" style="background:#E1F5EE; color:#085041;">Impulsores</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="cat-detail-panel" id="detail-13">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                        <img src="Impulsor.jpeg" id="main-img-13" alt="Impulsor">
+                    </div>
+                    <div class="cat-detail-thumbs" id="thumbs-13">
+                        <img src="Impulsor.jpeg" class="cat-detail-thumb active" onclick="changeMainImage(13, this)">
+                   </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">REF-IMP-HG4 · Impulsores</p>
+                    <h2 class="cat-detail-title">Impulsor cerrado de 4 aspas</h2>
+                    <p class="cat-detail-desc">Material: Fabricado en hierro gris. Uso: Impulsor cerrado con 4 aspas que genera fuerza centrífuga que impulsa el fluido hacia el exterior de la carcaza. Transforma energía mecánica en presión hidráulica permitiendo el transporte continuo del líquido.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Material</span><span class="cat-spec-val">Hierro Gris</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Tipo</span><span class="cat-spec-val">Cerrado</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Aspas</span><span class="cat-spec-val">4</span></div>
+                    </div>
+
+                    <div class="cat-detail-bottom" style="justify-content: flex-end;">
+
+                        <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">add_shopping_cart</span>
+                    <span id="btn-text">Añadir a Cotización</span>
+            </a>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(13, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-row" data-cat="ejes" data-id="14" onclick="toggleDetail(14, this)">
+            <div class="cat-row-img-wrap">
+                <img src="Eje SWP-150.JPG" alt="Eje" class="cat-list-img">
+                <span class="cat-img-count">1/2</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">REF-EJE-4140</span>
+                <span class="cat-row-title">EJE</span>
+                <span class="cat-row-meta">Acero AISI 4140T · Transmisión de potencia</span>
+                <span class="cat-row-badge" style="background:#F2E8E8; color:#704A4A;">Ejes</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="cat-detail-panel" id="detail-14">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                        <img src="Eje SWP-150.JPG" id="main-img-14" alt="Eje">
+                    </div>
+                    <div class="cat-detail-thumbs" id="thumbs-14">
+                        <img src="Eje SWP-150.JPG" class="cat-detail-thumb active" onclick="changeMainImage(14, this)">
+                   </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">REF-EJE-4140 · Ejes</p>
+                    <h2 class="cat-detail-title">EJE de Transmisión</h2>
+                    <p class="cat-detail-desc">Material: Fabricado en AISI 4140T. Uso: Es el eslabón mecánico de potencia de una bomba. Su función principal es recibir la potencia del motor y transmitirla al impulsor.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Material</span><span class="cat-spec-val">AISI 4140T</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Función</span><span class="cat-spec-val">Transmisión mecánica</span></div>
+                    </div>
+
+                    <div class="cat-detail-bottom" style="justify-content: flex-end;">
+                        <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">add_shopping_cart</span>
+                    <span id="btn-text">Añadir a Cotización</span>
+            </a>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(14, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-row" data-cat="retenes" data-id="15" onclick="toggleDetail(15, this)">
+            <div class="cat-row-img-wrap">
+                <img src="Reten.jpeg" alt="Retén" class="cat-list-img">
+                <span class="cat-img-count">1/1</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">REF-RET-VT</span>
+                <span class="cat-row-title">RETÉN</span>
+                <span class="cat-row-meta">Vitón · Sellado de alta calidad · Protección</span>
+                <span class="cat-row-badge" style="background:#FAEEDA; color:#633806;">Retenes</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="cat-detail-panel" id="detail-15">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                         <img src="Reten.jpeg" id="main-img-15" alt="Retén">
+                    </div>
+                    <div class="cat-detail-thumbs" id="thumbs-15">
+                        <img src="Reten.jpeg" class="cat-detail-thumb active" onclick="changeMainImage(15, this)">
+                    </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">REF-RET-VT · Retenes</p>
+                    <h2 class="cat-detail-title">RETÉN de Vitón</h2>
+                    <p class="cat-detail-desc">Material: Vitón. Uso: Sellado de alta calidad para contener lubricantes, aceites, grasas y proteger los componentes internos de los equipos contra contaminantes externos.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Material</span><span class="cat-spec-val">Vitón</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Función</span><span class="cat-spec-val">Sellado térmico/químico</span></div>
+               </div>
+
+                    <div class="cat-detail-bottom" style="justify-content: flex-end;">
+                        <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">add_shopping_cart</span>
+                    <span id="btn-text">Añadir a Cotización</span>
+            </a>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(15, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-row" data-cat="bombas" data-id="16" onclick="toggleDetail(16, this)">
+            <div class="cat-row-img-wrap">
+                <img src="SWP-150_2.jpg" alt="Bomba" class="cat-list-img">
+                <span class="cat-img-count">1/2</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">BOM-SWP150-CH</span>
+                <span class="cat-row-title">SWP 150 - Bomba centrifuga horizontal multipasos</span>
+                <span class="cat-row-meta">Hierro gris · Eje AISI 4140T · Alta presión</span>
+                <span class="cat-row-badge" style="background:#E1E5F5; color:#2A3F70;">Bombas</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="cat-detail-panel" id="detail-16">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                         <img src="SWP-150_2.jpg" id="main-img-16" alt="Bomba">
+                    </div>
+                    <div class="cat-detail-thumbs" id="thumbs-16">
+                        <img src="SWP-150_2.jpg" class="cat-detail-thumb active" onclick="changeMainImage(16, this)">
+                  </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">BOM-SWP150-CH · Bombas</p>
+                    <h2 class="cat-detail-title">SWP 150 - Bomba centrifuga horizontal multipasos</h2>
+                    <p class="cat-detail-desc">Bomba para alta presión. Material: Fabricado en hierro gris, sellado con estoperos, retenes para el sellado de aceite, eje construido en AISI 4140T.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Tipo</span><span class="cat-spec-val">Centrífuga Horizontal</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Presión</span><span class="cat-spec-val">Alta (Multipasos)</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Carcaza</span><span class="cat-spec-val">Hierro Gris</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Eje</span><span class="cat-spec-val">AISI 4140T</span></div>
+                  </div>
+
+                    <div class="cat-detail-bottom" style="justify-content: flex-end;">
+                        <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">add_shopping_cart</span>
+                    <span id="btn-text">Añadir a Cotización</span>
+            </a>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(16, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Estado vacío -->
+    <div class="cat-empty" id="cat-empty">
+        <span class="material-icons-outlined">search_off</span>
+        <p>No se encontraron piezas con ese criterio.</p>
+    </div>
+
+</main>
+
+<!-- ── FOOTER ORIGINAL SIN MODIFICAR ── -->
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span>
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de México</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="assets/public/js/traducciones.js"></script>
+<script src="script_web.js"></script>
+  <script src="catalogo2.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* --- DISEÑO B2B DOS COLUMNAS --- */
+.quote-page-main { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
+.quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: 1.5rem; }
+@media (max-width: 900px) { .quote-grid { grid-template-columns: 1fr; } }
+
+.section-title { font-family: var(--font-display); color: var(--blue-dark); font-size: 1.4rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--gray-200); margin-bottom: 1.5rem; }
+
+/* --- TARJETAS DEL CARRITO --- */
+.cart-item { display: flex; align-items: center; background: #fff; padding: 1rem; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: 0.3s; }
+.cart-item:hover { border-color: var(--blue-light); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.cart-item img { width: 75px; height: 75px; object-fit: contain; background: #f8fafc; border: 1px solid var(--gray-200); border-radius: 6px; margin-right: 1.2rem; padding: 5px; }
+
+/* --- FORMULARIO PROFESIONAL --- */
+.form-panel { background: #f8fafc; padding: 2rem; border-radius: 12px; border: 1px solid var(--gray-200); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label { font-size: 0.85rem; font-weight: 600; color: var(--blue-dark); margin-bottom: 0.4rem; }
+
+.form-control { width: 100%; padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 0.95rem; transition: all 0.2s; background: #fff; }
+.form-control:focus { outline: none; border-color: var(--blue-main); box-shadow: 0 0 0 3px rgba(0, 45, 95, 0.1); }
+select.form-control { cursor: pointer; }
+
+/* --- MODAL ESTILIZADO (CORREGIDO) --- */
+.modal-overlay { 
+    position: fixed; /* Esto lo hace flotar sobre todo */
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    background: rgba(0, 15, 30, 0.85); /* Fondo oscuro transparente */
+    backdrop-filter: blur(4px); 
+    z-index: 99999; /* Asegura que esté por encima del header */
+    display: none; /* JS lo cambia a flex cuando se activa */
+    align-items: center; 
+    justify-content: center; 
+}
+
+.modal-content.modal-small { 
+    background: #ffffff; /* Fondo blanco para la tarjeta */
+    max-width: 450px; 
+    width: 90%; /* Para que no se pegue a las orillas en celulares */
+    text-align: center; 
+    border-radius: 12px; 
+    padding: 2.5rem; 
+    border: none; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+    position: relative;
+    animation: modalPopIn 0.3s ease-out forwards;
+}
+
+.modal-content h2 { 
+    color: var(--blue-dark); 
+    font-family: var(--font-display); 
+    margin-bottom: 1rem; 
+}
+
+.modal-actions { 
+    display: flex; 
+    gap: 1rem; 
+    justify-content: center; 
+    margin-top: 2rem; 
+}
+
+.modal-actions .btn { 
+    flex: 1; 
+    padding: 0.8rem; 
+    border-radius: 6px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border: none; 
+    transition: 0.2s; 
+}
+
+.btn-secondary { 
+    background: #e2e8f0; 
+    color: #475569; 
+}
+
+.btn-secondary:hover { 
+    background: #cbd5e1; 
+}
+
+/* Pequeña animación para que se vea más profesional al aparecer */
+@keyframes modalPopIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+/* --- TOAST NOTIFICATIONS --- */
+.toast-container { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
+.toast { background: #fff; color: #1e293b; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px; font-weight: 500; min-width: 280px; transform: translateX(120%); animation: slideInToast 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; border-left: 5px solid var(--blue-main); }
+.toast.success { border-left-color: #10b981; }
+.toast.error { border-left-color: #ef4444; }
+.toast.fade-out { animation: fadeOutToast 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.toast-icon { font-size: 1.5rem; }
+.toast.success .toast-icon { color: #10b981; }
+.toast.error .toast-icon { color: #ef4444; }
+
+@keyframes slideInToast { to { transform: translateX(0); } }
+@keyframes fadeOutToast { to { transform: translateX(120%); opacity: 0; } }

@@ -1,0 +1,336 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Montserrat:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --blue:#002D5F;--blue-mid:#0057B7;--blue-tint:#E8F0FA;
+    --red:#C0392B;--white:#fff;--gray-50:#F7F8FA;--gray-100:#EEF0F4;
+    --gray-200:#D8DCE6;--gray-400:#9BA3B4;--gray-600:#545E72;--gray-800:#1E2535;
+    --font-d:'Barlow Condensed',sans-serif;--font-b:'Montserrat',sans-serif;
+    --r:6px;--tr:.22s cubic-bezier(.4,0,.2,1);
+  }
+  body,#catalog-root{font-family:var(--font-b);background:var(--gray-50);color:var(--gray-800)}
+
+  /* ── TOP BAR ── */
+  #catalog-root{min-height:600px;display:flex;flex-direction:column}
+  .cat-topbar{background:var(--blue);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:52px;flex-shrink:0}
+  .cat-brand{font-family:var(--font-d);font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:.06em;text-transform:uppercase}
+  .cat-brand span{color:var(--red)}
+  .cat-crumb{font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase}
+
+  /* ── HERO STRIP ── */
+  .cat-hero{background:linear-gradient(105deg,#001A3A 0%,#002D5F 55%,#003F84 100%);padding:28px 20px 24px;position:relative;overflow:hidden}
+  .cat-hero::after{content:'';position:absolute;right:-40px;top:0;bottom:0;width:45%;background:rgba(255,255,255,.03);clip-path:polygon(15% 0,100% 0,100% 100%,0 100%)}
+  .cat-hero-label{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .cat-hero-label::before{content:'';width:20px;height:2px;background:var(--red);display:block}
+  .cat-hero h1{font-family:var(--font-d);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.01em;line-height:1.1;margin-bottom:10px}
+  .cat-hero p{font-size:.85rem;color:rgba(255,255,255,.6);max-width:520px;line-height:1.6}
+
+  /* ── LAYOUT ── */
+  .cat-body{display:flex;flex:1;min-height:0}
+
+  /* ── SIDEBAR ── */
+  .cat-sidebar{width:210px;flex-shrink:0;background:var(--white);border-right:1px solid var(--gray-100);padding:18px 14px;display:flex;flex-direction:column;gap:18px}
+  .sidebar-section-title{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:8px}
+  .filter-btn{display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;padding:7px 10px;border-radius:var(--r);cursor:pointer;font-family:var(--font-b);font-size:.82rem;color:var(--gray-600);transition:background var(--tr),color var(--tr);text-align:left}
+  .filter-btn:hover{background:var(--blue-tint);color:var(--blue)}
+  .filter-btn.active{background:var(--blue);color:#fff;font-weight:600}
+  .filter-btn .material-icons-outlined{font-size:16px;opacity:.7}
+  .filter-btn.active .material-icons-outlined{opacity:1}
+  .filter-count{margin-left:auto;font-size:.68rem;background:rgba(0,45,95,.12);color:var(--blue);padding:1px 6px;border-radius:99px;font-weight:600}
+  .filter-btn.active .filter-count{background:rgba(255,255,255,.2);color:#fff}
+
+  /* ── MAIN ── */
+  .cat-main{flex:1;min-width:0;display:flex;flex-direction:column}
+
+  /* ── TOOLBAR ── */
+  .cat-toolbar{padding:14px 18px;background:var(--white);border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .search-wrap{position:relative;flex:1;min-width:160px}
+  .search-wrap .material-icons-outlined{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--gray-400);pointer-events:none}
+  .search-wrap input{width:100%;padding:7px 10px 7px 34px;border:1px solid var(--gray-200);border-radius:var(--r);font-family:var(--font-b);font-size:.82rem;background:var(--gray-50);color:var(--gray-800);outline:none;transition:border-color var(--tr)}
+  .search-wrap input:focus{border-color:var(--blue-mid);background:#fff}
+  .toolbar-sort{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--gray-400)}
+  .toolbar-sort select{border:1px solid var(--gray-200);border-radius:var(--r);padding:6px 8px;font-family:var(--font-b);font-size:.78rem;color:var(--gray-600);background:var(--gray-50);outline:none;cursor:pointer}
+  .view-btns{display:flex;gap:4px}
+  .view-btn{width:30px;height:30px;border:1px solid var(--gray-200);background:var(--gray-50);border-radius:var(--r);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
+  .view-btn .material-icons-outlined{font-size:16px;color:var(--gray-400)}
+  .view-btn.active{background:var(--blue);border-color:var(--blue)}
+  .view-btn.active .material-icons-outlined{color:#fff}
+  .result-count{font-size:.78rem;color:var(--gray-400);white-space:nowrap}
+
+  /* ── GRID ── */
+  .cat-grid-wrap{padding:16px 18px;overflow-y:auto;flex:1}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+  .cat-grid.list-view{grid-template-columns:1fr}
+
+  /* ── PRODUCT CARD ── */
+  .prod-card{background:var(--white);border:1px solid var(--gray-100);border-radius:8px;overflow:hidden;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);cursor:pointer;display:flex;flex-direction:column;position:relative}
+  .prod-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,45,95,.12);border-color:var(--gray-200)}
+  .prod-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform var(--tr)}
+  .prod-card:hover::after{transform:scaleX(1)}
+  .prod-img{background:linear-gradient(135deg,var(--blue-tint),var(--gray-100));aspect-ratio:1/.85;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .prod-img .material-icons-outlined{font-size:48px;color:var(--blue);opacity:.25}
+  .prod-badge{position:absolute;top:8px;left:8px;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+  .badge-new{background:#002D5F;color:#fff}
+  .badge-hot{background:var(--red);color:#fff}
+  .badge-stock{background:#E8F5E9;color:#1B5E20}
+  .prod-info{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .prod-sku{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-400)}
+  .prod-name{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--blue);text-transform:uppercase;line-height:1.15}
+  .prod-desc{font-size:.75rem;color:var(--gray-600);line-height:1.5}
+  .prod-footer{margin-top:auto;padding-top:10px;border-top:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between}
+  .prod-spec{font-size:.72rem;color:var(--gray-400);display:flex;align-items:center;gap:3px}
+  .prod-spec .material-icons-outlined{font-size:12px}
+  .prod-cta{background:var(--blue);color:#fff;border:none;border-radius:4px;padding:5px 10px;font-family:var(--font-b);font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background var(--tr)}
+  .prod-cta:hover{background:var(--blue-mid)}
+
+  /* ── LIST VIEW OVERRIDE ── */
+  .list-view .prod-card{flex-direction:row;align-items:center}
+  .list-view .prod-img{width:90px;aspect-ratio:1;flex-shrink:0;border-radius:0}
+  .list-view .prod-info{flex-direction:row;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 14px}
+  .list-view .prod-name{min-width:160px;flex:1}
+  .list-view .prod-desc{flex:2;min-width:120px}
+  .list-view .prod-footer{border-top:none;padding-top:0;margin-left:auto;flex-shrink:0}
+  .list-view .prod-sku{display:none}
+
+  /* ── EMPTY STATE ── */
+  .empty-state{padding:40px;text-align:center;color:var(--gray-400);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .empty-state .material-icons-outlined{font-size:40px;opacity:.3}
+  .empty-state p{font-size:.85rem}
+
+  /* ── CART TOAST ── */
+  #cart-toast{position:fixed;bottom:20px;right:20px;background:var(--blue);color:#fff;padding:10px 18px;border-radius:6px;font-size:.8rem;font-weight:600;opacity:0;transform:translateY(10px);transition:all .3s ease;pointer-events:none;z-index:99;display:flex;align-items:center;gap:8px;max-width:280px}
+  #cart-toast.show{opacity:1;transform:translateY(0)}
+  #cart-toast .material-icons-outlined{font-size:16px;color:#90CAF9}
+
+  /* ── FOOTER BAR ── */
+  .cat-footbar{background:var(--white);border-top:1px solid var(--gray-100);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--gray-400)}
+  .cart-indicator{display:flex;align-items:center;gap:6px;font-weight:600;color:var(--blue);cursor:pointer;padding:5px 10px;border:1px solid var(--blue-tint);border-radius:var(--r);background:var(--blue-tint);transition:all var(--tr)}
+  .cart-indicator:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .cart-indicator:hover .material-icons-outlined{color:#fff}
+  .cart-indicator .material-icons-outlined{font-size:16px;color:var(--blue)}
+  .cart-indicator:hover .material-icons-outlined{color:#fff}
+  #cart-badge{background:var(--red);color:#fff;font-size:.6rem;padding:1px 5px;border-radius:99px;font-weight:700;min-width:16px;text-align:center}
+</style>
+
+<div id="catalog-root">
+  <div class="cat-topbar">
+    <span class="cat-brand">Bomba<span>Parts</span></span>
+    <span class="cat-crumb">Inicio › Catálogo</span>
+  </div>
+
+  <div class="cat-hero">
+    <p class="cat-hero-label">Catálogo de Refacciones</p>
+    <h1>Equipos de Bombeo &amp;<br>Refacciones Industriales</h1>
+    <p>Seleccione el producto y solicite su cotización al instante.</p>
+  </div>
+
+  <div class="cat-body">
+    <!-- SIDEBAR -->
+    <aside class="cat-sidebar">
+      <div>
+        <p class="sidebar-section-title">Categorías</p>
+        <button class="filter-btn active" data-cat="all" onclick="filterCat(this,'all')">
+          <span class="material-icons-outlined">category</span> Todos
+          <span class="filter-count" id="count-all">12</span>
+        </button>
+        <button class="filter-btn" data-cat="impulsor" onclick="filterCat(this,'impulsor')">
+          <span class="material-icons-outlined">settings</span> Impulsores
+          <span class="filter-count" id="count-impulsor">3</span>
+        </button>
+        <button class="filter-btn" data-cat="sello" onclick="filterCat(this,'sello')">
+          <span class="material-icons-outlined">radio_button_checked</span> Sellos Mecánicos
+          <span class="filter-count" id="count-sello">3</span>
+        </button>
+        <button class="filter-btn" data-cat="carcasa" onclick="filterCat(this,'carcasa')">
+          <span class="material-icons-outlined">blur_circular</span> Carcasas
+          <span class="filter-count" id="count-carcasa">2</span>
+        </button>
+        <button class="filter-btn" data-cat="rodamiento" onclick="filterCat(this,'rodamiento')">
+          <span class="material-icons-outlined">donut_large</span> Rodamientos
+          <span class="filter-count" id="count-rodamiento">2</span>
+        </button>
+        <button class="filter-btn" data-cat="eje" onclick="filterCat(this,'eje')">
+          <span class="material-icons-outlined">linear_scale</span> Ejes y Acoples
+          <span class="filter-count" id="count-eje">2</span>
+        </button>
+      </div>
+      <div>
+        <p class="sidebar-section-title">Disponibilidad</p>
+        <button class="filter-btn" onclick="sendPrompt('¿Cuáles productos tienen entrega inmediata?')">
+          <span class="material-icons-outlined">local_shipping</span> Entrega inmediata ↗
+        </button>
+        <button class="filter-btn" onclick="sendPrompt('¿Cómo solicito una cotización por volumen?')">
+          <span class="material-icons-outlined">request_quote</span> Cotización por volumen ↗
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <div class="cat-main">
+      <div class="cat-toolbar">
+        <div class="search-wrap">
+          <span class="material-icons-outlined">search</span>
+          <input type="text" id="search-input" placeholder="Buscar por nombre o SKU…" oninput="filterSearch()">
+        </div>
+        <div class="toolbar-sort">
+          <span>Ordenar:</span>
+          <select id="sort-sel" onchange="sortProducts()">
+            <option value="default">Relevancia</option>
+            <option value="az">A – Z</option>
+            <option value="za">Z – A</option>
+          </select>
+        </div>
+        <div class="view-btns">
+          <button class="view-btn active" id="btn-grid" onclick="setView('grid')" title="Vista cuadrícula">
+            <span class="material-icons-outlined">grid_view</span>
+          </button>
+          <button class="view-btn" id="btn-list" onclick="setView('list')" title="Vista lista">
+            <span class="material-icons-outlined">view_list</span>
+          </button>
+        </div>
+        <span class="result-count" id="result-count">12 productos</span>
+      </div>
+
+      <div class="cat-grid-wrap">
+        <div class="cat-grid" id="prod-grid"></div>
+      </div>
+
+      <div class="cat-footbar">
+        <span>© Equipos de Bombeo, Servicio y Refacciones</span>
+        <button class="cart-indicator" onclick="sendPrompt('Quiero revisar mi lista de cotización y enviar una solicitud.')">
+          <span class="material-icons-outlined">shopping_cart</span>
+          Lista de cotización
+          <span id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cart-toast">
+  <span class="material-icons-outlined">check_circle</span>
+  <span id="toast-msg">Agregado a cotización</span>
+</div>
+
+<script>
+const PRODUCTS = [
+  {id:1,sku:'IMP-001',name:'Impulsor Radial 6"',desc:'Acero inoxidable 316L, paso libre 32mm',cat:'impulsor',icon:'settings',badge:'new',spec:'316L SS'},
+  {id:2,sku:'IMP-002',name:'Impulsor Semi-Abierto 4"',desc:'Fundición gris, alto caudal, 3500 RPM',cat:'impulsor',icon:'settings',badge:null,spec:'FG-20'},
+  {id:3,sku:'IMP-003',name:'Impulsor Periférico 2"',desc:'Bronce naval, alta presión diferencial',cat:'impulsor',icon:'settings',badge:'hot',spec:'Bronce'},
+  {id:4,sku:'SEL-001',name:'Sello Mecánico Simple',desc:'Cara carbono-cerámica, DN 25–50mm',cat:'sello',icon:'radio_button_checked',badge:'stock',spec:'DN 25–50'},
+  {id:5,sku:'SEL-002',name:'Sello Mecánico Doble',desc:'Doble cara, apto para fluidos agresivos',cat:'sello',icon:'radio_button_checked',badge:null,spec:'DN 40–80'},
+  {id:6,sku:'SEL-003',name:'Sello de Cartucho',desc:'Instalación rápida, carburo de silicio',cat:'sello',icon:'radio_button_checked',badge:'new',spec:'SiC/SiC'},
+  {id:7,sku:'CAR-001',name:'Carcasa Voluta 3"',desc:'Hierro dúctil, bridas ANSI 150, pintura epoxi',cat:'carcasa',icon:'blur_circular',badge:null,spec:'ANSI 150'},
+  {id:8,sku:'CAR-002',name:'Carcasa Bipartida 6"',desc:'Acceso sin desalineación, fundición gris',cat:'carcasa',icon:'blur_circular',badge:'hot',spec:'Split-case'},
+  {id:9,sku:'ROD-001',name:'Rodamiento Rígido 6205',desc:'Doble sello, grasable, temperatura hasta 120°C',cat:'rodamiento',icon:'donut_large',badge:'stock',spec:'6205-2RS'},
+  {id:10,sku:'ROD-002',name:'Rodamiento Angular 7305',desc:'Contacto 40°, cargas axiales y radiales',cat:'rodamiento',icon:'donut_large',badge:null,spec:'7305-B'},
+  {id:11,sku:'EJE-001',name:'Eje de Transmisión 1"',desc:'Acero inox. 420, dureza 50 HRC, rectificado',cat:'eje',icon:'linear_scale',badge:null,spec:'AISI 420'},
+  {id:12,sku:'EJE-002',name:'Acople Flexible Spider',desc:'Poliuretano 92 Shore, absorción de vibración',cat:'eje',icon:'linear_scale',badge:'new',spec:'PU-92A'},
+];
+
+let activeCat = 'all';
+let searchQ = '';
+let viewMode = 'grid';
+let cartCount = 0;
+let toastTimer;
+
+function getFiltered(){
+  let p = [...PRODUCTS];
+  if(activeCat !== 'all') p = p.filter(x => x.cat === activeCat);
+  if(searchQ) p = p.filter(x =>
+    x.name.toLowerCase().includes(searchQ) ||
+    x.sku.toLowerCase().includes(searchQ) ||
+    x.desc.toLowerCase().includes(searchQ)
+  );
+  const s = document.getElementById('sort-sel').value;
+  if(s==='az') p.sort((a,b)=>a.name.localeCompare(b.name));
+  if(s==='za') p.sort((a,b)=>b.name.localeCompare(a.name));
+  return p;
+}
+
+function badgeHTML(b){
+  if(!b) return '';
+  const map={new:'badge-new',hot:'badge-hot',stock:'badge-stock'};
+  const label={new:'Nuevo',hot:'Destacado',stock:'En Stock'};
+  return `<span class="prod-badge ${map[b]}">${label[b]}</span>`;
+}
+
+function renderGrid(){
+  const prods = getFiltered();
+  const grid = document.getElementById('prod-grid');
+  grid.className = 'cat-grid' + (viewMode==='list' ? ' list-view' : '');
+  document.getElementById('result-count').textContent = prods.length + ' producto' + (prods.length!==1?'s':'');
+
+  if(!prods.length){
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <span class="material-icons-outlined">search_off</span>
+      <p>Sin resultados. Intente con otro término o categoría.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = prods.map(p => `
+    <div class="prod-card" onclick="addToCart('${p.sku}','${p.name.replace(/'/,"\\'")}')">
+      <div class="prod-img">
+        <span class="material-icons-outlined">${p.icon}</span>
+        ${badgeHTML(p.badge)}
+      </div>
+      <div class="prod-info">
+        <span class="prod-sku">${p.sku}</span>
+        <h3 class="prod-name">${p.name}</h3>
+        <p class="prod-desc">${p.desc}</p>
+        <div class="prod-footer">
+          <span class="prod-spec"><span class="material-icons-outlined">science</span>${p.spec}</span>
+          <button class="prod-cta" onclick="event.stopPropagation();addToCart('${p.sku}','${p.name.replace(/'/,"\\'")}')">
+            + Cotizar
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCat(el, cat){
+  activeCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid();
+}
+
+function filterSearch(){
+  searchQ = document.getElementById('search-input').value.toLowerCase().trim();
+  renderGrid();
+}
+
+function sortProducts(){
+  renderGrid();
+}
+
+function setView(v){
+  viewMode = v;
+  document.getElementById('btn-grid').classList.toggle('active', v==='grid');
+  document.getElementById('btn-list').classList.toggle('active', v==='list');
+  renderGrid();
+}
+
+function addToCart(sku, name){
+  cartCount++;
+  document.getElementById('cart-badge').textContent = cartCount;
+  document.getElementById('toast-msg').textContent = name + ' agregado';
+  const t = document.getElementById('cart-toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2800);
+}
+
+// Update sidebar counts
+['impulsor','sello','carcasa','rodamiento','eje'].forEach(cat => {
+  const el = document.getElementById('count-'+cat);
+  if(el) el.textContent = PRODUCTS.filter(p=>p.cat===cat).length;
+});
+
+renderGrid();
+</script>

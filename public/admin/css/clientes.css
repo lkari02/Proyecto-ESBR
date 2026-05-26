@@ -1,0 +1,81 @@
+/* ==========================================
+   MÓDULO DE CLIENTES - ESTILOS ESPECÍFICOS
+   ========================================== */
+
+/* --- 1. Barra de Búsqueda Mejorada --- */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 16px 10px 42px !important; /* Espacio para el icono */
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.search-input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); /* Resplandor azul */
+}
+
+/* --- 2. Separación de la Tabla --- */
+.table-wrap {
+    margin-top: 32px; /* Da aire entre el buscador y la tabla */
+}
+
+/* --- 3. Limpieza y Organización del Modal --- */
+#modal-cliente .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Separación perfecta entre secciones */
+    padding: 24px;
+}
+
+#modal-cliente .cliente-seccion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#modal-cliente .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#modal-cliente .info-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    background: var(--bg-surface2); /* Un fondo sutil para agrupar datos */
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+/* Hace que ciertos campos ocupen toda la fila si son muy largos */
+#modal-cliente .field-full {
+    grid-column: 1 / -1;
+}

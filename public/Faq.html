@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="faq_page_title">Preguntas Frecuentes</title>
+    <link rel="icon" type="image/png" href="assets/img/logo2.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets\public\css\styles.css">
+    <link rel="stylesheet" href="assets\public\css\faq.css">
+</head>
+<body>
+
+<header id="main-header" role="banner">
+  <div class="header-inner container">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="assets/img/logo2.png" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <nav class="nav-menu">
+      <a href="Index.html" class="nav-link" data-i18n="nav_home">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" data-i18n="nav_about">Nosotros</a>
+      <a href="catalogo.html" class="nav-link" data-i18n="nav_catalog">Catálogo</a>
+      <a href="Contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a>
+      <a href="Faq.html" class="nav-link" data-i18n="nav_faq">Preguntas Frecuentes</a>
+      
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <main>
+        <section class="faq-page container">
+            <header class="features-header text-center">
+                <p class="section-eyebrow" data-i18n="faq_eyebrow">Centro de Ayuda</p>
+                <h1 class="section-title" data-i18n="faq_header_title">Preguntas Frecuentes</h1>
+            </header>
+
+            <div class="faq-list">
+                
+                <article class="faq-item feature-card">
+                    <div class="faq-question">
+                        <span class="material-icons-outlined">help_outline</span>
+                        <h3 data-i18n="faq_q1">¿Cómo puedo solicitar una cotización?</h3>
+                    </div>
+                    <p data-i18n="faq_a1">Puede solicitar una cotización navegando a nuestro 'Catálogo', seleccionando las piezas que necesita y añadiéndolas a su carrito de cotización. Luego, complete el formulario y nuestro equipo se pondrá en contacto con usted.</p>
+                </article>
+
+                <article class="faq-item feature-card">
+                    <div class="faq-question">
+                        <span class="material-icons-outlined">local_shipping</span>
+                        <h3 data-i18n="faq_q3">¿Realizan envíos internacionales?</h3>
+                    </div>
+                    <p data-i18n="faq_a3">Sí, realizamos envíos a nivel internacional. Los costos y tiempos de envío pueden variar según el destino. Por favor, contáctenos para obtener detalles específicos sobre su ubicación.</p>
+                </article>
+
+                <article class="faq-item feature-card">
+                    <div class="faq-question">
+                        <span class="material-icons-outlined">support_agent</span>
+                        <h3 data-i18n="faq_q4">¿Cómo puedo contactar al soporte técnico?</h3>
+                    </div>
+                    <p data-i18n="faq_a4">Puede contactarnos a través del formulario de 'Contacto', vía email a info@bombaparts.com, o utilizando el botón de WhatsApp en la esquina inferior de la pantalla.</p>
+                </article>
+
+                <article class="faq-item feature-card">
+                    <div class="faq-question">
+                        <span class="material-icons-outlined">precision_manufacturing</span>
+                        <h3 data-i18n="faq_q2">¿Qué tipos de piezas ofrecen?</h3>
+                    </div>
+                    <p data-i18n="faq_a2">
+                        Nuestra especialidad es la **fabricación a la medida**. Aunque contamos con una variedad limitada de piezas estándar en stock, nuestro núcleo es crear refacciones basadas en las especificaciones exactas que usted nos proporcione.
+                    </p>
+                </article>
+
+                <article class="faq-item feature-card">
+                    <div class="faq-question">
+                        <span class="material-icons-outlined">rule</span>
+                        <h3 data-i18n="faq_q5">¿Puedo devolver una pieza si no es compatible?</h3>
+                    </div>
+                    <p data-i18n="faq_a5">
+                        Debido a que trabajamos bajo pedido con medidas personalizadas, **no se realizan reembolsos ni cambios** si la pieza no es compatible por errores en los datos o dimensiones proporcionados por el cliente. Le sugerimos verificar cuidadosamente sus especificaciones antes de confirmar el pedido.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span> 
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de Méxica</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="assets\public\js\script_web.js"></script>
+    <script src="assets\public\js\traducciones.js"></script>
+</body>
+</html>

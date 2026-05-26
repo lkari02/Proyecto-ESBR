@@ -1,0 +1,40 @@
+/* Inputs Editables en Modal */
+.editable-input {
+    background: var(--bg-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    outline: none;
+    width: 100px;
+    transition: border-color 0.2s;
+}
+.editable-input:focus { border-color: var(--accent); }
+.editable-input:disabled { opacity: 0.7; cursor: not-allowed; border-color: var(--border); }
+
+/* Botones de Canales de Contacto */
+.contact-channels {
+    display: none; /* Ocultos por defecto */
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    justify-content: flex-end;
+}
+.btn-whatsapp {
+    background: #25D366; color: white; border: none; padding: 8px 14px; border-radius: 6px; 
+    cursor: pointer; display: flex; align-items: center; gap: 6px; 
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px;
+}
+.btn-gmail {
+    background: #EA4335; color: white; border: none; padding: 8px 14px; border-radius: 6px; 
+    cursor: pointer; display: flex; align-items: center; gap: 6px; 
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px;
+}
+.btn-ambos {
+    background: var(--text-primary); color: var(--bg-base); border: none; padding: 8px 14px; border-radius: 6px; 
+    cursor: pointer; display: flex; align-items: center; gap: 6px; 
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="about_page_title">Nuestra Historia</title>
+    <link rel="icon" type="image/png" href="assets/img/logo2.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets\public\css\styles.css">
+    <link rel="stylesheet" href="assets\public\css\nosotros.css">
+</head>
+<body>
+
+        <header id="main-header" role="banner">
+  <div class="header-inner container">
+    <!-- Branding según la imagen -->
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="assets/img/logo2.png" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+
+    <!-- NUEVO: Botón de Hamburguesa -->
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <!-- Navegación -->
+    <nav class="nav-menu">
+      <a href="Index.html" class="nav-link" data-i18n="nav_home">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" data-i18n="nav_about">Nosotros</a>
+      <a href="catalogo.html" class="nav-link" data-i18n="nav_catalog">Catálogo</a>
+      <a href="Contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a>
+      <a href="Faq.html" class="nav-link" data-i18n="nav_faq">Preguntas Frecuentes</a>
+      
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <main>
+        <!-- Hero Secundario -->
+        <section class="hero" id="about-hero-section">
+            <div class="hero-content container">
+                <p class="hero-eyebrow" data-i18n="about_eyebrow">Trayectoria y Confianza</p>
+                <h1 data-i18n="about_hero_title">Conozca Equipos de Bombeo:</h1>
+                <p class="hero-desc" data-i18n="about_hero_desc">
+                    Fuimos creados con el fin de satisfacer y organizar soluciones de bombeo en la toma de decisiones, con equipos de primera calidad y excelencia mundial.
+                </p>
+            </div>
+        </section>
+
+        <!-- Misión, Visión y Valores -->
+        <section class="mission-vision container">
+            <div class="features-header text-center">
+                <p class="section-eyebrow" data-i18n="mvv_eyebrow">Fundamentos</p>
+                <h2 class="section-title" data-i18n="mvv_title">Misión, Visión y Valores</h2>
+            </div>
+            <div class="features">
+                <article class="feature-card">
+                    <span class="material-icons-outlined">architecture</span>
+                    <h3 data-i18n="mission_title">Nuestra Misión</h3>
+                    <p data-i18n="mission_desc">Fabricar y proveer refacciones exactas según los planos, materiales y necesidades de cada cliente, garantizando un maquinado de precisión y tiempos de respuesta eficientes.</p>
+                </article>
+                
+                <article class="feature-card">
+                    <span class="material-icons-outlined">visibility</span>
+                    <h3 data-i18n="vision_title">Nuestra Visión</h3>
+                    <p data-i18n="vision_desc">Consolidarnos como el taller y proveedor de confianza en el sector industrial, reconocidos por nuestra capacidad de adaptación, precisión en la fabricación y soluciones técnicas a medida.</p>
+                </article>
+                
+                <article class="feature-card">
+                    <span class="material-icons-outlined">settings_suggest</span>
+                    <h3 data-i18n="values_title">Nuestros Valores</h3>
+                    <p data-i18n="values_desc">Precisión, Honestidad, Compromiso con el Cliente, Flexibilidad y Responsabilidad. Estos pilares guían nuestra forma de trabajar y de adaptarnos a cada proyecto.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de Productos Informativa -->
+        <section class="products-section container">
+            <div class="features-header text-center"> <!-- Añadida clase text-center -->
+                <p class="section-eyebrow" data-i18n="prod_eyebrow">Especialización</p>
+                <h2 class="section-title" data-i18n="prod_types_title">Tipos de Productos</h2>
+                <p class="hero-desc mx-auto" data-i18n="prod_types_desc">
+                    Explora nuestra amplia gama de soluciones adaptadas a cada necesidad técnica.
+                </p>
+            </div>
+            
+            <div class="product-grid" id="product-grid">
+                <!-- Las imágenes se cargarán aquí simétricamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER ACTUALIZADO -->
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span> 
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de Méxica</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="assets/public/js/script_web.js"></script>
+    <script src="assets/public/js/traducciones.js"></script>
+</body>
+</html>

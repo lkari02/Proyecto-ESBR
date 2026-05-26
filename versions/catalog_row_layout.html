@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="cat_page_title">Catálogo de Refacciones</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- tus hojas de estilos originales -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="catalogo-card.css">
+
+</head>
+<body>
+
+<!-- ── HEADER ORIGINAL SIN MODIFICAR ── -->
+<header id="main-header" role="banner">
+  <div class="header-inner container">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="assets/img/logo3.jpg" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+    <nav class="nav-menu">
+      <a href="Index.html" class="nav-link" data-i18n="nav_home">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" data-i18n="nav_about">Nosotros</a>
+      <a href="catalogo.html" class="nav-link active" data-i18n="nav_catalog">Catálogo</a>
+      <a href="Contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a>
+      <a href="Faq.html" class="nav-link" data-i18n="nav_faq">Preguntas Frecuentes</a>
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ── MAIN REDISEÑADO ── -->
+<main class="catalog-page">
+
+    <!-- Encabezado -->
+    <header class="cat-page-header">
+        <p class="cat-eyebrow">Precisión Industrial</p>
+        <h1 class="cat-main-title">Catálogo de Refacciones</h1>
+
+        <div class="cat-toolbar">
+            <!-- Búsqueda -->
+            <div class="cat-search-box">
+                <span class="material-icons-outlined">search</span>
+                <input type="search" id="cat-search" placeholder="Buscar pieza técnica..." autocomplete="off">
+            </div>
+
+            <!-- Filtros -->
+            <div class="cat-filter-pills">
+                <button class="cat-pill active" data-filter="todos">Todos</button>
+                <button class="cat-pill" data-filter="rodamientos">Rodamientos</button>
+                <button class="cat-pill" data-filter="sellos">Sellos</button>
+                <button class="cat-pill" data-filter="impulsores">Impulsores</button>
+            </div>
+
+            <!-- Acciones -->
+            <a href="/Proyecto/app/services/catalogo_pdf_publico.php?lang=es" target="_blank" class="cat-btn-action">
+                <span class="material-icons-outlined">picture_as_pdf</span> Descargar PDF
+            </a>
+            <a href="cotizacion.html" class="cat-btn-action">
+                <span class="material-icons-outlined">post_add</span> Cotización
+            </a>
+        </div>
+    </header>
+
+    <!-- Cabecera de columnas -->
+    <div class="cat-col-header">
+        <span></span>
+        <span>Producto</span>
+        <span>Disponibilidad</span>
+        <span class="col-r"></span>
+    </div>
+
+    <!-- Lista de productos -->
+    <div class="cat-product-list" id="cat-product-list">
+
+        <!-- ══ PRODUCTO 1 ══════════════════════════════════ -->
+        <div class="cat-row" data-cat="rodamientos" data-id="1" onclick="toggleDetail(1, this)">
+            <div class="cat-row-img-wrap">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="22" stroke="#c4cdd8" stroke-width="2" fill="none"/>
+                    <circle cx="30" cy="30" r="13" stroke="#c4cdd8" stroke-width="1.5" fill="none"/>
+                    <circle cx="30" cy="30" r="5" fill="#c4cdd8"/>
+                    <circle cx="30" cy="8"  r="3.5" fill="#dde3ea"/>
+                    <circle cx="30" cy="52" r="3.5" fill="#dde3ea"/>
+                    <circle cx="8"  cy="30" r="3.5" fill="#dde3ea"/>
+                    <circle cx="52" cy="30" r="3.5" fill="#dde3ea"/>
+                    <circle cx="14.5" cy="14.5" r="3.5" fill="#dde3ea"/>
+                    <circle cx="45.5" cy="45.5" r="3.5" fill="#dde3ea"/>
+                    <circle cx="45.5" cy="14.5" r="3.5" fill="#dde3ea"/>
+                    <circle cx="14.5" cy="45.5" r="3.5" fill="#dde3ea"/>
+                </svg>
+                <span class="cat-img-count">1/4</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">RDB-6204-2RS</span>
+                <span class="cat-row-title">Rodamiento de precisión sellado 20×47 mm</span>
+                <span class="cat-row-meta">Acero cromado GCr15 · Doble sello NBR · ISO 6204</span>
+                <span class="cat-row-badge">Rodamientos</span>
+            </div>
+            <div class="cat-row-stock">
+                <span class="cat-stock-label">Inventario</span>
+                <div class="cat-stock-indicator">
+                    <span class="cat-stock-dot dot-ok"></span>
+                    <span class="cat-stock-num">248</span>
+                    <span class="cat-stock-unit">pzas.</span>
+                </div>
+                <span class="cat-compat-hint">Grundfos CM · Pedrollo F</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Panel de detalle 1 -->
+        <div class="cat-detail-panel" id="detail-1">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+                            <circle cx="70" cy="70" r="54" stroke="#b8c5d4" stroke-width="2.5" fill="none"/>
+                            <circle cx="70" cy="70" r="36" stroke="#b8c5d4" stroke-width="2" fill="none"/>
+                            <circle cx="70" cy="70" r="20" stroke="#c4cdd8" stroke-width="1.5" fill="none"/>
+                            <circle cx="70" cy="70" r="8" fill="#b8c5d4"/>
+                            <circle cx="70" cy="16"  r="5.5" fill="#d5dde6"/>
+                            <circle cx="70" cy="124" r="5.5" fill="#d5dde6"/>
+                            <circle cx="16" cy="70"  r="5.5" fill="#d5dde6"/>
+                            <circle cx="124" cy="70" r="5.5" fill="#d5dde6"/>
+                            <circle cx="31.5" cy="31.5" r="5.5" fill="#d5dde6"/>
+                            <circle cx="108.5" cy="108.5" r="5.5" fill="#d5dde6"/>
+                            <circle cx="108.5" cy="31.5" r="5.5" fill="#d5dde6"/>
+                            <circle cx="31.5" cy="108.5" r="5.5" fill="#d5dde6"/>
+                        </svg>
+                    </div>
+                    <div class="cat-detail-thumbs">
+                        <div class="cat-detail-thumb active"><span class="material-icons-outlined">circle</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">view_in_ar</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">content_cut</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">straighten</span></div>
+                    </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">RDB-6204-2RS · Rodamientos</p>
+                    <h2 class="cat-detail-title">Rodamiento de precisión sellado 20×47 mm</h2>
+                    <p class="cat-detail-desc">Rodamiento rígido de bolas con doble sello de hule NBR, fabricado en acero cromado GCr15 de alta pureza. Diseñado para bombas centrífugas de uso industrial continuo. Los sellos retienen la grasa y protegen contra contaminantes en entornos húmedos y con vibración constante.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Ø interior</span><span class="cat-spec-val">20 mm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Ø exterior</span><span class="cat-spec-val">47 mm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Ancho</span><span class="cat-spec-val">14 mm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Material</span><span class="cat-spec-val">Acero GCr15</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Sello</span><span class="cat-spec-val">Doble NBR</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Norma</span><span class="cat-spec-val">ISO 6204</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Carga dinámica</span><span class="cat-spec-val">13.5 kN</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Vel. límite</span><span class="cat-spec-val">14,000 rpm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Temperatura</span><span class="cat-spec-val">-25 a 120 °C</span></div>
+                    </div>
+
+                    <hr class="cat-detail-divider">
+
+                    <p class="cat-detail-compat-label">Compatible con</p>
+                    <div class="cat-compat-tags">
+                        <span class="cat-compat-tag">Grundfos CM 1–3</span>
+                        <span class="cat-compat-tag">Grundfos CM 5</span>
+                        <span class="cat-compat-tag">Pedrollo F 25</span>
+                        <span class="cat-compat-tag">Pedrollo F 32</span>
+                        <span class="cat-compat-tag">Lowara FC 25</span>
+                        <span class="cat-compat-tag">Ebara CDXM</span>
+                    </div>
+
+                    <div class="cat-detail-bottom">
+                        <div class="cat-detail-stock">
+                            <span class="cat-stock-dot dot-ok"></span>
+                            En inventario — <strong>248 pzas.</strong> disponibles
+                        </div>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(1, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                        <a href="cotizacion.html" class="cat-btn-quote">
+                            <span class="material-icons-outlined">add_shopping_cart</span> Añadir a cotización
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ PRODUCTO 2 ══════════════════════════════════ -->
+        <div class="cat-row" data-cat="sellos" data-id="2" onclick="toggleDetail(2, this)">
+            <div class="cat-row-img-wrap">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <rect x="12" y="18" width="36" height="24" rx="3" stroke="#c4cdd8" stroke-width="1.8" fill="none"/>
+                    <rect x="18" y="23" width="24" height="14" rx="2" stroke="#dde3ea" stroke-width="1.2" fill="none"/>
+                    <line x1="12" y1="30" x2="4"  y2="30" stroke="#c4cdd8" stroke-width="1.5"/>
+                    <line x1="48" y1="30" x2="56" y2="30" stroke="#c4cdd8" stroke-width="1.5"/>
+                    <circle cx="30" cy="30" r="3.5" fill="#c4cdd8"/>
+                    <path d="M22 18 L22 14 M38 18 L38 14" stroke="#dde3ea" stroke-width="1" stroke-dasharray="2,2"/>
+                    <path d="M22 42 L22 46 M38 42 L38 46" stroke="#dde3ea" stroke-width="1" stroke-dasharray="2,2"/>
+                </svg>
+                <span class="cat-img-count">1/6</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">SLM-22B</span>
+                <span class="cat-row-title">Sello mecánico carburo de silicio 22 mm</span>
+                <span class="cat-row-meta">SiC/SiC · Elastómero NBR · T máx. 120 °C</span>
+                <span class="cat-row-badge" style="background:#FAEEDA; color:#633806;">Sellos</span>
+            </div>
+            <div class="cat-row-stock">
+                <span class="cat-stock-label">Inventario</span>
+                <div class="cat-stock-indicator">
+                    <span class="cat-stock-dot dot-low"></span>
+                    <span class="cat-stock-num">34</span>
+                    <span class="cat-stock-unit">pzas.</span>
+                </div>
+                <span class="cat-compat-hint">Pentax CM · Ebara 3M</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Panel de detalle 2 -->
+        <div class="cat-detail-panel" id="detail-2">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+                            <rect x="28" y="42" width="84" height="56" rx="6" stroke="#b8c5d4" stroke-width="2.5" fill="none"/>
+                            <rect x="42" y="54" width="56" height="32" rx="4" stroke="#d5dde6" stroke-width="1.8" fill="none"/>
+                            <line x1="28" y1="70" x2="10" y2="70" stroke="#b8c5d4" stroke-width="2"/>
+                            <line x1="112" y1="70" x2="130" y2="70" stroke="#b8c5d4" stroke-width="2"/>
+                            <circle cx="70" cy="70" r="8" fill="#b8c5d4"/>
+                            <path d="M52 42 L52 28 M88 42 L88 28" stroke="#d5dde6" stroke-width="1.5" stroke-dasharray="3,3"/>
+                            <path d="M52 98 L52 112 M88 98 L88 112" stroke="#d5dde6" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        </svg>
+                    </div>
+                    <div class="cat-detail-thumbs">
+                        <div class="cat-detail-thumb active"><span class="material-icons-outlined">circle</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">view_in_ar</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">content_cut</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">straighten</span></div>
+                    </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">SLM-22B · Sellos</p>
+                    <h2 class="cat-detail-title">Sello mecánico carburo de silicio 22 mm</h2>
+                    <p class="cat-detail-desc">Sello mecánico de caras planas en carburo de silicio (SiC/SiC), con resorte de acero inoxidable AISI 316 y elastómero NBR. Indicado para medios ligeramente abrasivos, agua limpia y fluidos industriales con temperatura de hasta 120 °C. Instalación directa sin herramienta especial.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Diámetro</span><span class="cat-spec-val">22 mm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Cara móvil</span><span class="cat-spec-val">SiC</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Cara fija</span><span class="cat-spec-val">SiC</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Elastómero</span><span class="cat-spec-val">NBR</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Resorte</span><span class="cat-spec-val">AISI 316</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">T máx.</span><span class="cat-spec-val">120 °C</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Presión máx.</span><span class="cat-spec-val">16 bar</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Vel. máx.</span><span class="cat-spec-val">3,600 rpm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Norma</span><span class="cat-spec-val">DIN 24960</span></div>
+                    </div>
+
+                    <hr class="cat-detail-divider">
+
+                    <p class="cat-detail-compat-label">Compatible con</p>
+                    <div class="cat-compat-tags">
+                        <span class="cat-compat-tag">Pentax CM 50</span>
+                        <span class="cat-compat-tag">Ebara 3M 40</span>
+                        <span class="cat-compat-tag">Lowara HM 5</span>
+                        <span class="cat-compat-tag">Calpeda NM 25</span>
+                    </div>
+
+                    <div class="cat-detail-bottom">
+                        <div class="cat-detail-stock">
+                            <span class="cat-stock-dot dot-low"></span>
+                            Stock bajo — <strong>34 pzas.</strong> disponibles
+                        </div>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(2, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                        <a href="cotizacion.html" class="cat-btn-quote">
+                            <span class="material-icons-outlined">add_shopping_cart</span> Añadir a cotización
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ PRODUCTO 3 ══════════════════════════════════ -->
+        <div class="cat-row" data-cat="impulsores" data-id="3" onclick="toggleDetail(3, this)">
+            <div class="cat-row-img-wrap">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="5" fill="#c4cdd8"/>
+                    <path d="M30 25 Q38 19 46 23 Q42 30 36 30 Q33 27 30 25Z" stroke="#c4cdd8" stroke-width="1.2" fill="none"/>
+                    <path d="M36 30 Q42 38 38 46 Q30 42 30 36 Q32 32 36 30Z" stroke="#c4cdd8" stroke-width="1.2" fill="none"/>
+                    <path d="M30 36 Q22 42 14 38 Q18 30 24 30 Q28 32 30 36Z" stroke="#c4cdd8" stroke-width="1.2" fill="none"/>
+                    <path d="M24 30 Q18 22 22 14 Q30 18 30 24 Q28 28 24 30Z" stroke="#c4cdd8" stroke-width="1.2" fill="none"/>
+                </svg>
+                <span class="cat-img-count">1/3</span>
+            </div>
+            <div class="cat-row-info">
+                <span class="cat-row-sku">IMP-SS316-4</span>
+                <span class="cat-row-title">Impulsor cerrado acero inoxidable 316L Ø105 mm</span>
+                <span class="cat-row-meta">AISI 316L · 4 álabes · Caudal máx. 18 m³/h</span>
+                <span class="cat-row-badge" style="background:#E1F5EE; color:#085041;">Impulsores</span>
+            </div>
+            <div class="cat-row-stock">
+                <span class="cat-stock-label">Inventario</span>
+                <div class="cat-stock-indicator">
+                    <span class="cat-stock-dot dot-ok"></span>
+                    <span class="cat-stock-num">71</span>
+                    <span class="cat-stock-unit">pzas.</span>
+                </div>
+                <span class="cat-compat-hint">Grundfos CM10 · Lowara HM</span>
+            </div>
+            <div class="cat-row-action-zone">
+                <button class="cat-row-action" tabindex="-1">
+                    Ver detalles <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Panel de detalle 3 -->
+        <div class="cat-detail-panel" id="detail-3">
+            <div class="cat-detail-inner">
+                <div class="cat-detail-img-col">
+                    <div class="cat-detail-main-img">
+                        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+                            <circle cx="70" cy="70" r="12" fill="#b8c5d4"/>
+                            <path d="M70 58 Q90 44 108 52 Q100 70 84 70 Q76 62 70 58Z" stroke="#b8c5d4" stroke-width="2" fill="none"/>
+                            <path d="M84 70 Q100 88 92 108 Q70 98 70 82 Q74 74 84 70Z" stroke="#b8c5d4" stroke-width="2" fill="none"/>
+                            <path d="M70 82 Q50 96 32 88 Q42 70 58 70 Q66 74 70 82Z" stroke="#b8c5d4" stroke-width="2" fill="none"/>
+                            <path d="M58 70 Q42 52 50 32 Q70 42 70 58 Q66 64 58 70Z" stroke="#b8c5d4" stroke-width="2" fill="none"/>
+                            <circle cx="70" cy="70" r="40" stroke="#d5dde6" stroke-width="1" stroke-dasharray="4,4" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="cat-detail-thumbs">
+                        <div class="cat-detail-thumb active"><span class="material-icons-outlined">circle</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">view_in_ar</span></div>
+                        <div class="cat-detail-thumb"><span class="material-icons-outlined">straighten</span></div>
+                    </div>
+                </div>
+                <div class="cat-detail-info-col">
+                    <p class="cat-detail-eyebrow">IMP-SS316-4 · Impulsores</p>
+                    <h2 class="cat-detail-title">Impulsor cerrado acero inoxidable 316L Ø105 mm</h2>
+                    <p class="cat-detail-desc">Impulsor de geometría cerrada en acero inoxidable AISI 316L, con 4 álabes de perfil hidráulico optimizado. Su diseño minimiza la cavitación y maximiza la eficiencia volumétrica en bombas centrífugas de uso sanitario e industrial con fluidos ligeramente corrosivos.</p>
+
+                    <hr class="cat-detail-divider">
+
+                    <div class="cat-spec-grid">
+                        <div class="cat-spec"><span class="cat-spec-label">Diámetro</span><span class="cat-spec-val">105 mm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Número álabes</span><span class="cat-spec-val">4</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Material</span><span class="cat-spec-val">AISI 316L</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Caudal máx.</span><span class="cat-spec-val">18 m³/h</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Altura máx.</span><span class="cat-spec-val">32 m</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Vel. nominal</span><span class="cat-spec-val">2,900 rpm</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Peso</span><span class="cat-spec-val">0.85 kg</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Acoplamiento</span><span class="cat-spec-val">Chavetero Ø12</span></div>
+                        <div class="cat-spec"><span class="cat-spec-label">Norma</span><span class="cat-spec-val">ISO 9908</span></div>
+                    </div>
+
+                    <hr class="cat-detail-divider">
+
+                    <p class="cat-detail-compat-label">Compatible con</p>
+                    <div class="cat-compat-tags">
+                        <span class="cat-compat-tag">Grundfos CM 10</span>
+                        <span class="cat-compat-tag">Grundfos CM 15</span>
+                        <span class="cat-compat-tag">Lowara HM 7</span>
+                        <span class="cat-compat-tag">Pedrollo 4CP 25</span>
+                        <span class="cat-compat-tag">Calpeda MXH 804</span>
+                    </div>
+
+                    <div class="cat-detail-bottom">
+                        <div class="cat-detail-stock">
+                            <span class="cat-stock-dot dot-ok"></span>
+                            En inventario — <strong>71 pzas.</strong> disponibles
+                        </div>
+                        <button class="cat-btn-close-panel" onclick="closeDetail(3, event)">
+                            <span class="material-icons-outlined">expand_less</span> Cerrar
+                        </button>
+                        <a href="cotizacion.html" class="cat-btn-quote">
+                            <span class="material-icons-outlined">add_shopping_cart</span> Añadir a cotización
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /cat-product-list -->
+
+    <!-- Estado vacío -->
+    <div class="cat-empty" id="cat-empty">
+        <span class="material-icons-outlined">search_off</span>
+        <p>No se encontraron piezas con ese criterio.</p>
+    </div>
+
+</main>
+
+<!-- ── FOOTER ORIGINAL SIN MODIFICAR ── -->
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span>
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de México</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="assets/public/js/traducciones.js"></script>
+<script src="assets/public/js/script_web.js"></script>
+  <script src="catalogo2.js"></script>
+</body>
+</html>

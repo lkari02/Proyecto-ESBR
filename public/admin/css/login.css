@@ -1,0 +1,326 @@
+/* ==========================================
+   DISEÑO DE LOGIN Y REGISTRO (SPLIT-SCREEN)
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background-color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Contenedor Principal */
+.split-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Panel Izquierdo (Marca) */
+.brand-panel {
+    flex: 0 0 40%;
+    max-width: 500px;
+    background-color: #1e2a38; /* steel-900 de tu paleta */
+    color: #ffffff;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand-panel .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.brand-panel .hero-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.brand-panel .hero-text p {
+    font-size: 16px;
+    color: #a8b7ca; /* steel-300 */
+    line-height: 1.5;
+}
+
+.brand-panel .footer-text {
+    font-size: 13px;
+    color: #5f7894; /* steel-500 */
+}
+
+/* Panel Derecho (Formulario) */
+.form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-header {
+    margin-bottom: 32px;
+}
+
+.auth-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    color: #111824;
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    color: #5f7894;
+    font-size: 15px;
+}
+
+/* ==========================================
+   CAJAS DE TEXTO E ICONOS (COMPLETO)
+   ========================================== */
+
+/* 1. El contenedor relativo (Es el ancla, evita que los iconos salgan volando) */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+/* 2. Los iconos de la izquierda (Sobre, Candado, Usuario) */
+/* El ">" asegura que no afectemos a los iconos del ojo por accidente */
+.input-wrapper > svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a8b7ca;
+    z-index: 2;
+    pointer-events: none; /* Permite hacer clic en la caja a través del icono */
+}
+
+/* 3. La caja de texto (Con los espacios exactos para no pisar iconos) */
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 42px 12px 42px; /* 42px espacio der/izq para que el texto no toque el ojo ni el candado */
+    border: 1px solid #cdd5e0;
+    border-radius: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #111824;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* 4. El botón del Ojo (Alineación perfecta a la derecha) */
+.btn-eye {
+    position: absolute;
+    right: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0; /* Centrado vertical matemático infalible */
+    height: 24px;
+    width: 24px;
+    background: transparent;
+    border: none;
+    color: #a8b7ca;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 4px;
+}
+
+.btn-eye:hover {
+    color: #2563eb;
+}
+
+/* 5. Los iconos dentro del Ojo */
+.btn-eye svg {
+    position: static; /* Sobrescribe la regla de arriba para quedarse en su lugar */
+    transform: none;
+    width: 18px;
+    height: 18px;
+}
+
+/* Lógica de Ojo abierto/cerrado */
+.btn-eye .eye-off { display: none; }
+.btn-eye.toggled .eye-on { display: none; }
+.btn-eye.toggled .eye-off { 
+    display: block; 
+    color: #2563eb; 
+}
+
+/* Opciones extras (Recordarme / Olvidaste) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.form-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4a6080;
+    cursor: pointer;
+}
+
+.form-options a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+/* Botones */
+.btn-primary {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: #a8b7ca;
+    font-size: 13px;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e8ecf2;
+}
+
+.divider:not(:empty)::before { margin-right: 16px; }
+.divider:not(:empty)::after { margin-left: 16px; }
+
+.btn-social {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #cdd5e0;
+    color: #344358;
+    padding: 11px;
+    border-radius: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.btn-social:hover {
+    background-color: #f4f6f9;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 14px;
+    color: #5f7894;
+}
+
+.auth-switch button {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.auth-switch button:hover {
+    text-decoration: underline;
+}
+
+/* Ocultar el formulario que no está activo */
+.hidden-form {
+    display: none;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 800px) {
+    .brand-panel {
+        display: none; /* Oculta el panel azul en pantallas pequeñas */
+    }
+}
+
+
+/* --- REGLAS DE CONTRASEÑA SEGURA --- */
+.pass-reqs {
+    list-style: none;
+    margin: 8px 0 16px 0;
+    padding: 10px;
+    background: #f4f6f9;
+    border-radius: 8px;
+    font-size: 12px;
+}
+.pass-reqs li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    color: #7e94ad;
+    transition: color 0.3s;
+}
+.pass-reqs li::before {
+    content: '✕';
+    font-weight: bold;
+}
+.pass-reqs li.valid {
+    color: #16a34a; /* Verde */
+}
+.pass-reqs li.valid::before {
+    content: '✓';
+}

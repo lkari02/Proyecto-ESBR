@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="contact_page_title">Contacto</title>
+    <link rel="icon" type="image/png" href="assets/img/logo2.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets\public\css\styles.css">
+    <link rel="stylesheet" href="assets\public\css\contacto.css">
+</head>
+<body>
+
+        <header id="main-header" role="banner">
+  <div class="header-inner container">
+    <!-- Branding según la imagen -->
+    <div class="brand-container">
+      <div class="brand-icon">
+        <img src="assets/img/logo2.png" alt="Logo Equipos de Bombeo" class="custom-logo" />
+      </div>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <div class="brand-title">EQUIPOS DE BOMBEO</div>
+        <div class="brand-title">SERVICIO & REFACCIONES</div>
+      </div>
+    </div>
+
+    <!-- NUEVO: Botón de Hamburguesa -->
+    <button id="menu-toggle" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-icons-outlined">menu</span>
+    </button>
+
+    <!-- Navegación -->
+    <nav class="nav-menu">
+      <a href="Index.html" class="nav-link" data-i18n="nav_home">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" data-i18n="nav_about">Nosotros</a>
+      <a href="catalogo.html" class="nav-link" data-i18n="nav_catalog">Catálogo</a>
+      <a href="Contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a>
+      <a href="Faq.html" class="nav-link" data-i18n="nav_faq">Preguntas Frecuentes</a>
+      
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <span class="material-icons-outlined">language</span>
+        <select id="language-picker">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <main>
+        <section class="contact-page container">
+            <header class="features-header text-center">
+                <p class="section-eyebrow" data-i18n="contact_eyebrow">Atención Personalizada</p>
+                <h1 class="section-title" data-i18n="contact_hero_title">Contáctanos</h1>
+            </header>
+            
+            <div class="contact-page-container">
+                
+                <!-- Columna del Formulario -->
+                <div class="contact-form-wrapper feature-card">
+                    <p class="hero-desc" style="color: var(--gray-600); margin-bottom: 2rem;" data-i18n="contact_hero_desc">
+                        Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.
+                    </p>
+                    
+                    <form id="contact-form" class="contact-form" method="POST" action="enviar_correo.php">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_label_name">Tu Nombre</label>
+                            <input type="text" id="name" name="name" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_label_email">Tu Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" data-i18n="form_label_subject">Asunto</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="form_label_message">Tu Mensaje</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Cuéntanos qué refacción necesitas..." required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%; justify-content: center;" data-i18n="form_btn_send">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Columna de Información -->
+                <div class="contact-info-wrapper">
+                    <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1.5rem;" data-i18n="info_title">Información de Contacto</h2>
+                    
+                    <div class="info-item">
+                        <span class="material-icons-outlined">email</span>
+                        <div>
+                            <strong>Email</strong>
+                            <p>ventas@equiposbombeo.com.mx</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="material-icons-outlined">phone</span>
+                        <div>
+                            <strong>Teléfono</strong>
+                            <p>+52 55 1904 3197</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="material-icons-outlined">location_on</span>
+                        <div>
+                            <strong>Ubicación</strong>
+                            <p data-i18n="info_address">Ecatepec de Morelos, Estado de México</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+<footer id="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col about">
+            <h4 class="footer-logo">EQUIPOS DE BOMBEO</h4>
+            <p data-i18n="footer_about_desc">Su socio confiable para piezas de bomba de agua de calidad.</p>
+            <li><a href="aviso-de-privacidad.html" data-i18n="nav_privacidad">Aviso de Privacidad</a></li>
+        </div>
+        
+        <div class="footer-col links">
+            <h4 data-i18n="footer_nav_title">Navegación</h4>
+            <ul>
+                <li><a href="Index.html" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="Nosotros.html" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="catalogo.html" data-i18n="nav_catalog">Catálogo</a></li>
+                <li><a href="Contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                <li><a href="Faq.html" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col contact">
+            <h4 data-i18n="footer_contact_title">Contacto</h4>
+            <p><span class="material-icons-outlined">email</span> ventas@equiposbombeo.com.mx</p>
+            <p><span class="material-icons-outlined">phone</span>+52 55 1904 3197</p>
+            <p>
+                <span class="material-icons-outlined">location_on</span> 
+                <span data-i18n="footer_address">Ecatepec de Morelos, Estado de México</span>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Equipos de Bombeo. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="assets\public\js\script_web.js"></script>
+    <script src="assets\public\js\traducciones.js"></script>
+    
+    
+</body>
+</html>
