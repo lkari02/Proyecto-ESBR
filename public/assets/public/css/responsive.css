@@ -1,0 +1,124 @@
+/* =========================================
+   DISEÑO RESPONSIVO DEL ENCABEZADO
+========================================= */
+
+/* --- 1. ESCRITORIO (Pantallas mayores a 1024px) --- */
+@media screen and (min-width: 1025px) {
+    .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap !important; /* Candado: prohíbe el salto de línea */
+        padding: 0 1rem;
+    }
+
+    .brand-container {
+        flex-shrink: 0;
+        margin-right: 20px;
+    }
+
+    /* Ocultar botón hamburguesa */
+    .mobile-menu-btn {
+        display: none !important;
+    }
+
+    /* Asegurar que el menú sea horizontal y limpio */
+    #main-header .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        width: auto;
+        position: static;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* --- 2. TABLETS Y MÓVILES (Pantallas hasta 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 1rem;
+        position: relative; /* Ancla para el cajón desplegable */
+    }
+
+    .brand-container {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Mostrar botón hamburguesa */
+    .mobile-menu-btn {
+        display: block !important;
+        margin-left: auto;
+    }
+
+    /* Convertir el menú en un cajón vertical absoluto */
+    #main-header .nav-menu {
+        display: none; /* Oculto hasta que JavaScript actúe */
+        position: absolute;
+        top: 100%; /* Inicia justo debajo del header */
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #002d5f; /* Azul base */
+        padding: 0;
+        margin: 0;
+        border-top: 2px solid #d32f2f; /* Línea roja */
+        border-radius: 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        z-index: 9999;
+    }
+
+    /* JS activa esta clase */
+    #main-header .nav-menu.active {
+        display: flex;
+        animation: slideDownMenu 0.3s ease-out;
+    }
+
+    /* Estilo de los botones en lista vertical */
+    #main-header .nav-link {
+        padding: 15px 20px;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        box-sizing: border-box;
+        white-space: normal; /* Permite que textos largos bajen de línea en celular */
+    }
+
+    .lang-selector {
+        padding: 15px 20px;
+        justify-content: flex-start;
+    }
+    /* Mostrar botón hamburguesa */
+    .mobile-menu-btn {
+        display: block !important;
+        margin-left: auto;
+        background: transparent !important; /* Quita el fondo blanco */
+        border: none !important; /* Quita el contorno */
+        box-shadow: none;
+        cursor: pointer;
+        padding: 5px;
+        outline: none; /* Evita que salga un cuadro al hacerle clic */
+    }
+
+    /* Diseño específico del ícono (las 3 rayitas) */
+    .mobile-menu-btn .material-icons-outlined {
+        color: #ffffff !important; /* Fuerza el color blanco */
+        font-size: 2.5rem; /* Hace el ícono más grande y visible */
+    }
+}
+
+/* --- 3. ANIMACIONES --- */
+@keyframes slideDownMenu {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
