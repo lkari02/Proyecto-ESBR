@@ -246,8 +246,16 @@ $pdf->SetTextColor(0, 45, 95);
 $pdf->Cell(0, 6, txt('Próximos Pasos:'), 0, 1, 'L');
 $pdf->SetFont('Arial', '', 9);
 $pdf->SetTextColor(80, 80, 80);
-$pdf->MultiCell(0, 5, txt("Un asesor de Equipos de Bombeo revisará los requerimientos y disponibilidad de stock de las refacciones enlistadas. Te enviaremos la cotización formal con precios y tiempos de entrega a la brevedad posible a través del método de contacto seleccionado."));
+// Elemento 1
+$pdf->Cell(5, 5, txt("- "), 0, 0); // Imprime el guion sin salto de línea
+$pdf->MultiCell(0, 5, txt("Un asesor de Equipos de Bombeo revisará los requerimientos y disponibilidad de stock de las refacciones enlistadas."));
 
+// Espacio de separación entre los elementos (opcional)
+$pdf->Ln(2); 
+
+// Elemento 2
+$pdf->Cell(5, 5, txt("- "), 0, 0); // Imprime el guion sin salto de línea
+$pdf->MultiCell(0, 5, txt("Te enviaremos la cotización formal con precios y tiempos de entrega a la brevedad posible a través del método de contacto seleccionado."));
 $conn->close();
 
 // Salida del PDF al navegador

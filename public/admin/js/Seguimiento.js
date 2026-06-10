@@ -84,11 +84,4 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'none';
     });
 
-    // Helper para pintar la insignia
-    function obtenerClaseEstado(estado) {
-        if (estado === 'confirmada') return 'badge-success';
-        if (estado === 'finalizada') return 'badge-approved'; // Usa tu clase azul o la que prefieras
-        if (estado === 'no_aprobada') return 'badge-rejected';
-        return 'badge-pending';
-    }
 });

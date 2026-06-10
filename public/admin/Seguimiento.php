@@ -267,7 +267,7 @@ function clase_estado(string $estado): string {
                     </button>
 
                     <?php if ($c['estado_cotizacion'] === 'confirmada'): ?>
-                        <form method="POST" action="" style="display: inline;" onsubmit="return confirm('¿Deseas marcar esta cotización como FINALIZADA (Pedido cerrado)?');">
+                        <form method="POST" action="" style="display: inline;" onsubmit="confirmarFinalizacion(event, this);">
                             <input type="hidden" name="action" value="marcar_finalizada">
                             <input type="hidden" name="id" value="<?= $c['id'] ?>">
                             <button type="submit" class="act-btn" style="background: #2563eb; color: white;" title="Finalizar Pedido">
@@ -359,8 +359,29 @@ function clase_estado(string $estado): string {
 
 <script src="js/script.js"></script>
 <script src="js/script_color.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/Seguimiento.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function confirmarFinalizacion(event, form) {
+    event.preventDefault(); 
+    
+    Swal.fire({
+        title: '¿Finalizar pedido?',
+        text: "¿Deseas marcar esta cotización como FINALIZADA (Pedido cerrado)?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#2563eb',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit(); 
+        }
+    });
+}
+</script>
 
 </body>
 </html>
