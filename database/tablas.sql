@@ -111,7 +111,7 @@ CREATE TABLE usuarios (
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL, -- Aquí guardaremos la contraseña encriptada (Hash)
-    rol ENUM('admin', 'vendedor') DEFAULT 'vendedor',
+    rol ENUM('admin', 'vendedor') DEFAULT 'admin',
     estado ENUM('pendiente', 'activo', 'denegado') DEFAULT 'pendiente',
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

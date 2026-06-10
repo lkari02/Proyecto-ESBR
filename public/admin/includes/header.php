@@ -121,8 +121,8 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     padding: 10px;
     border-radius: 6px;
     background-color: transparent;
-    color: #ff5252;
-    border: 1px solid #ff5252;
+    color: #e90000;
+    border: 1px solid #e90c0c;
     font-weight: 600;
     cursor: pointer;
     margin-top: 10px;
@@ -131,7 +131,7 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     display: block;
     box-sizing: border-box;
   }
-  .btn-logout:hover { background-color: #ff5252; color: white; }
+  .btn-logout:hover { background-color: #750a0a; color: white; }
   
   .profile-alert {
     padding: 8px;
@@ -306,6 +306,7 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
       background-color: #f5f0ec;
     }
   }
+
 </style>
 
 <header class="topbar">
@@ -335,11 +336,11 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     <a href="Dashboard.php" class="nav-item <?php echo ($pagina_actual == 'Dashboard.php') ? 'active' : ''; ?>">Inicio</a>
     <a href="catalogo.php" class="nav-item <?php echo ($pagina_actual == 'catalogo.php') ? 'active' : ''; ?>">Catálogo</a>
     <div class="nav-item-dropdown">
-    <button class="nav-link-dropdown" onclick="toggleCotizaciones()">Cotizaciones ▾</button>
+    <button class="nav-item" onclick="toggleCotizaciones()">Cotizaciones ▾</button>
     
     <div id="menuCotizaciones" class="dropdown-content">
         <a href="/Proyecto/public/admin/cotizaciones.php">Cotizaciones</a>
-        <a href="/Proyecto/public/admin/seguimiento.php">Seguimiento de cotizaciones</a>
+        <a href="/Proyecto/public/admin/Seguimiento.php">Seguimiento de cotizaciones</a>
     </div>
 </div>
     <a href="clientes.php" class="nav-item <?php echo ($pagina_actual == 'clientes.php') ? 'active' : ''; ?>">Clientes</a>
@@ -436,7 +437,7 @@ function toggleCotizaciones() {
 
 // Función de seguridad: Cierra el menú si el usuario hace clic en cualquier otro lado de la pantalla
 window.onclick = function(event) {
-    if (!event.target.matches('.nav-link-dropdown')) {
+    if (!event.target.matches('.nav-item')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];

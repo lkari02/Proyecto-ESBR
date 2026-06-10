@@ -31,19 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
             heroImageUrl: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1920',
             products: [
     { 
-        name: 'SWP150 - Bomba Centrífuga Multipasos', 
-        img: 'assets/img/SWP-150-Photoroom.png', 
-        desc: 'Bomba centrífuga horizontal multipasos para alta presión. Fabricada en hierro gris, con sellado mediante estoperos y retenes para aceite. Eje construido en acero AISI 4140T.' 
+        name: 'Disco de Equilibrio', 
+        img: 'assets/img/Disco_de-equilibrio.png'
     },
     { 
-        name: 'SWK 130 - Bomba Centrífuga Multipasos', 
-        img: 'assets/img/SWK-130_2-Photoroom.png', 
-        desc: 'Bomba centrífuga horizontal multipasos para alta presión. Fabricada en hierro gris, sellado con empaquetadura, bujes internos en bronce estándar y rodamientos de baleros.' 
+        name: 'Impulsor', 
+        img: 'assets/img/Impulsor_3-Photoroom.png'
     },
     { 
-        name: 'SWK 110 - Bomba Horizontal', 
-        img: 'assets/img/SWK110-Photoroom.png', 
-        desc: 'Bomba horizontal para agua tipo centrífuga multipasos para alta presión. Fabricada de forma robusta en hierro gris y sellada con estoperos.' 
+        name: 'Reten', 
+        img: 'assets/img/Reten.jpg'
     }
 ]
         }
@@ -76,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="gallery-item" style="border:none; box-shadow:none; aspect-ratio:16/9; height:auto;">
                             <img src="${product.img}" alt="${product.name}" style="padding:0; object-fit:cover;">
                         </div>
-                        <h3 style="margin-top:1rem;">${product.name}</h3>
-                        <p style="font-size:0.9rem; color:var(--gray-600);">${product.desc}</p>
+                        <h3 style="margin-top: 1rem; text-align: center;">${product.name}</h3>
+                        <p style="font-size:0.9rem; color:var(--gray-600);"></p>
                     </article>
                 `;
             });

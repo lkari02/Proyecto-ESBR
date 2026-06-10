@@ -255,24 +255,24 @@ tailwind.config = {
   </div>
 
   <!-- Stats Dinámicos -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
-    <div class="stat-card">
-      <div class="stat-label">Total piezas</div>
-      <div class="stat-value" style="color:var(--accent)"><?php echo $resResumen['total']; ?></div>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Piezas</div>
+            <div class="stat-value val-white"><?php echo $resResumen['total']; ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">En Stock</div>
+            <div class="stat-value val-success"><?php echo $resResumen['stock_total'] ?? 0; ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Stock bajo</div>
+            <div class="stat-value val-brand"><?php echo $resLow['bajo']; ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Agotadas</div>
+            <div class="stat-value val-brand"><?php echo $resOut['agotado']; ?></div>
+        </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">En stock</div>
-      <div class="stat-value" style="color:var(--success)"><?php echo $resResumen['stock_total'] ?? 0; ?></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Stock bajo</div>
-      <div class="stat-value" style="color:var(--warning)"><?php echo $resLow['bajo']; ?></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Agotadas</div>
-      <div class="stat-value" style="color:var(--danger)"><?php echo $resOut['agotado']; ?></div>
-    </div>
-  </div>
 
   <div class="filter-bar" style="margin-bottom:16px;">
     <span class="filter-label">Filtrar:</span>

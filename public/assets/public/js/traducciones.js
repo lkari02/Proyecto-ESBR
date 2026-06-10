@@ -148,7 +148,7 @@ const translations = {
     "faq_q4": "How can I contact technical support?",
     "faq_a4": "You can contact us through the 'Contact' form, via email at info@bombaparts.com, or by using the WhatsApp button in the bottom corner of the screen.",
     "faq_q5": "Can I return a part if it is not compatible?",
-    "faq_a5": "Because we work on demand with custom measurements, **no refunds or exchanges are made** if the part is not compatible due to errors in the data or dimensions provided by the client. We suggest carefully verifying your specifications before confirming the order.",
+    "faq_a5": "Due to the technical nature of our products, we do not accept returns, exchanges or refunds, except in the case of manufacturing defects or errors attributable to the company.",
 
     // =====================================
     // AVISO DE PRIVACIDAD
@@ -319,7 +319,7 @@ const translations = {
     "faq_q4": "¿Cómo puedo contactar al soporte técnico?",
     "faq_a4": "Puede contactarnos a través del formulario de 'Contacto', vía email a info@bombaparts.com, o utilizando el botón de WhatsApp en la esquina inferior de la pantalla.",
     "faq_q5": "¿Puedo devolver una pieza si no es compatible?",
-    "faq_a5": "Debido a que trabajamos bajo pedido con medidas personalizadas, **no se realizan reembolsos ni cambios** si la pieza no es compatible por errores en los datos o dimensiones proporcionados por el cliente. Le sugerimos verificar cuidadosamente sus especificaciones antes de confirmar el pedido.",
+    "faq_a5": "Debido a la naturaleza técnica de nuestros productos, ni se aceptan devoluciones, cambios no reembolsos, salvo en caso de defectos de fabricación o errores atribuibles a la empresa.",
 
     // =====================================
     // AVISO DE PRIVACIDAD

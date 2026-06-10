@@ -303,12 +303,20 @@ function abrirWhatsApp() {
     const total = document.getElementById('d-total').innerText;
     const codigo = document.getElementById('d-codigo').innerText.trim();
     
-    // Obtenemos la ruta base de tu proyecto automáticamente
-    const rutaBase = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-    const urlPDF = rutaBase + '/Proyecto/app/services/generar_pdf_cotizacion.php?codigo=' + encodeURIComponent(codigo);
-
-    const mensaje = `Hola ${cliente}, tu cotización ${codigo} por un total de ${total} ha sido generada.\n\nPuedes consultar y descargar tu documento oficial en el siguiente enlace:\n${urlPDF}\n\nQuedamos a tu disposición.`;
+    // Si lograste traer el teléfono del cliente desde la base de datos (recomendado para que sea automático):
+    // const telefono = document.getElementById('d-telefono').innerText.replace(/\D/g, ''); 
     
+    // Obtenemos la ruta base de tu proyecto automáticamente
+    // Obtenemos el origen (ej. http://localhost) y armamos la ruta correcta hacia la vista pública
+    const origin = window.location.origin;
+    const urlCotizacion = `${origin}/Proyecto/public/admin/ver_cotizacion.php?codigo=${encodeURIComponent(codigo)}`;
+
+    const mensaje = `Hola ${cliente}, tu cotización ${codigo} por un total de ${total} ha sido generada.\n\nPuedes consultar y descargar tu documento oficial en el siguiente enlace:\n${urlCotizacion}\n\nQuedamos a tu disposición.`;
+    
+    // URL PARA ABRIR CON CONTACTO ESPECÍFICO (Si tienes la variable 'telefono'):
+    // window.open(`https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensaje)}`, '_blank');
+    
+    // URL ACTUAL (Abre WhatsApp pero te hace buscar el contacto manualmente):
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
@@ -319,15 +327,15 @@ function abrirEmail() {
     const codigo = document.getElementById('d-codigo').innerText.trim();
     
     // Obtenemos la ruta base de tu proyecto automáticamente
-    const rutaBase = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-    const urlPDF = rutaBase + '/Proyecto/app/services/generar_pdf_cotizacion.php?codigo=' + encodeURIComponent(codigo);
+
+    const origin = window.location.origin;
+    const urlCotizacion = `${origin}/Proyecto/public/admin/ver_cotizacion.php?codigo=${encodeURIComponent(codigo)}`;
 
     const subject = `Cotización Equipos de Bombeo - ${codigo}`;
-    const body = `Estimado(a) ${cliente},\n\nLe compartimos el enlace para consultar los detalles de su cotización aprobada por un monto total de ${total}.\n\nPuede ver y descargar su documento oficial aquí:\n${urlPDF}\n\nSaludos cordiales.`;
+    const body = `Estimado(a) ${cliente},\n\nLe compartimos el enlace para consultar los detalles de su cotización aprobada por un monto total de ${total}.\n\nPuede ver y descargar su documento oficial aquí:\n${urlCotizacion}\n\nSaludos cordiales.`;
     
-    window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    // URL para forzar la apertura de Gmail Web en la ventana de redacción
+    const urlGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.open(urlGmail, '_blank');
 }
-
-array.forEach(element => {
-    
-});

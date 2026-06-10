@@ -76,25 +76,26 @@ tailwind.config = {
   </div>
 
   <!-- STATS CARDS -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
-    <div class="stat-card">
-      <div class="stat-label">Registros Hoy</div>
-      <div class="stat-value" style="color:var(--accent)"><?php echo $stHoy; ?></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Inicios de Sesión</div>
-      <div class="stat-value" style="color:var(--success)"><?php echo $stLogin; ?></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Productos Editados</div>
-      <div class="stat-value" style="color:var(--warning)"><?php echo $stEdit; ?></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Cotiz. Aprobadas</div>
-      <div class="stat-value" style="color:var(--danger)"><?php echo $stAprob; ?></div>
-    </div>
-  </div>
 
+      <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Registros Hoy</div>
+            <div class="stat-value val-white"><?php echo $stHoy; ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Inicios de Sesión</div>
+            <div class="stat-value val-success"><?php echo $stLogin; ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Productos Editados</div>
+            <div class="stat-value val-brand"><?php echo $stEdit; ?></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Cotiz. Aprobadas</div>
+            <div class="stat-value val-brand"><?php echo $stAprob; ?></div>
+        </div>
+    </div>
+    
   <!-- FILTER BAR -->
   <div class="filter-bar" style="margin-bottom:16px;">
     <span class="filter-label">Filtrar:</span>

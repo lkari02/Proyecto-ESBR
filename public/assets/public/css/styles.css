@@ -105,23 +105,27 @@ a {
     align-items: center;
     width: 100%;
 }
-
-/* TU MARCA (La clave está en min-width: 0) */
-.brand-container {
+/* Obliga a los enlaces y al botón de idioma a mantenerse en una sola línea */
+#main-header .nav-menu {
     display: flex;
     align-items: center;
-    gap: 12px;
-    flex: 1; /* Toma el espacio disponible... */
-    min-width: 0; /* ¡MAGIA! Obliga a Flexbox a encogerse si no hay espacio */
-    max-width: calc(100% - 60px); /* ...pero respeta 60px para que viva el botón */
+    flex-wrap: nowrap; /* ESTO EVITA QUE EL BOTÓN SE CAIGA */
+    gap: 10px; /* Asegura un espacio mínimo entre los enlaces */
 }
 
-/* CONTENEDOR DE TEXTO */
-.brand-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 0; /* Necesario para que el texto interno pueda cortarse */
+/* TU MARCA (La clave está en min-width: 0) */
+/* Reemplaza .brand-text con la clase real que envuelve tus letras */
+.brand-container .brand-text {
+    white-space: normal; /* Permite que el texto salte a otra línea si es necesario */
+    word-wrap: break-word; /* Protege contra palabras muy largas */
+    overflow: visible; /* Muestra todo el contenido */
+    
+    /* IMPORTANTE: Si tienes un text-overflow: ellipsis; quítalo */
+    /* text-overflow: ellipsis; -> ELIMINAR */
+    
+    /* Opcional: Ajustar el tamaño de fuente si el texto completo ocupa demasiado espacio */
+    font-size: 0.95rem; 
+    line-height: 1.2;
 }
 
 /* LOS TEXTOS */
@@ -778,10 +782,11 @@ a {
 /* =========================================
    RESPONSIVE — WIDE (≥ 1200px)
    ========================================= */
-@media (min-width: 1200px) {
-  .hero-content {
-    padding-block: calc(var(--space-xl) * 1.25);
-  }
+@media (min-width: 992px) {
+    .brand-container {
+        min-width: 250px; /* Asegura un espacio base para el logo y texto completo */
+        max-width: 300px;
+    }
 }
 
 /* =========================================
@@ -846,7 +851,6 @@ a {
   padding-block: 0.5rem;
 }
 
-/* --- Branding (Ajuste de colores sobre fondo azul) --- */
 /* --- SOLUCIÓN A LA LÍNEA BLANCA (Desbordamiento) --- */
 html, body {
   overflow-x: hidden; /* Corta cualquier elemento que sobresalga a los lados */
@@ -855,7 +859,6 @@ html, body {
   padding: 0;
 }
 
-/* --- AJUSTES DEL CONTENEDOR DE TEXTO --- */
 /* --- CONTENEDOR PRINCIPAL --- */
 .brand-container {
   display: flex;
@@ -947,10 +950,12 @@ html, body {
 }
 
 /* --- Navegación --- */
+/* Reemplaza con la clase real que envuelve tu menú y tu botón */
 .nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;       /* Centra verticalmente los enlaces y el botón */
+    flex-wrap: nowrap;         /* ¡CLAVE! Evita que los elementos caigan a otra línea */
+    gap: 20px;                 /* Da un espacio limpio entre el menú y el botón */
 }
 
 #main-header .nav-link {
@@ -960,6 +965,7 @@ html, body {
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
   transition: all var(--transition);
+  gap: 15px;
 }
 
 #main-header .nav-link:hover {
@@ -978,6 +984,7 @@ html, body {
   border-radius: 50px;
   margin-left: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
 .lang-selector .material-icons-outlined {
@@ -1002,40 +1009,59 @@ html, body {
   color: var(--white);
 }
 
-/* --- Galería Quiénes Somos: Simetría Total --- */
-/* --- Galería Quiénes Somos: Corrección Definitiva --- */
+/* --- Galería de Piezas en "Quiénes Somos" (CORREGIDO) --- */
+
+/* 1. Contenedor Flex para envolver y centrar */
 .about-gallery-grid {
-    display: grid !important;
-    /* Esto obliga a que existan 4 columnas iguales, sin excepciones */
-    grid-template-columns: repeat(4, 1fr) !important; 
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important; /* Centra las tarjetas si hay menos de 4 */
     gap: 1.5rem !important;
     margin-top: 2.5rem;
     width: 100% !important;
-    /* Evita que el primer elemento intente ocupar más espacio */
-    align-items: stretch; 
 }
 
+/* 2. Tarjeta base con tamaño de 4 columnas simulado */
 .gallery-item {
-    /* Forzamos a que todos los recuadros midan lo mismo */
-    width: 100% !important;
-    aspect-ratio: 1 / 1 !important; 
+    /* Simulamos el tamaño de 4 columnas (un poco más exacto) */
+    width: calc(25% - 1.5rem) !important;
+    min-width: 220px !important; /* Tamaño mínimo para móviles */
+    
+    /* ¡Crucial! Evita que se estiren si hay pocas tarjetas */
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important; /* También evita que se encojan de más */
+    
+    aspect-ratio: 1 / 1 !important; /* Mantiene cuadrado */
     overflow: hidden;
     background: #fff;
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-md);
+    
+    /* Centrado interno de la imagen dentro de la tarjeta */
     display: flex !important;
     align-items: center;
     justify-content: center;
 }
 
-/* IMPORTANTE: Esto quita cualquier regla que diga que el primer hijo es más grande */
+/* 3. ¡CORRECCIÓN! Anulamos la regla del primer hijo que lo hacía grande */
 .about-gallery-grid .gallery-item:first-child {
-    grid-column: span 1 !important; 
-    grid-row: span 1 !important;
-    width: 100% !important;
-    height: auto !important;
+    /* Eliminamos las reglas de grid y las de ancho completo/alto auto que tenía */
+    grid-column: auto !important; 
+    grid-row: auto !important; 
+    
+    /* Restablecemos el tamaño base exacto para que sea igual a las demás */
+    width: calc(25% - 1.5rem) !important;
+    
+    /* Él tenía height: auto. Debemos obligarlo a usar aspect-ratio. */
+    height: initial !important; 
+    aspect-ratio: 1 / 1 !important;
+    
+    /* Y también flex-grow/shrink */
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
 }
 
+/* 4. Estilos de la imagen (se quedan igual) */
 .gallery-item img {
     width: 100% !important;
     height: 100% !important;

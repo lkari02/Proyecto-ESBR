@@ -34,7 +34,8 @@ $conteos_raw = [];
 try {
     $sql_conteos = "SELECT estado_cotizacion, COUNT(*) AS total 
                     FROM cotizaciones 
-                    GROUP BY estado_cotizacion";
+                    WHERE estado_cotizacion IN ('pendiente', 'aprobada', 'rechazada')
+                    GROUP BY estado_cotizacion";;
     $stmt = $pdo->query($sql_conteos);
     
     if ($stmt) {
@@ -67,7 +68,7 @@ try {
     $total_paginas = (int)ceil($total_filas / $por_pagina);
 
       // 4. Consulta principal ────────────────────────────────────
-    $sql_lista = "
+$sql_lista = "
         SELECT 
             cot.id,
             cot.codigo_cotizacion,
@@ -75,10 +76,11 @@ try {
             cot.estado_cotizacion,
             cot.vigencia_dias,
             cot.total,
-            cot.notas_web, /* <-- AHORA TRAEMOS LAS NOTAS */
+            cot.notas_web,
             cli.nombre AS cliente_nombre,
             cli.organizacion,
             cli.email AS cliente_email,
+            cli.telefono AS cliente_telefono,
             cli.tipo_cliente
         FROM cotizaciones cot
         INNER JOIN clientes cli ON cot.cliente_id = cli.id
@@ -263,6 +265,7 @@ tailwind.config = {
     data-cliente="<?= htmlspecialchars($c['cliente_nombre'] ?? '') ?>"
     data-org="<?= htmlspecialchars($c['organizacion'] ?? '—') ?>"
     data-email="<?= htmlspecialchars($c['cliente_email'] ?? '') ?>"
+    data-telefono="<?= htmlspecialchars($c['cliente_telefono'] ?? '') ?>"
     data-total="<?= htmlspecialchars($c['total'] ?? '0') ?>"
     data-estado="<?= htmlspecialchars($c['estado_cotizacion'] ?? 'pendiente') ?>"
     data-raw="<?= htmlspecialchars($c['notas_web'] ?? '') ?>"  title="Ver Detalles">
@@ -322,6 +325,7 @@ tailwind.config = {
     data-cliente="<?= htmlspecialchars($c['cliente_nombre'] ?? '') ?>"
     data-org="<?= htmlspecialchars($c['organizacion'] ?? '—') ?>"
     data-email="<?= htmlspecialchars($c['cliente_email'] ?? '') ?>"
+    data-telefono="<?= htmlspecialchars($c['cliente_telefono'] ?? '') ?>"
     data-total="<?= htmlspecialchars($c['total'] ?? '0') ?>"
     data-estado="<?= htmlspecialchars($c['estado_cotizacion'] ?? 'pendiente') ?>"
     data-raw="<?= htmlspecialchars($c['notas_web'] ?? '') ?>"  title="Ver Detalles">

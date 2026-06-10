@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2026 a las 05:58:08
+-- Tiempo de generación: 05-06-2026 a las 19:35:43
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,37 +24,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `organizacion` varchar(150) DEFAULT NULL,
+  `tipo_cliente` enum('Persona','Empresa') DEFAULT 'Empresa',
+  `pais` varchar(50) DEFAULT 'México',
+  `ubicacion_ciudad` varchar(100) DEFAULT NULL,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cotizaciones`
 --
 
 CREATE TABLE `cotizaciones` (
   `id` int(10) UNSIGNED NOT NULL,
+  `cliente_id` int(10) UNSIGNED NOT NULL,
   `codigo_cotizacion` varchar(20) NOT NULL,
-  `cliente_nombre` varchar(150) NOT NULL,
-  `cliente_email` varchar(100) DEFAULT NULL,
-  `cliente_telefono` varchar(20) DEFAULT NULL,
-  `organizacion` varchar(150) DEFAULT NULL,
-  `tipo_cliente` enum('Persona','Empresa') DEFAULT 'Empresa',
-  `ubicacion_ciudad` varchar(100) DEFAULT NULL,
-  `pais` varchar(50) DEFAULT 'México',
-  `estado_republica` varchar(50) DEFAULT NULL,
   `fecha_solicitud` date NOT NULL,
   `vigencia_dias` int(11) DEFAULT 30,
   `notas_web` text DEFAULT NULL,
   `estado_cotizacion` enum('pendiente','aprobada','rechazada') DEFAULT 'pendiente',
   `total` decimal(12,2) DEFAULT 0.00,
-  `creado_en` timestamp NOT NULL DEFAULT current_timestamp(),
-  `precio_unitario` decimal(10,2) NOT NULL,
-  `subtotal` decimal(10,2) NOT NULL
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `cotizaciones`
+-- Estructura de tabla para la tabla `cotizacion_detalles`
 --
 
-INSERT INTO `cotizaciones` (`id`, `codigo_cotizacion`, `cliente_nombre`, `cliente_email`, `cliente_telefono`, `organizacion`, `tipo_cliente`, `ubicacion_ciudad`, `pais`, `estado_republica`, `fecha_solicitud`, `vigencia_dias`, `notas_web`, `estado_cotizacion`, `total`, `creado_en`, `precio_unitario`, `subtotal`) VALUES
-(1, 'Q-20251110-48AB', 'Abel Corona', 'benskywalker2001@gmail.com', '241 146 4369', 'Corona', 'Empresa', 'Tlaxcala', 'México', 'Tlaxcala', '2025-11-10', 30, 'Preferencia de contacto: Email', 'aprobada', 0.00, '2026-04-25 05:35:05', 0.00, 0.00),
-(2, 'Q-20260424-001', 'Abel Corona', 'abel@ejemplo.com', '2461234567', 'BombaParts Tlaxcala', '', 'Apizaco', 'México', 'Tlaxcala', '2026-04-24', 30, 'Requiero cotización para 5 impulsores SS304.', 'aprobada', 0.00, '2026-04-25 05:43:42', 0.00, 0.00);
+CREATE TABLE `cotizacion_detalles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cotizacion_id` int(10) UNSIGNED NOT NULL,
+  `pieza_id` int(10) UNSIGNED NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_unitario` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `subtotal` decimal(10,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -77,8 +93,20 @@ CREATE TABLE `historial_actividades` (
 --
 
 INSERT INTO `historial_actividades` (`id`, `usuario`, `accion`, `detalle`, `fecha`, `modulo`, `fecha_movimiento`) VALUES
-(1, 'Admin', 'Aprobada', 'Se ha marcado como aprobada la cotización Q-20260424-001', '2026-04-25 16:39:01', 'Cotizaciones', '2026-04-25 10:39:01'),
-(2, 'Admin', 'Aprobada', 'Se ha marcado como aprobada la cotización Q-20251110-48AB', '2026-04-25 20:01:27', 'Cotizaciones', '2026-04-25 14:01:27');
+(0, 'Admin', 'APROBADA', 'Inicio de sesión: Abel Corona', '2026-06-04 03:46:41', 'Sistema', '2026-06-03 21:46:41'),
+(0, 'Admin', 'APROBADA', 'Inicio de sesión: Abel Corona', '2026-06-05 15:17:37', 'Sistema', '2026-06-05 09:17:37'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: werivhberwihbg', '2026-06-05 16:28:44', 'Catálogo', '2026-06-05 10:28:44'),
+(0, 'Admin', 'ELIMINAR', 'Se eliminó la pieza con SKU: werivhberwihbg', '2026-06-05 16:28:50', 'Catálogo', '2026-06-05 10:28:50'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: REF-DISC-BRZ62', '2026-06-05 16:37:06', 'Catálogo', '2026-06-05 10:37:06'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: REF-IMP-HGRIS', '2026-06-05 16:39:26', 'Catálogo', '2026-06-05 10:39:26'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: REF-EJE-4140T', '2026-06-05 16:42:43', 'Catálogo', '2026-06-05 10:42:43'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: REF-RET-VITRON', '2026-06-05 16:45:32', 'Catálogo', '2026-06-05 10:45:32'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: REF-ORI-NITR', '2026-06-05 16:54:24', 'Catálogo', '2026-06-05 10:54:24'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: BOM-SWP150-MP', '2026-06-05 16:58:27', 'Catálogo', '2026-06-05 10:58:27'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: BOM-SWK130-MP', '2026-06-05 17:01:11', 'Catálogo', '2026-06-05 11:01:11'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: BOM-SWK110-MP', '2026-06-05 17:03:47', 'Catálogo', '2026-06-05 11:03:47'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: BOM-DNC-SS410', '2026-06-05 17:05:19', 'Catálogo', '2026-06-05 11:05:19'),
+(0, 'Admin', 'CREAR', 'Se registró nueva pieza SKU: BOM-VERT-POZO', '2026-06-05 17:07:24', 'Catálogo', '2026-06-05 11:07:24');
 
 -- --------------------------------------------------------
 
@@ -99,10 +127,10 @@ CREATE TABLE `marcas` (
 --
 
 INSERT INTO `marcas` (`id`, `nombre`, `slug`, `activo`, `creado_en`) VALUES
-(1, 'Grundfos', 'grundfos', 1, '2026-04-25 03:07:48'),
-(2, 'Xylem', 'xylem', 1, '2026-04-25 03:07:48'),
-(3, 'Pedrollo', 'pedrollo', 1, '2026-04-25 03:07:48'),
-(4, 'Pentax', 'pentax', 1, '2026-04-25 03:07:48');
+(1, 'ESBR', 'esbr', 1, '2026-04-25 09:07:48'),
+(2, 'Xylem', 'xylem', 1, '2026-04-25 09:07:48'),
+(3, 'Pedrollo', 'pedrollo', 1, '2026-04-25 09:07:48'),
+(4, 'Pentax', 'pentax', 1, '2026-04-25 09:07:48');
 
 -- --------------------------------------------------------
 
@@ -117,17 +145,6 @@ CREATE TABLE `modelos_bomba` (
   `slug` varchar(120) NOT NULL,
   `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `modelos_bomba`
---
-
-INSERT INTO `modelos_bomba` (`id`, `marca_id`, `nombre`, `slug`, `activo`) VALUES
-(1, 1, 'CM 3-5', 'cm-3-5', 1),
-(2, 1, 'SP 5A-18', 'sp-5a-18', 1),
-(3, 2, 'LCC 100-250', 'lcc-100-250', 1),
-(4, 3, 'F 32/160A', 'f-32-160a', 1),
-(5, 4, 'CAM 80/00', 'cam-80-00', 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +171,16 @@ CREATE TABLE `piezas` (
 --
 
 INSERT INTO `piezas` (`id`, `sku`, `nombre`, `marca_id`, `descripcion_tecnica`, `precio_unitario`, `stock`, `imagen_ruta`, `activo`, `creado_en`, `actualizado_en`) VALUES
-(3, 'BP-GRU-SEL-001', 'Sello Mecánico Carbono/Cerámica 12mm', 1, 'Sello de alta resistencia para serie CM.', 450.50, 15, 'uploads/piezas/sello.webp', 1, '2026-04-25 17:31:49', '2026-04-25 17:31:49');
+(0, 'REF-DISC-BRZ62', 'Disco de equilibrio ', 1, 'Material: Fabricado en Bronce SAE 62 \"C”, con anillo fabricado en tubo mecánico y tornillos de latón.', 12.00, 12, NULL, 1, '2026-06-05 16:37:06', '2026-06-05 16:37:06'),
+(0, 'REF-IMP-HGRIS', 'Impulsor', 1, 'Material: Fabricado en hierro gris\r\nUso: Impulsor cerrado con 4 aspas que genera fuerza centrífuga que impulsa el fluido hacia el exterior de la carcaza, este movimiento transforma energía mecánica en presión hidráulica permitiendo el transporte continuo del líquido a través de sistemas de conducción con eficiencia y velocidad.', 13.00, 13, NULL, 1, '2026-06-05 16:39:26', '2026-06-05 16:39:26'),
+(0, 'REF-EJE-4140T', 'EJE', 1, 'Material: Fabricado en AISI 4140T\r\nUso: Es el eslabón mecánico de potencia de una bomba. Su función principal es recibir la potencia del motor y transmitirla al impulsor.', 14.00, 14, NULL, 1, '2026-06-05 16:42:43', '2026-06-05 16:42:43'),
+(0, 'REF-RET-VITRON', 'Retén', 1, 'Material: Vitón\r\nUso: Sellado de alta calidad para contener lubricantes, aceites, grasas, proteger componentes internos de los equipos.', 15.00, 15, NULL, 1, '2026-06-05 16:45:32', '2026-06-05 16:45:32'),
+(0, 'REF-ORI-NITR', 'O-RING', 1, 'Material: Nitrilo\r\nUso: Previene fugas, sellado confiable, resiste calor y aceite.\r\n', 11.00, 11, NULL, 1, '2026-06-05 16:54:24', '2026-06-05 16:54:24'),
+(0, 'BOM-SWP150-MP', 'Bomba centrifuga  SWP 150', 1, 'Bomba centrifuga horizontal multipasos para alta presión\r\nMaterial: Fabricado en hierro gris, sellado con estoperos, retenes para el sellado de aceite, eje construido en AISI 4140T', 11.00, 11, NULL, 1, '2026-06-05 16:58:27', '2026-06-05 16:58:27'),
+(0, 'BOM-SWK130-MP', 'Bomba centrifuga SWK 130', 1, 'Bomba centrifuga horizontal multipasos para alta presión\r\nMaterial: Fabricado en hierro gris, sellado con empaquetadura, bujes internos en bronce estándar, rodamientos de baleros.', 12.00, 12, NULL, 1, '2026-06-05 17:01:11', '2026-06-05 17:01:11'),
+(0, 'BOM-SWK110-MP', 'Bomba horizontal  SWK 110', 1, '', 13.00, 13, NULL, 1, '2026-06-05 17:03:47', '2026-06-05 17:03:47'),
+(0, 'BOM-DNC-SS410', 'DNC', 1, 'Material: Construido en acero inoxidable 410 en sus partes internas, (impulsores y ruedas directriz) acero al carbón en sus partes externas (elementos de armazón, tapas, cajas de estopero y estopero) hierro gris en los extremos, eje en acero 410 con recubrimiento de cromo duro en contacto con el agua, ejecución de pistón de compensación', 14.00, 14, NULL, 1, '2026-06-05 17:05:19', '2026-06-05 17:05:19'),
+(0, 'BOM-VERT-POZO', 'BOMBAS VERTICALES TIPO POZO ', 1, 'Material: Eje fabricado en A.I. 316 rectificado, bujes fabricados en bronce SAE 62, tazones fabricados en hierro gris.\r\nUso: Diseñada específicamente para bombear líquidos limpios o poco contaminados desde depósitos profundos y pozos subterráneos.\r\nPartes:\r\nEje de bomba\r\nTazones múltiples \r\nImpulsores \r\nCampana de succión', 15.00, 16, NULL, 1, '2026-06-05 17:07:24', '2026-06-05 17:07:24');
 
 -- --------------------------------------------------------
 
@@ -170,6 +196,15 @@ CREATE TABLE `piezas_imagenes` (
   `es_principal` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `piezas_imagenes`
+--
+
+INSERT INTO `piezas_imagenes` (`id`, `pieza_id`, `ruta_imagen`, `orden`, `es_principal`) VALUES
+(0, 0, '/Proyecto/public/admin/uploads/piezas/0_1780679244_0.png', 0, 0),
+(0, 0, '/Proyecto/public/admin/uploads/piezas/0_1780679244_1.png', 1, 0),
+(0, 0, '/Proyecto/public/admin/uploads/piezas/0_1780679244_2.png', 2, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -184,6 +219,33 @@ CREATE TABLE `piezas_traducciones` (
   `descripcion_tecnica` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `piezas_traducciones`
+--
+
+INSERT INTO `piezas_traducciones` (`id`, `pieza_id`, `idioma`, `nombre`, `descripcion_tecnica`) VALUES
+(0, 0, 'es', 'kjsfvnkjfsv', 'dovnebvkjude'),
+(0, 0, 'es', 'Disco de equilibrio ', 'Material: Fabricado en Bronce SAE 62 \"C”, con anillo fabricado en tubo mecánico y tornillos de latón.'),
+(0, 0, 'en', 'Balancing Disk', 'Material: Manufactured in SAE 62 \"C\" Bronze, featuring a ring made of mechanical tubing and brass screws. '),
+(0, 0, 'es', 'Impulsor', 'Material: Fabricado en hierro gris\r\nUso: Impulsor cerrado con 4 aspas que genera fuerza centrífuga que impulsa el fluido hacia el exterior de la carcaza, este movimiento transforma energía mecánica en presión hidráulica permitiendo el transporte continuo del líquido a través de sistemas de conducción con eficiencia y velocidad.'),
+(0, 0, 'en', 'Impeller', 'Material: Manufactured in gray iron. Use: Closed impeller with 4 blades that generates centrifugal force to drive the fluid to the outside of the casing. This movement transforms mechanical energy into hydraulic pressure, allowing the continuous transport of the liquid through conduction systems with efficiency and speed. '),
+(0, 0, 'es', 'EJE', 'Material: Fabricado en AISI 4140T\r\nUso: Es el eslabón mecánico de potencia de una bomba. Su función principal es recibir la potencia del motor y transmitirla al impulsor.'),
+(0, 0, 'en', 'Shaft', 'Material: Manufactured in AISI 4140T. Use: It is the mechanical power link of a pump. Its main function is to receive motor power and transmit it to the impeller. '),
+(0, 0, 'es', 'Retén', 'Material: Vitón\r\nUso: Sellado de alta calidad para contener lubricantes, aceites, grasas, proteger componentes internos de los equipos.'),
+(0, 0, 'en', 'Retainer', 'Material: Viton. Use: High-quality sealing to contain lubricants, oils, greases, and to protect internal equipment components. '),
+(0, 0, 'es', 'O-RING', 'Material: Nitrilo\r\nUso: Previene fugas, sellado confiable, resiste calor y aceite.\r\n'),
+(0, 0, 'en', 'O-RING', 'Material: Nitrile. Use: Prevents leaks, provides reliable sealing, resists heat and oil. '),
+(0, 0, 'es', 'Bomba centrifuga  SWP 150', 'Bomba centrifuga horizontal multipasos para alta presión\r\nMaterial: Fabricado en hierro gris, sellado con estoperos, retenes para el sellado de aceite, eje construido en AISI 4140T'),
+(0, 0, 'en', 'Centrifugal pump SWP 150', 'High-pressure multistage horizontal centrifugal pump. Material: Manufactured in gray iron, sealed with stuffing boxes, retainers for oil sealing, shaft built in AISI 4140T. '),
+(0, 0, 'es', 'Bomba centrifuga SWK 130', 'Bomba centrifuga horizontal multipasos para alta presión\r\nMaterial: Fabricado en hierro gris, sellado con empaquetadura, bujes internos en bronce estándar, rodamientos de baleros.'),
+(0, 0, 'en', 'Centrifugal pump SWK 130', 'High-pressure multistage horizontal centrifugal water pump. Material: Manufactured in gray iron, sealed with stuffing boxes. '),
+(0, 0, 'es', 'Bomba horizontal  SWK 110', ''),
+(0, 0, 'en', 'Horizontal Pump SWK 110', 'High-pressure multistage horizontal centrifugal water pump. Material: Manufactured in gray iron, sealed with stuffing boxes. '),
+(0, 0, 'es', 'DNC', 'Material: Construido en acero inoxidable 410 en sus partes internas, (impulsores y ruedas directriz) acero al carbón en sus partes externas (elementos de armazón, tapas, cajas de estopero y estopero) hierro gris en los extremos, eje en acero 410 con recubrimiento de cromo duro en contacto con el agua, ejecución de pistón de compensación'),
+(0, 0, 'en', 'DNC', 'Material: Constructed with 410 stainless steel in its internal parts (impellers and guide wheels), carbon steel in its external parts (frame elements, covers, stuffing box housings, and stuffing box). Ends made of gray iron, 410 steel shaft with hard chrome plating in contact with water, compensation piston execution. '),
+(0, 0, 'es', 'BOMBAS VERTICALES TIPO POZO ', 'Material: Eje fabricado en A.I. 316 rectificado, bujes fabricados en bronce SAE 62, tazones fabricados en hierro gris.\r\nUso: Diseñada específicamente para bombear líquidos limpios o poco contaminados desde depósitos profundos y pozos subterráneos.\r\nPartes:\r\nEje de bomba\r\nTazones múltiples \r\nImpulsores \r\nCampana de succión'),
+(0, 0, 'en', 'VERTICAL WELL PUMPS', 'Material: Shaft manufactured in ground A.I. 316, bushings manufactured in SAE 62 bronze, bowls manufactured in gray iron. Use: Designed specifically to pump clean or slightly contaminated liquids from deep tanks and underground wells. Parts: Pump shaft, multiple bowls, impellers, suction bell. ');
+
 -- --------------------------------------------------------
 
 --
@@ -195,157 +257,104 @@ CREATE TABLE `pieza_modelo` (
   `modelo_id` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `pieza_modelo`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-INSERT INTO `pieza_modelo` (`pieza_id`, `modelo_id`) VALUES
-(3, 1);
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `rol` enum('admin','vendedor') DEFAULT 'vendedor',
+  `estado` enum('pendiente','activo','denegado') DEFAULT 'pendiente',
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`, `estado`, `creado_en`) VALUES
+(1, 'Abel Corona', 'abelabdielcoronafranco2000@gmail.com', '$2y$10$pND9j.legTFzRm9iZN2lB.s2ZcxuCYs.uap6LWw8zRYUbijLX6W5a', 'admin', 'activo', '2026-06-04 03:40:38');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- Indices de la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `codigo_cotizacion` (`codigo_cotizacion`);
+  ADD KEY `cliente_id` (`cliente_id`);
 
 --
--- Indices de la tabla `historial_actividades`
+-- Indices de la tabla `cotizacion_detalles`
 --
-ALTER TABLE `historial_actividades`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `marcas`
---
-ALTER TABLE `marcas`
+ALTER TABLE `cotizacion_detalles`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uq_marcas_slug` (`slug`);
+  ADD KEY `cotizacion_id` (`cotizacion_id`);
 
 --
--- Indices de la tabla `modelos_bomba`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `modelos_bomba`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uq_modelos_slug` (`slug`),
-  ADD KEY `idx_modelos_marca` (`marca_id`);
-
---
--- Indices de la tabla `piezas`
---
-ALTER TABLE `piezas`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uq_piezas_sku` (`sku`),
-  ADD KEY `idx_piezas_marca` (`marca_id`),
-  ADD KEY `idx_piezas_activo` (`activo`),
-  ADD KEY `idx_piezas_stock` (`stock`),
-  ADD KEY `idx_piezas_precio` (`precio_unitario`);
-
---
--- Indices de la tabla `piezas_imagenes`
---
-ALTER TABLE `piezas_imagenes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_img_pieza` (`pieza_id`);
-
---
--- Indices de la tabla `piezas_traducciones`
---
-ALTER TABLE `piezas_traducciones`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_trad_pieza` (`pieza_id`);
-
---
--- Indices de la tabla `pieza_modelo`
---
-ALTER TABLE `pieza_modelo`
-  ADD PRIMARY KEY (`pieza_id`,`modelo_id`),
-  ADD KEY `idx_pm_modelo` (`modelo_id`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `historial_actividades`
---
-ALTER TABLE `historial_actividades`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `marcas`
---
-ALTER TABLE `marcas`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `modelos_bomba`
---
-ALTER TABLE `modelos_bomba`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `piezas`
---
-ALTER TABLE `piezas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `piezas_imagenes`
---
-ALTER TABLE `piezas_imagenes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `piezas_traducciones`
+-- AUTO_INCREMENT de la tabla `cotizacion_detalles`
 --
-ALTER TABLE `piezas_traducciones`
+ALTER TABLE `cotizacion_detalles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `modelos_bomba`
+-- Filtros para la tabla `cotizaciones`
 --
-ALTER TABLE `modelos_bomba`
-  ADD CONSTRAINT `fk_modelos_marca` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `cotizaciones`
+  ADD CONSTRAINT `cotizaciones_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `piezas`
+-- Filtros para la tabla `cotizacion_detalles`
 --
-ALTER TABLE `piezas`
-  ADD CONSTRAINT `fk_piezas_marca` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `piezas_imagenes`
---
-ALTER TABLE `piezas_imagenes`
-  ADD CONSTRAINT `fk_img_pieza` FOREIGN KEY (`pieza_id`) REFERENCES `piezas` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `piezas_traducciones`
---
-ALTER TABLE `piezas_traducciones`
-  ADD CONSTRAINT `fk_trad_pieza` FOREIGN KEY (`pieza_id`) REFERENCES `piezas` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `pieza_modelo`
---
-ALTER TABLE `pieza_modelo`
-  ADD CONSTRAINT `fk_pm_modelo` FOREIGN KEY (`modelo_id`) REFERENCES `modelos_bomba` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_pm_pieza` FOREIGN KEY (`pieza_id`) REFERENCES `piezas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cotizacion_detalles`
+  ADD CONSTRAINT `cotizacion_detalles_ibfk_1` FOREIGN KEY (`cotizacion_id`) REFERENCES `cotizaciones` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
