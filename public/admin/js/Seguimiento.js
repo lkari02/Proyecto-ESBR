@@ -28,7 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Colorear el estado
             dEstado.textContent = data.estado.toUpperCase().replace('_', ' ');
-            dEstado.className = 'badge ' + obtenerClaseEstado(data.estado);
+                    // Función para asignar colores según el estado de la cotización
+            function obtenerClaseEstado(estado) {
+                if (!estado) return 'bg-secondary'; // Por si viene vacío
+                
+                // Normalizamos el texto a minúsculas para evitar errores
+                let estadoNormalizado = estado.toLowerCase().trim();
+
+                switch (estadoNormalizado) {
+                    case 'confirmada':
+                    case 'aceptada':
+                        return 'bg-success'; // Verde
+                    case 'pendiente':
+                        return 'bg-warning'; // Amarillo
+                    case 'cancelada':
+                    case 'rechazada':
+                    case 'no aceptada':
+                        return 'bg-danger';  // Rojo
+                    case 'finalizada':
+                        return 'bg-primary'; // Azul
+                    default:
+                        return 'bg-secondary'; // Gris por defecto
+                }
+            }
 
             // 2. Mostrar modal en estado de carga
             modal.classList.remove('hidden');

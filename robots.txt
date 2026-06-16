@@ -1,0 +1,12 @@
+# Bloquear el acceso a todos los robots a carpetas privadas
+User-agent: *
+Disallow: /Proyecto/app/
+Disallow: /Proyecto/public/admin/
+Disallow: /Proyecto/config/
+
+# Permitir explícitamente la parte pública
+Allow: /Proyecto/public/catalogo.php
+Allow: /Proyecto/public/assets/
+
+# Indicarle a Google dónde está tu mapa (cambia tu dominio cuando lo subas a internet)
+Sitemap: https://tusitio.com/sitemap.xml

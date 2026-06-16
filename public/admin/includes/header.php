@@ -29,286 +29,6 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
 }
 ?>
 
-<style>
-  /* =========================================
-     ESTILOS BASE (Menú, Perfil, Formularios)
-     ========================================= */
-  .topbar {
-    position: relative; /* Importante para que el menú móvil se posicione bien */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    /* Ajusta el color de fondo de tu topbar según lo tengas en tu CSS general */
-  }
-
-  .nav-item { text-decoration: none !important; }
-  .profile-container { position: relative; display: inline-block; }
-  
-  .profile-trigger {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: #3a3b3c;
-    color: #e4e6eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid transparent;
-    transition: border 0.2s, background-color 0.2s;
-  }
-  .profile-trigger:hover {
-    border: 2px solid var(--accent, #3b82f6);
-    background-color: #4e4f50;
-  }
-
-  .dropdown-menu {
-    display: none; 
-    position: absolute;
-    top: 50px;
-    right: 0;
-    width: 300px;
-    background-color: #242526;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    padding: 20px;
-    z-index: 1000;
-    color: #e4e6eb;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-  .dropdown-menu.show { display: block; }
-
-  .profile-form-title {
-    margin: 0 0 15px 0;
-    font-size: 16px;
-    font-weight: 600;
-    border-bottom: 1px solid #3e4042;
-    padding-bottom: 10px;
-    text-align: center;
-  }
-
-  .form-group { margin-bottom: 12px; }
-  .form-group label { display: block; font-size: 12px; color: #b0b3b8; margin-bottom: 4px; }
-  
-  .form-group input {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #3e4042;
-    background-color: #3a3b3c;
-    color: #e4e6eb;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-  .form-group input:focus { outline: none; border-color: var(--accent, #3b82f6); }
-
-  .btn-save {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    background-color: var(--accent, #3b82f6);
-    color: white;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  .btn-save:hover { opacity: 0.9; }
-
-  .btn-logout {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    background-color: transparent;
-    color: #e90000;
-    border: 1px solid #e90c0c;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    box-sizing: border-box;
-  }
-  .btn-logout:hover { background-color: #750a0a; color: white; }
-  
-  .profile-alert {
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  .alert-success { background-color: #2e7d32; color: white; }
-  .alert-error { background-color: #c62828; color: white; }
-
-  /* =========================================
-     ESTILOS DEL LOGO
-     ========================================= */
-  .logo-img {
-    height: 36px; /* Altura ideal para un header de escritorio */
-    width: auto;
-    object-fit: contain; /* Evita que la imagen se deforme */
-  }
-
-  /* =========================================
-     ESTILOS RESPONSIVOS Y MENÚ HAMBURGUESA
-     ========================================= */
-  .hamburger-btn {
-    display: none; /* Oculto en PC */
-    background: none;
-    border: none;
-    color: currentColor; /* Se adapta al modo claro/oscuro automáticamente */
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  @media (max-width: 768px) {
-    .hamburger-btn {
-      display: block; /* Mostramos la hamburguesa */
-    }
-    .brand-sub {
-      display: none; /* Ocultamos el subtítulo para ganar espacio */
-    }
-    
-    /* Transformamos el <nav> horizontal en un menú vertical */
-    .desktop-nav {
-      display: none; /* Oculto por defecto en móvil */
-      flex-direction: column;
-      position: absolute;
-      top: 100%; /* Justo debajo del header */
-      left: 0;
-      width: 100%;
-      background-color: #242526; /* Color de fondo oscuro */
-      padding: 10px 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      z-index: 990;
-    }
-    
-    .desktop-nav.show-mobile {
-      display: flex !important;
-    }
-    
-    .desktop-nav a.nav-item {
-      width: 100%;
-      padding: 12px 20px;
-      text-align: left;
-      border-radius: 0;
-    }
-    
-    .desktop-nav a.nav-item:hover {
-      background-color: #3a3b3c;
-    }
-  }
-
-  /* Posicionamiento del contenedor principal */
-.nav-item-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Estilo del botón para que parezca un enlace normal de tu menú */
-.nav-link-dropdown {
-    background: none;
-    border: none;
-    color: #6b7280; /* Color gris/azulado de tu menú */
-    font-weight: 600;
-    cursor: pointer;
-    padding: 10px 15px;
-    font-family: inherit;
-    text-transform: uppercase;
-}
-
-/* El submenú flotante (Oculto por defecto) */
-.dropdown-content {
-    display: none; /* Esto es lo que lo esconde */
-    position: absolute;
-    background-color: #ffffff;
-    min-width: 250px; /* Ancho del submenú */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Sombra elegante */
-    z-index: 1000;
-    border-radius: 8px;
-    top: 100%;
-    left: 0;
-    margin-top: 5px;
-}
-
-/* Los enlaces dentro del submenú */
-.dropdown-content a {
-    color: #4b5563;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-}
-
-/* Efecto al pasar el ratón por las opciones del submenú */
-.dropdown-content a:hover {
-    background-color: #f3f4f6; /* Fondo gris claro */
-    border-radius: 8px;
-}
-
-/* Esta es la clase que JavaScript agregará para hacerlo visible */
-.mostrar-dropdown {
-    display: block;
-}
-
-  /* =========================================
-     ESTILOS PARA EL MODO CLARO (Quiet Luxury)
-     ========================================= */
-  html:not(.dark) .dropdown-menu {
-    background-color: #fdfbf7;
-    color: #333333;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); 
-    border: 1px solid #e8d5d1;
-  }
-
-  html:not(.dark) .profile-form-title {
-    border-bottom: 1px solid #e8d5d1; 
-    color: #1a1a1a;
-  }
-
-  html:not(.dark) .form-group label { color: #666666; }
-
-  html:not(.dark) .form-group input {
-    background-color: #ffffff;
-    border: 1px solid #d1d1d1;
-    color: #333333;
-  }
-
-  html:not(.dark) .form-group input:focus {
-    border-color: #c49a94;
-    box-shadow: 0 0 0 2px rgba(196, 154, 148, 0.15);
-  }
-
-  html:not(.dark) .profile-trigger { background-color: #f5f0ec; color: #333333; }
-  html:not(.dark) .profile-trigger:hover { background-color: #e8d5d1; border-color: #c49a94; }
-  
-  html:not(.dark) .btn-save { background-color: #2b2b2b; color: #ffffff; }
-  html:not(.dark) .btn-save:hover { background-color: #1a1a1a; }
-
-  /* Estilos del menú móvil en Modo Claro */
-  @media (max-width: 768px) {
-    html:not(.dark) .desktop-nav {
-      background-color: #fdfbf7;
-      border-top: 1px solid #e8d5d1;
-      border-bottom: 1px solid #e8d5d1;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-    html:not(.dark) .desktop-nav a.nav-item:hover {
-      background-color: #f5f0ec;
-    }
-  }
-
-</style>
-
 <header class="topbar">
   <div style="display:flex;align-items:center;gap:16px;">
     
@@ -335,14 +55,16 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
   <nav class="desktop-nav" id="mainNav">
     <a href="Dashboard.php" class="nav-item <?php echo ($pagina_actual == 'Dashboard.php') ? 'active' : ''; ?>">Inicio</a>
     <a href="catalogo.php" class="nav-item <?php echo ($pagina_actual == 'catalogo.php') ? 'active' : ''; ?>">Catálogo</a>
-    <div class="nav-item-dropdown">
-    <button class="nav-item" onclick="toggleCotizaciones()">Cotizaciones ▾</button>
     
-    <div id="menuCotizaciones" class="dropdown-content">
-        <a href="/Proyecto/public/admin/cotizaciones.php">Cotizaciones</a>
-        <a href="/Proyecto/public/admin/Seguimiento.php">Seguimiento de cotizaciones</a>
+   <div class="nav-item-dropdown">
+        <a href="javascript:void(0);" class="nav-item nav-link-dropdown" onclick="toggleCotizaciones(event)">Cotizaciones ▾</a>
+        
+        <div id="menuCotizaciones" class="dropdown-content">
+            <a href="/Proyecto/public/admin/cotizaciones.php">Cotizaciones</a>
+            <a href="/Proyecto/public/admin/Seguimiento.php">Seguimiento de cotizaciones</a>
+        </div>
     </div>
-</div>
+
     <a href="clientes.php" class="nav-item <?php echo ($pagina_actual == 'clientes.php') ? 'active' : ''; ?>">Clientes</a>
     <a href="reportes.php" class="nav-item <?php echo ($pagina_actual == 'reportes.php') ? 'active' : ''; ?>">Reportes</a>
   </nav>
@@ -402,16 +124,22 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
   function toggleProfileMenu(event) {
     event.stopPropagation();
     document.getElementById("profileMenu").classList.toggle("show");
-    // Cerramos el menú móvil si está abierto para evitar conflictos visuales
     document.getElementById("mainNav").classList.remove("show-mobile");
+    document.getElementById("menuCotizaciones").classList.remove("mostrar-dropdown"); // Cierra el otro menú
   }
 
   // Controla el menú hamburguesa (Móvil)
   function toggleMobileMenu(event) {
     event.stopPropagation();
     document.getElementById("mainNav").classList.toggle("show-mobile");
-    // Cerramos el menú de perfil si está abierto
     document.getElementById("profileMenu").classList.remove("show");
+  }
+
+  // Controla el submenú de Cotizaciones
+  function toggleCotizaciones(event) {
+      event.stopPropagation();
+      document.getElementById("menuCotizaciones").classList.toggle("mostrar-dropdown");
+      document.getElementById("profileMenu").classList.remove("show"); // Cierra perfil si estaba abierto
   }
 
   // Evita que el menú de perfil se cierre al escribir en el formulario
@@ -427,24 +155,36 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     if (!event.target.closest('.hamburger-btn') && !event.target.closest('.desktop-nav')) {
       document.getElementById("mainNav").classList.remove('show-mobile');
     }
-  });
-
-
-// Función para mostrar/ocultar el menú al hacer clic en "COTIZACIONES"
-function toggleCotizaciones() {
-    document.getElementById("menuCotizaciones").classList.toggle("mostrar-dropdown");
-}
-
-// Función de seguridad: Cierra el menú si el usuario hace clic en cualquier otro lado de la pantalla
-window.onclick = function(event) {
-    if (!event.target.matches('.nav-item')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('mostrar-dropdown')) {
-                openDropdown.classList.remove('mostrar-dropdown');
-            }
-        }
+    if (!event.target.matches('.nav-link-dropdown')) {
+        document.getElementById("menuCotizaciones").classList.remove('mostrar-dropdown');
     }
-}
+  });
 </script>
+<style>
+/* Unifica el color usando los IDs exactos (Máxima prioridad) */
+#mainNav .nav-item, 
+#mainNav .nav-link-dropdown,
+#menuCotizaciones a {
+    color: #a0a4ab !important; /* Tono grisáceo base */
+    transition: color 0.2s ease;
+}
+
+#mainNav .nav-item:hover, 
+#mainNav .nav-link-dropdown:hover,
+#menuCotizaciones a:hover {
+    color: #ffffff !important; /* Blanco al pasar el mouse */
+}
+
+/* Modo Claro */
+html:not(.dark) #mainNav .nav-item,
+html:not(.dark) #mainNav .nav-link-dropdown,
+html:not(.dark) #menuCotizaciones a {
+    color: #666666 !important; 
+}
+
+html:not(.dark) #mainNav .nav-item:hover,
+html:not(.dark) #mainNav .nav-link-dropdown:hover,
+html:not(.dark) #menuCotizaciones a:hover {
+    color: #1a1a1a !important;
+}
+</style>

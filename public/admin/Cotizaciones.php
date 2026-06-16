@@ -148,6 +148,7 @@ function clase_estado(string $estado): string {
     };
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>

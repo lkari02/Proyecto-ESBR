@@ -15,4 +15,10 @@ if ($conn->connect_error) {
 
 // Opcional: Para que los caracteres especiales (ñ, acentos) se vean bien
 $conn->set_charset("utf8");
+
+// En tu computadora local usarás esta:
+define('BASE_URL', 'http://localhost/Proyecto');
+
+// Cuando subas el sitio al servidor real, solo comentas la de arriba y usas esta:
+// define('BASE_URL', 'https://bombaparts.com.mx');
 ?>

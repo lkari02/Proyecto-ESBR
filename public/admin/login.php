@@ -19,7 +19,7 @@
             <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
                 <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
             </svg>
-            BOMBAPARTS
+            EQUIPOS DE BOMBEO, SERVICIO Y REFACCIONES
         </div>
 
         <div class="hero-text">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="footer-text">
-            © 2026 BombaParts S.A.
+            © 2026 Equipos de Bombeo
         </div>
     </div>
 

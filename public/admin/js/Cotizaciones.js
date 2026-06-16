@@ -270,9 +270,48 @@ function procesarCotizacion(nuevoEstado) {
 
 // Disparar PDF
 document.addEventListener('click', function(e) {
-    if (e.target.closest('#btn-pdf')) {
+    // Si dan clic al botón PDF o al de Enviar a Cliente
+    if (e.target.closest('#btn-pdf') || e.target.closest('.btn-enviar-cliente')) { 
+        e.preventDefault(); // Evitamos que haga la acción por defecto inmediatamente
         const codigo = document.getElementById('d-codigo').innerText.trim();
-        window.open('/Proyecto/app/services/generar_pdf_cotizacion.php?codigo=' + encodeURIComponent(codigo), '_blank');
+
+        // 1. Recolectamos los precios de la tabla, justo como lo haces en procesarCotizacion()
+        const productosModificados = [];
+        document.querySelectorAll('#tabla-productos-body tr').forEach(fila => {
+            const inputPrecio = fila.querySelector('.input-precio');
+            if(inputPrecio) {
+                productosModificados.push({ 
+                    sku: fila.dataset.sku, 
+                    precio_unitario: inputPrecio.value 
+                });
+            }
+        });
+
+        console.log("Datos a enviar a PHP:", productosModificados);
+
+        // 2. Mandamos a guardar a la Base de Datos
+        const formData = new FormData();
+        formData.append('action', 'actualizar_precios'); // Necesitas agregar esta acción en tu PHP
+        formData.append('id', codigo);
+        formData.append('productos', JSON.stringify(productosModificados));
+
+        fetch('/Proyecto/app/controllers/procesar_cotizacion.php', { 
+            method: 'POST', 
+            body: formData 
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // 3. AHORA SÍ, con la BD actualizada, generamos el PDF
+                window.open('/Proyecto/app/services/generar_pdf_cotizacion.php?codigo=' + encodeURIComponent(codigo), '_blank');
+            } else {
+                Swal.fire('Error', 'No se pudieron actualizar los precios antes de generar el PDF.', 'error');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            Swal.fire('Error', 'Falla de conexión al intentar guardar los precios.', 'error');
+        });
     }
 });
 

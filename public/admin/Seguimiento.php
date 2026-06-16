@@ -248,36 +248,36 @@ function clase_estado(string $estado): string {
               </span>
             </td>
             <td style="text-align: center;">
-                <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
-                    <button class="act-btn edit btn-ver-detalle" 
-                        data-id="<?= htmlspecialchars($c['id'] ?? '') ?>"
-                        data-codigo="<?= htmlspecialchars($c['codigo_cotizacion'] ?? '') ?>"
-                        data-fecha="<?= htmlspecialchars($c['fecha_solicitud'] ?? '') ?>"
-                        data-vigencia="<?= htmlspecialchars($c['vigencia_dias'] ?? '30') ?>"
-                        data-cliente="<?= htmlspecialchars($c['cliente_nombre'] ?? '') ?>"
-                        data-org="<?= htmlspecialchars($c['organizacion'] ?? '—') ?>"
-                        data-email="<?= htmlspecialchars($c['cliente_email'] ?? '') ?>"
-                        data-telefono="<?= htmlspecialchars($c['cliente_telefono'] ?? '') ?>"
-                        data-total="<?= htmlspecialchars($c['total'] ?? '0') ?>"
-                        data-estado="<?= htmlspecialchars($c['estado_cotizacion'] ?? '') ?>"
-                        data-raw="<?= htmlspecialchars($c['notas_web'] ?? '') ?>" title="Ver Detalles">
-                        <svg style="width:16px; height:16px; pointer-events: none;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </button>
+          <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
+              <button type="button" class="act-btn edit btn-ver-detalle" 
+                  data-id="<?= htmlspecialchars($c['id'] ?? '') ?>"
+                  data-codigo="<?= htmlspecialchars($c['codigo_cotizacion'] ?? '') ?>"
+                  data-fecha="<?= htmlspecialchars($c['fecha_solicitud'] ?? '') ?>"
+                  data-vigencia="<?= htmlspecialchars($c['vigencia_dias'] ?? '30') ?>"
+                  data-cliente="<?= htmlspecialchars($c['cliente_nombre'] ?? '') ?>"
+                  data-org="<?= htmlspecialchars($c['organizacion'] ?? '—') ?>"
+                  data-email="<?= htmlspecialchars($c['cliente_email'] ?? '') ?>"
+                  data-telefono="<?= htmlspecialchars($c['cliente_telefono'] ?? '') ?>"
+                  data-total="<?= htmlspecialchars($c['total'] ?? '0') ?>"
+                  data-estado="<?= htmlspecialchars($c['estado_cotizacion'] ?? '') ?>"
+                  data-raw="<?= htmlspecialchars($c['notas_web'] ?? '') ?>" title="Ver Detalles">
+                  <svg style="width:16px; height:16px; pointer-events: none;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+              </button>
 
-                    <?php if ($c['estado_cotizacion'] === 'confirmada'): ?>
-                        <form method="POST" action="" style="display: inline;" onsubmit="confirmarFinalizacion(event, this);">
-                            <input type="hidden" name="action" value="marcar_finalizada">
-                            <input type="hidden" name="id" value="<?= $c['id'] ?>">
-                            <button type="submit" class="act-btn" style="background: #2563eb; color: white;" title="Finalizar Pedido">
-                                <svg style="width:14px; height:14px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
-                                </svg>
-                            </button>
-                        </form>
-                    <?php endif; ?>
-                </div>
+              <?php if ($c['estado_cotizacion'] === 'confirmada'): ?>
+                  <form method="POST" action="" style="display: inline;" onsubmit="confirmarFinalizacion(event, this);">
+                      <input type="hidden" name="action" value="marcar_finalizada">
+                      <input type="hidden" name="id" value="<?= $c['id'] ?>">
+                      <button type="submit" class="act-btn" style="background: #2563eb; color: white;" title="Finalizar Pedido">
+                          <svg style="width:14px; height:14px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+                          </svg>
+                      </button>
+                  </form>
+              <?php endif; ?>
+          </div>
             </td>
           </tr>
           <?php endforeach; ?>

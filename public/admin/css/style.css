@@ -103,6 +103,331 @@
   /* ===== MAIN LAYOUT ===== */
   .main { padding: 24px; max-width: 1400px; margin: 0 auto; }
 
+  /* =========================================
+   ESTILOS DEL HEADER (TopBar, Perfil y Menús)
+   ========================================= */
+.topbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav-item { text-decoration: none !important; }
+.profile-container { position: relative; display: inline-block; }
+
+.profile-trigger {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #3a3b3c;
+    color: #e4e6eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    transition: border 0.2s, background-color 0.2s;
+}
+.profile-trigger:hover {
+    border: 2px solid var(--accent, #3b82f6);
+    background-color: #4e4f50;
+}
+
+.dropdown-menu {
+    display: none; 
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 300px;
+    background-color: #242526;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    padding: 20px;
+    z-index: 1000;
+    color: #e4e6eb;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+.dropdown-menu.show { display: block; }
+
+.profile-form-title {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #3e4042;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 12px; color: #b0b3b8; margin-bottom: 4px; }
+
+.form-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #3e4042;
+    background-color: #3a3b3c;
+    color: #e4e6eb;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.form-group input:focus { outline: none; border-color: var(--accent, #3b82f6); }
+
+.btn-save {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--accent, #3b82f6);
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-save:hover { opacity: 0.9; }
+
+.btn-logout {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #e90000;
+    border: 1px solid #e90c0c;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+}
+.btn-logout:hover { background-color: #750a0a; color: white; }
+
+.profile-alert {
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.alert-success { background-color: #2e7d32; color: white; }
+.alert-error { background-color: #c62828; color: white; }
+
+.logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* =========================================
+   MENÚ DE COTIZACIONES (Adaptado al Tema Oscuro)
+   ========================================= */
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Solo necesitamos que tenga el cursor de manita */
+.nav-link-dropdown {
+    cursor: pointer;
+}
+
+/* Estado base del submenú (Modo Oscuro por defecto) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #242526; /* Fondo oscuro igual al perfil */
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    z-index: 1000;
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+}
+
+/* Opciones dentro del menú desplegable unificadas */
+.dropdown-content a {
+    font-family: inherit; /* Toma la fuente exacta de tu sistema */
+    font-size: inherit;   /* Toma el tamaño exacto del resto del texto */
+    font-weight: normal;  /* Le quitamos lo negritas para que no se vea tosco */
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #3a3b3c; /* Hover oscuro */
+    border-radius: 8px;
+}
+
+.mostrar-dropdown {
+    display: block;
+}
+
+/* =========================================
+   ESTILOS PARA EL MODO CLARO (Quiet Luxury)
+   ========================================= */
+html:not(.dark) .dropdown-menu {
+    background-color: #fdfbf7;
+    color: #333333;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); 
+    border: 1px solid #e8d5d1;
+}
+
+html:not(.dark) .profile-form-title {
+    border-bottom: 1px solid #e8d5d1; 
+    color: #1a1a1a;
+}
+
+html:not(.dark) .form-group label { color: #666666; }
+
+html:not(.dark) .form-group input {
+    background-color: #ffffff;
+    border: 1px solid #d1d1d1;
+    color: #333333;
+}
+
+html:not(.dark) .form-group input:focus {
+    border-color: #c49a94;
+    box-shadow: 0 0 0 2px rgba(196, 154, 148, 0.15);
+}
+
+html:not(.dark) .profile-trigger { background-color: #f5f0ec; color: #333333; }
+html:not(.dark) .profile-trigger:hover { background-color: #e8d5d1; border-color: #c49a94; }
+
+html:not(.dark) .btn-save { background-color: #2b2b2b; color: #ffffff; }
+html:not(.dark) .btn-save:hover { background-color: #1a1a1a; }
+
+/* Inversión del Menú de Cotizaciones para Modo Claro */
+html:not(.dark) .dropdown-content {
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    border: 1px solid #e8d5d1;
+}
+
+html:not(.dark) .dropdown-content a {
+    color: #4b5563;
+}
+
+html:not(.dark) .dropdown-content a:hover {
+    background-color: #f3f4f6;
+}
+
+/* =========================================
+   RESPONSIVO Y MENÚ HAMBURGUESA
+   ========================================= */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+@media (max-width: 768px) {
+
+  @media (max-width: 768px) {
+    /* 1. El contenedor del dropdown debe ocupar todo el bloque */
+    .nav-item-dropdown {
+        display: block;
+        width: 100%;
+    }
+
+    /* 2. El botón de "COTIZACIONES" debe verse como los demás botones del menú móvil */
+    .nav-link-dropdown {
+        width: 100%;
+        text-align: left;
+        padding: 12px 20px;
+        display: block;
+        box-sizing: border-box;
+    }
+
+    /* 3. La magia: Quitar la posición flotante para que empuje el contenido hacia abajo */
+    .dropdown-content {
+        position: static !important; /* Forza a que se comporte como un bloque normal */
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05); /* Un fondo súper sutil para diferenciar que es submenú */
+        box-shadow: none;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    /* 4. Identar las opciones para que sea obvio que pertenecen a Cotizaciones */
+    .dropdown-content a {
+        padding: 12px 20px 12px 40px !important; /* El 40px empuja el texto a la derecha */
+        font-size: 14px;
+    }
+}
+    .hamburger-btn { display: block; }
+    .brand-sub { display: none; }
+    
+    .desktop-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #242526;
+        padding: 10px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        z-index: 990;
+    }
+    
+    .desktop-nav.show-mobile { display: flex !important; }
+    
+    .desktop-nav a.nav-item, .nav-link-dropdown {
+        width: 100%;
+        padding: 12px 20px;
+        text-align: left;
+        border-radius: 0;
+        box-sizing: border-box;
+    }
+    
+    .desktop-nav a.nav-item:hover, .nav-link-dropdown:hover {
+        background-color: #3a3b3c;
+    }
+
+    /* Ajuste del submenú en móvil para que no flote, sino que empuje el contenido */
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        width: 100%;
+        background-color: #1a1a1a;
+        margin-top: 0;
+        border-radius: 0;
+    }
+
+    html:not(.dark) .desktop-nav {
+        background-color: #fdfbf7;
+        border-top: 1px solid #e8d5d1;
+        border-bottom: 1px solid #e8d5d1;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    html:not(.dark) .desktop-nav a.nav-item:hover,
+    html:not(.dark) .nav-link-dropdown:hover {
+        background-color: #f5f0ec;
+    }
+
+    html:not(.dark) .dropdown-content {
+        background-color: #f3f4f6;
+        border: none;
+    }
+
+    
+}
   /* ===== PAGE HEADER ===== */
   .page-title {
     font-family: 'Barlow Condensed', sans-serif;
