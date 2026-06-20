@@ -1,59 +1,129 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 2. Menú Móvil & Idioma ---
-    const setupMobileMenu = () => {
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
-        }
-    };
+    // --- 1. Menú Móvil ---
+    const menuBtn = document.getElementById('menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (menuBtn && navMenu) {
+        const icon = menuBtn.querySelector('.material-icons-outlined');
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                icon.textContent = 'close';
+            } else {
+                icon.textContent = 'menu';
+            }
+        });
+    }
 
-    const setupLanguagePicker = () => {
-        const langPicker = document.getElementById("language-picker");
-        if (langPicker) {
-            langPicker.addEventListener("change", (e) => {
-                if (typeof applyLanguage === 'function') {
-                    const selectedLang = e.target.value;
-                    localStorage.setItem("userLanguage", selectedLang);
-                    applyLanguage(selectedLang);
-                }
-            });
-        }
-    };
+    // --- 2. Selector de Idioma ---
+    const langPicker = document.getElementById("language-picker");
+    if (langPicker) {
+        langPicker.addEventListener("change", (e) => {
+            if (typeof applyLanguage === 'function') {
+                const selectedLang = e.target.value;
+                localStorage.setItem("userLanguage", selectedLang);
+                applyLanguage(selectedLang);
+            }
+        });
+    }
 
-    // --- 3. Datos (Optimizado con Clases Profesionales) ---
+    // --- 3. Datos Dinámicos (MOCK API) ---
     const MOCK_API_DATA = {
         about: {
-            heroImageUrl: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1920',
-            products: [
-    { 
-        name: 'Disco de Equilibrio', 
-        img: 'assets/img/Disco_de-equilibrio.png'
-    },
-    { 
-        name: 'Impulsor', 
-        img: 'assets/img/Impulsor_3-Photoroom.png'
-    },
-    { 
-        name: 'Reten', 
-        img: 'assets/img/Reten.jpg'
-    }
-]
+            categories: [
+                {
+                    title: "Bombas horizontales centrifugas multipasos.",
+                    i18nKey: "cat_bombas_horizontales",
+                    products: [
+                        { name: 'SWP 150', img: 'assets/img/SWP-150_3-Photoroom.png', i18nKey: "prod_swp"}, 
+                        { name: 'DNC', img: 'assets/img/dnc.png', i18nKey: "prod_dnc" },
+                        { name: 'SWK 130', img: 'assets/img/SWK-130_2-Photoroom.png', i18nKey: "prod_swk" }
+                    ]
+                },
+                {
+                    title: "Bomba de tazones, sumergible para pozo.",
+                    i18nKey: "cat_bombas_tazones",
+                    products: [
+                        { name: 'Vertical 3', img: 'assets/img/Vertical_3-Photoroom.png', i18nKey: "prod_vertical" },
+                        { name: 'Tazon 1', img: 'assets/img/Pieza-Photoroom.png', i18nKey: "prod_tazon1" },
+                        { name: 'Tazon 2', img: 'assets/img/Pieza2-Photoroom.png', i18nKey: "prod_tazon2" }
+                    ]
+                },
+                {
+                    title: "Refacciones para bombas industriales de agua, en materiales, hierro, gris, acero inoxidable, bronce estándar, bronce SAE 62.",
+                    i18nKey: "cat_refacciones",
+                    products: [
+                        { name: 'DISCO DE EQUILIBRIO', img: 'assets/img/Disco_de-equilibrio.png', i18nKey: "prod_disco" },
+                        { name: 'IMPULSOR', img: 'assets/img/Impulsor_3-Photoroom.png', i18nKey: "prod_impulsor" },
+                        { name: 'RETEN', img: 'assets/img/Reten.jpg', i18nKey: "prod_reten" }
+                    ]
+                }
+            ]
+        },
+        home: {
+            aboutUsGallery: [] // Previene errores si estás en la página de inicio
         }
     };
 
-    // --- 4. Carga de Datos Dinámicos ---
+    // --- 4. Funciones de Renderizado ---
+    
+    // Función para la página "Nosotros" (Catálogo agrupado)
+    const renderAboutProducts = () => {
+        const mainContainer = document.getElementById('product-grid');
+        if (!mainContainer) return;
 
+        mainContainer.innerHTML = ''; // Limpiamos contenido previo
+        mainContainer.className = 'categories-container'; // Aplicamos clase CSS
+
+        MOCK_API_DATA.about.categories.forEach(category => {
+            const section = document.createElement('div');
+            section.className = 'category-section';
+
+            // 2. Agregamos el título de la categoría (MODIFICADO)
+        const title = document.createElement('h3');
+        title.className = 'category-title';
+        title.setAttribute('data-i18n', category.i18nKey); // <-- Le pone la etiqueta para traducir
+        title.textContent = category.title;
+        section.appendChild(title);
+
+        // 3. Creamos el grid para las tarjetas
+        const grid = document.createElement('div');
+        grid.className = 'product-grid'; 
+
+        // 4. Llenamos el grid con las tarjetas blancas
+        category.products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-item';
+
+            // AQUÍ ESTÁ LA CLAVE: Revisa que el h3 tenga el data-i18n
+            productCard.innerHTML = `
+                <div class="product-img-wrapper">
+                    <img src="${product.img}" alt="${product.name}">
+                </div>
+                <h3 class="product-title" data-i18n="${product.i18nKey}">${product.name}</h3>
+            `;
+
+            grid.appendChild(productCard);
+        });
+
+            section.appendChild(grid);
+            mainContainer.appendChild(section);
+        });
+
+            // Forzar la traducción de los nuevos elementos inyectados
+        if (typeof applyLanguage === 'function') {
+            const currentLang = localStorage.getItem("userLanguage") || "es";
+            applyLanguage(currentLang);
+        }
+    };
+
+    // Función para la página de Inicio (Si es que la usas)
     const loadHomePageData = () => {
         const gallery = document.getElementById('about-gallery');
-        if (gallery) {
+        if (gallery && MOCK_API_DATA.home && MOCK_API_DATA.home.aboutUsGallery.length > 0) {
             gallery.innerHTML = '';
             MOCK_API_DATA.home.aboutUsGallery.forEach(imageUrl => {
-                // Usamos la clase gallery-item para asegurar que los 4 sean iguales
                 gallery.innerHTML += `
                     <div class="gallery-item">
                         <img src="${imageUrl}" alt="Refacción BombaParts">
@@ -62,49 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const loadAboutPageData = () => {
-        const productGrid = document.getElementById('product-grid');
-        if (productGrid) {
-            productGrid.innerHTML = '';
-            MOCK_API_DATA.about.products.forEach(product => {
-                // Usamos la clase feature-card para que coincida con el estilo de Misión/Visión
-                productGrid.innerHTML += `
-                    <article class="feature-card">
-                        <div class="gallery-item" style="border:none; box-shadow:none; aspect-ratio:16/9; height:auto;">
-                            <img src="${product.img}" alt="${product.name}" style="padding:0; object-fit:cover;">
-                        </div>
-                        <h3 style="margin-top: 1rem; text-align: center;">${product.name}</h3>
-                        <p style="font-size:0.9rem; color:var(--gray-600);"></p>
-                    </article>
-                `;
-            });
-        }
-    };
-
-    if (document.getElementById('hero-section')) {
-        loadHomePageData();
-    } else if (document.getElementById('product-grid')) {
-        loadAboutPageData();
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    // --- 5. Inicialización (Ejecutar las funciones según la página) ---
     
-    if (menuBtn && navMenu) {
-        const icon = menuBtn.querySelector('.material-icons-outlined');
-        
-        menuBtn.addEventListener('click', () => {
-            // Activa o desactiva la clase que muestra el menú en CSS
-            navMenu.classList.toggle('active');
-            
-            // Cambia el ícono entre Hamburguesa (menu) y Cerrar (close)
-            if (navMenu.classList.contains('active')) {
-                icon.textContent = 'close';
-            } else {
-                icon.textContent = 'menu';
-            }
-        });
+    // Si estamos en el index.html
+    if (document.getElementById('hero-section') || document.getElementById('about-gallery')) {
+        loadHomePageData();
+    } 
+    
+    // Si estamos en nosotros.html (buscamos si existe el grid de productos)
+    if (document.getElementById('product-grid')) {
+        renderAboutProducts();
     }
 });

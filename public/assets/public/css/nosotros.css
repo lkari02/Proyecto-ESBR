@@ -41,3 +41,76 @@
     max-width: 600px; /* Evita que el texto sea demasiado largo para leer */
     color: var(--gray-600);
 }
+
+/* Contenedor que envuelve todas las categorías */
+.categories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Espaciado grande entre cada categoría */
+    margin-top: 3rem;
+}
+
+/* Título de cada categoría */
+.category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #000;
+    text-align: center; /* Alineado a la izquierda como en tu texto de referencia */
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+/* El grid original para que queden 3 tarjetas juntas */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: stretch; /* Para que todas las tarjetas midan lo mismo */
+}
+
+/* --- EL DISEÑO DE TU TARJETA BLANCA ORIGINAL --- */
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff; /* Fondo blanco de la tarjeta */
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem; /* Espaciado interno de la tarjeta */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra elegante */
+}
+
+/* Contenedor de la imagen dentro de la tarjeta */
+.product-img-wrapper {
+    width: 100%;
+    height: 150px; /* Forzamos una altura para que las imágenes se alineen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.product-img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Evita que la imagen se deforme */
+}
+
+/* El texto azul oscuro en mayúsculas de la tarjeta */
+.product-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #003366; /* El tono azul marino de tu diseño */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* Responsividad para celulares */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 sola columna en móvil */
+    }
+}

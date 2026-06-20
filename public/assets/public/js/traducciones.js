@@ -56,6 +56,20 @@ const translations = {
     "prod_eyebrow": "Specialization",
     "prod_types_title": "Product Types",
     "prod_types_desc": "Explore our wide range of solutions tailored to every technical need.",
+    // Category Titles
+    "cat_bombas_horizontales": "Multistage centrifugal horizontal pumps.",
+    "cat_bombas_tazones": "Submersible bowl pump for wells.",
+    "cat_refacciones": "Spare parts for industrial water pumps, in materials: gray iron, stainless steel, standard bronze, SAE 62 bronze.",
+    // Part / Model Names (Usually stay the same, except for generic parts)
+    "prod_swp": "SWP 150",
+    "prod_dnc": "DNC",
+    "prod_swk": "SWK 130",
+    "prod_vertical": "Vertical ",
+    "prod_tazon1": "Bowl 1",
+    "prod_tazon2": "Bowl 2",
+    "prod_disco": "BALANCING DISC",
+    "prod_impulsor": "IMPELLER",
+    "prod_reten": "SEAL",
 
     // Contacto
     "contact_page_title": "Contact",
@@ -225,6 +239,20 @@ const translations = {
     "prod_eyebrow": "Especialización",
     "prod_types_title": "Tipos de Productos",
     "prod_types_desc": "Explora nuestra amplia gama de soluciones adaptadas a cada necesidad técnica.",
+        // Títulos de Categorías
+    "cat_bombas_horizontales": "Bombas horizontales centrifugas multipasos.",
+    "cat_bombas_tazones": "Bomba de tazones, sumergible para pozo.",
+    "cat_refacciones": "Refacciones para bombas industriales de agua, en materiales, hierro, gris, acero inoxidable, bronce estándar, bronce SAE 62.",
+    // Nombres de Piezas / Modelos
+    "prod_swp": "SWP 150",
+    "prod_dnc": "DNC",
+    "prod_swk": "SWK 130",
+    "prod_vertical": "Vertical",
+    "prod_tazon1": "Tazon 1",
+    "prod_tazon2": "Tazon 2",
+    "prod_disco": "DISCO DE EQUILIBRIO",
+    "prod_impulsor": "IMPULSOR",
+    "prod_reten": "RETEN",
 
     // Contacto
     "contact_page_title": "Contacto",
