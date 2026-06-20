@@ -347,7 +347,7 @@ const translations = {
     "faq_q4": "¿Cómo puedo contactar al soporte técnico?",
     "faq_a4": "Puede contactarnos a través del formulario de 'Contacto', vía email a info@bombaparts.com, o utilizando el botón de WhatsApp en la esquina inferior de la pantalla.",
     "faq_q5": "¿Puedo devolver una pieza si no es compatible?",
-    "faq_a5": "Debido a la naturaleza técnica de nuestros productos, ni se aceptan devoluciones, cambios no reembolsos, salvo en caso de defectos de fabricación o errores atribuibles a la empresa.",
+    "faq_a5": "Debido a la naturaleza técnica de nuestros productos, no se aceptan devoluciones, cambios ni reembolsos, salvo en caso de defectos de fabricación o errores atribuibles a la empresa.",
 
     // =====================================
     // AVISO DE PRIVACIDAD
