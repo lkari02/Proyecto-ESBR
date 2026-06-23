@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     i18nKey: "cat_bombas_horizontales",
                     products: [
                         { name: 'SWP 150', img: 'assets/img/SWP-150_3-Photoroom.png', i18nKey: "prod_swp"}, 
-                        { name: 'DNC', img: 'assets/img/dnc.png', i18nKey: "prod_dnc" },
+                        { name: 'DNC', img: 'assets/img/DNC-Photoroom.png', i18nKey: "prod_dnc" },
                         { name: 'SWK 130', img: 'assets/img/SWK-130_2-Photoroom.png', i18nKey: "prod_swk" }
                     ]
                 },
